@@ -1,5 +1,5 @@
 @section('title') 
-Codewithus - Login
+CodeWithUs - Login
 @endsection
 @extends('layouts.main')
 @section('style')
@@ -21,15 +21,17 @@ Codewithus - Login
                             <h3 class="text-center mt-0 m-b-15">
                                 <a href="{{url('/')}}" class="xp-web-logo"><img src="assets/images/logo.png" height="40" alt="logo"></a>
                             </h3>
-                            <div class="text-center mb-3">
-                                <h4 class="text-black">Sign In !</h4>
-                                <p class="text-muted">New to CodeWithUs? <a href="{{ route('register-options') }}">Sign Up</a> Here</p>
-                            </div>                                        
-                                   
                             <div class="p-3">
-                                <div id="app_vue">
-                                    <login-component></login-component>
-                                </div>
+                          
+                                <div class="text-center mb-3">
+                                    <h4 class="text-black">Free Session !</h4>
+                                    <p class="text-muted">Already have an account? <a href="{{ route('login') }}">Sign In</a> Here</p>
+                                </div>                                        
+                                <a href="{{ route('free-session-signup') }}" type="button" class="btn btn-primary btn-rounded btn-lg btn-block">Sign-Up for a Free Session</a>
+                                <br/>           
+                                <a href="{{ route('free-session-signin') }}" type="button" class="btn btn-primary btn-rounded btn-lg btn-block">Sign-In for the Free Session</a>
+                                <br/>
+                                
                             </div>
                         </div>
                     </div>
@@ -43,8 +45,6 @@ Codewithus - Login
     <!-- End Container -->
 </div>
 <!-- End XP Container -->
-
 @section('script')
-<script type="text/javascript" src="http://localhost/codewithus/public/js/app.js"></script> 
-@endsection 
 
+@endsection 

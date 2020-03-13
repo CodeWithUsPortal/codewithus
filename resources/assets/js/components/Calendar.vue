@@ -38,8 +38,7 @@ export default {
   methods:{
     getLocations(){
       var _this = this;
-      axios.get('/codewithus/calendar/get_locations').then(function(response){ 
-        debugger;            
+      axios.get('/codewithus/calendar/get_locations').then(function(response){         
            if(response.data.response_msg == "No Locations found."){
               _this.displayError = true;
             }

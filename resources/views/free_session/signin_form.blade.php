@@ -28,7 +28,7 @@ Codewithus - Login
                                    
                             <div class="p-3">
                                 <div id="app_vue">
-                                    <login-component></login-component>
+                                    <free-session-signin></free-session-signin>
                                 </div>
                             </div>
                         </div>

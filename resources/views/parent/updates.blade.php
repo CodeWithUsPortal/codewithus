@@ -61,10 +61,12 @@ CodeWithUs - Updates
                             </tbody>
                         </table>
                     </div>
+                  <!--  -->
                 </div>
-            </div>
+            </div>   
         </div>
     </div>
+    <h6 style="color:black">Feel free to call (408) 909-7717 or chat with us for more information on your student's progress, or to give us either positive or negative feedback.</h6>
 </div>
 @endsection 
 @section('script')

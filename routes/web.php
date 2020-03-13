@@ -138,3 +138,14 @@ $this->post('/remove_teacher_location','TeacherProfileController@removeTeacherLo
 $this->post('/get_teacher_profile','TeacherProfileController@getTeacherProfile');
 $this->get('/edit_teacher_profile/{teacherId?}','TeacherProfileController@editTeacherProfileForm');
 $this->post('/edit_teacher_profile','TeacherProfileController@editTeacherProfile');
+
+// Free Session Routes ...
+$this->get('/form_options','FreeSessionController@formOptions')->name('free-session-form-options');
+$this->get('/signup_form','FreeSessionController@signUpForm')->name('free-session-signup');
+$this->get('/signin_form','FreeSessionController@signInForm')->name('free-session-signin');
+$this->post('/find_user_record_for_free_session','FreeSessionController@findStudentRecordForFreeSession');
+$this->get('/get_free_session_locations','FreeSessionController@allLocationsForFreeSession');
+$this->get('/get_free_session_topics','FreeSessionController@allTopics');
+$this->post('/get_available_time_slots','FreeSessionController@getAvailableTimeSlotsForALocation');
+$this->post('/add_free_session','FreeSessionController@addFreeSession');
+

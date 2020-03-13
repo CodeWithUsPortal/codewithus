@@ -109,6 +109,8 @@
                 axios.post('/codewithus/task_class',this.taskClassData).then(function(response){
                     _this.taskClassData = { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: ''}
                     _this.displaySuccess = true;
+                    _this.selectedValueOfTeacher = '';
+                    _this.selectedValueOfLocation = '';
                 })
             },
         },

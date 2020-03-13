@@ -34,6 +34,8 @@ CodeWithUs - Login
                                 <a href="{{ route('parent-phone-number-form') }}" type="button" class="btn btn-primary btn-rounded btn-lg btn-block">Sign-Up as a Parent</a>
                                 <br/>
                                 <a href="{{ route('students-register-page1') }}" type="button" class="btn btn-primary btn-rounded btn-lg btn-block">Sign-Up as a Student</a>
+                                <br/>
+                                <a href="{{ route('free-session-form-options') }}" type="button" class="btn btn-primary btn-rounded btn-lg btn-block">Wants to enjoy a Free Session?</a>
                             </div>
                         </div>
                     </div>

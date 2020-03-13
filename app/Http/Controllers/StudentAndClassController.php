@@ -131,47 +131,53 @@ class StudentAndClassController extends Controller
     }
 
     public function getClassesForStudentLocationAndDate(Request $request){
-        $locationIdForStudent = User::where('id',$request->student_id)->value('location_id');
+        $locationData = User::find($request->student_id)->locations()->get();
+        $classes = array();
         $classesData = array();
-        if($request->selectedDate != null && $request->selectedDate != ""){
-            $classesDataWithoutSelectedDateFilter = TaskClass::where(['is_deleted' => false, 
-                                             'is_completed' => false,
-                                             'location_id' => $locationIdForStudent,
-                                             ])->get();
-            foreach($classesDataWithoutSelectedDateFilter as $classDataWithoutSelectedDateFilter){
-                $startsAtDate = date("Y-m-d", strtotime($classDataWithoutSelectedDateFilter->starts_at));
-                $selectedDate = date("Y-m-d", strtotime($request->selectedDate));
-                if( $startsAtDate == $selectedDate){
-                    array_push($classesData, $classDataWithoutSelectedDateFilter);
+        foreach($locationData as $location){
+
+            if($request->selectedDate != null && $request->selectedDate != ""){
+                $classesDataWithoutSelectedDateFilter = TaskClass::where(['is_deleted' => false, 
+                                                'is_completed' => false,
+                                                'location_id' => $location->id,
+                                                ])->get();
+                foreach($classesDataWithoutSelectedDateFilter as $classDataWithoutSelectedDateFilter){
+                    $startsAtDate = date("Y-m-d", strtotime($classDataWithoutSelectedDateFilter->starts_at));
+                    $selectedDate = date("Y-m-d", strtotime($request->selectedDate));
+                    if( $startsAtDate == $selectedDate){
+                        array_push($classesData, $classDataWithoutSelectedDateFilter);
+                    }
                 }
             }
-        }
-        else{
-            $classesData = TaskClass::where(['is_deleted' => false, 
-                                             'is_completed' => false,
-                                             'location_id' => $locationIdForStudent ])->get();
-        }
+            else{
+                $classesDataWithoutDate = TaskClass::where(['is_deleted' => false, 
+                                                'is_completed' => false,
+                                                'location_id' => $location->id ])->get();
+                foreach($classesDataWithoutDate as $classDataWithoutDate){
+                    array_push($classesData, $classDataWithoutDate);
+                }
+            }
 
-        $classes = array();
-        foreach($classesData as $class){
+        }
+        foreach($classesData as $data){
             $teacher = "Un-assigned";
-            $usersAttached = $class->users;
+            $usersAttached = $data->users;
             foreach($usersAttached as $user){
                 $role = Role::where('id', $user->role_id)->value('role');
                 if($role == "teacher"){
                     $teacher = $user->full_name;
                 }
             }
-            $timestamp = strtotime($class['starts_at']);
+            $timestamp = strtotime($data['starts_at']);
             $time = date('H:i', $timestamp);
             $dataArray = [
-                    "taskclass_id" => $class['id'],
-                    "taskclass_name" => $time."-".$teacher."-".$class['name'],
-                    "taskclass_starting_datetime" => $class['starts_at'],
-                    "taskclass_ending_datetime" => $class['ends_at'],
+                    "taskclass_id" => $data['id'],
+                    "taskclass_name" => $time."-".$teacher."-".$data['name'],
+                    "taskclass_starting_datetime" => $data['starts_at'],
+                    "taskclass_ending_datetime" => $data['ends_at'],
             ];
-            array_push($classes,$dataArray);           
-        }
+            array_push($classes,$dataArray);      
+        }     
         if(count($classes) <= 0){
             return response()->json(['response_msg'=>'No Classes exist for this Information'],200);
         }
@@ -180,17 +186,20 @@ class StudentAndClassController extends Controller
         } 
     }
 
-    public function getTeachersForTheLocation(Request $request){
-        $roleId = Role::where('role','teacher')->value('id');
-        $teacherData = User::where(['is_deleted' => false, 
-                                    'role_id' => $roleId,
-                                    'location_id' => $request->location_id ])->get();
+    public function getTeachersForTheLocation(Request $request){ 
+        $userData = Location::find($request->location_id)->users()->get();
         $teachers = array();
-        foreach($teacherData as $teacher){
-            $dataArray = ["teacher_id" => $teacher['id'],
-                      "teacher_name" => $teacher['full_name'],
-            ];
-            array_push($teachers,$dataArray);           
+        foreach($userData as $user){
+            $roleId = Role::where('role','teacher')->value('id');
+            $teacherData = User::where([ 'id' => $user->id,
+                                         'is_deleted' => false, 
+                                         'role_id' => $roleId, ])->get();
+            foreach($teacherData as $teacher){
+                $dataArray = ["teacher_id" => $teacher['id'],
+                              "teacher_name" => $teacher['full_name'],
+                ];
+                array_push($teachers,$dataArray);           
+            }
         }
         if(count($teachers) <= 0){
             return response()->json(['response_msg'=>'No teachers found for this location.'],200);

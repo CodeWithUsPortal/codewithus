@@ -1,32 +1,47 @@
 @section('title') 
-CodeWithUs - Update
+CodeWithUs - Dashboard
 @endsection 
-@extends('layouts.update_layout')
+@extends('layouts.main')
 @section('style')
 <!-- Chartist Chart CSS -->
 <link href="{{ asset('assets/plugins/chartist-js/chartist.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Datepicker CSS -->
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-cal"></script>
 @endsection 
+@section('leftbar')
+    @include('layouts.teacher_menu') 
+@endsection 
+@section('rightbar-content')
 
+<!-- Start XP Breadcrumbbar -->                    
+<div class="xp-breadcrumbbar">
+    <div class="row">
+        <div class="col-md-6 col-lg-6">
+            <h4 class="xp-page-title">Lecture Sub Categories</h4>
+        </div>
+    </div>          
+</div>
+<!-- End XP Breadcrumbbar -->
+<!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
-    <div class="row"> 
+    <div class="row">              
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <div class="xp-widget-box text-center">
-                        <h4 class="xp-counter text-warning m-t-20">{{ $update['content'] }}</h4>
-                        <p class="text-muted font-16">By : {{ $update['created_by'] }}</p>
-                        <p class="mb-0 f-w-5 text-danger"><span class="badge badge-warning">{{ $update['created_at'] }}</span></p> 
+                    <div id="app_vue">
+                        <lecture-sub-category></lecture-sub-category>
                     </div>
-                </div>
-            </div>
-            <h6 style="color:black">Feel free to call (408) 909-7717 or chat with us for more information on your student's progress, or to give us either positive or negative feedback.</h6>
-        </div>
+                </div> 
+            </div> 
+        </div>   
     </div>
-</div>
+</div>        
+<script type="text/javascript" src="http://localhost/codewithus/public/js/app.js"></script> 
+<!-- End XP Contentbar -->
+@endsection 
 @section('script')
-
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/chartist-js/chartist-plugin-tooltip.min.js') }}"></script>

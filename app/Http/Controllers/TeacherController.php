@@ -58,7 +58,7 @@ class TeacherController extends Controller
                 $phoneNumber = "+".$phoneNumber;
             }
 
-            $createdUser = Update::create([  
+            $createdUpdate = Update::create([  
                 'phone_number' => $phoneNumber,
                 'user_id' => $userId,
                 'is_teacherOrAdmin' => true,
@@ -67,7 +67,7 @@ class TeacherController extends Controller
            
             $student_name = explode (" ", $projectName);
             $textContent = "Teacher ".$teacherName." has written an update for ".$student_name[0]. 
-                            ". Click on this link to see it: https://portal.codewithus.com/parent/update/".$phoneNumber."/".$createdUser->id;
+                            ". Click on this link to see it: https://portal.codewithus.com/parent/update/".$phoneNumber."/".$createdUpdate->id;
             
             // //Start of SMS sending function
             $ch = curl_init();

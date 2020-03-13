@@ -40,7 +40,14 @@ class SubCategoryController extends Controller
         return response()->json(['categories'=> $categories, 'subcategories'=> $subCategories],200);
     }
     public function indexLectureSubCategories(){
-        return view('subcategory.index');
+        $user = Auth::user();
+        $role = $user->role->role;
+        if($role == "admin"){
+            return view('subcategory.admin_index');
+        }
+        elseif($role == "teacher"){
+            return view('subcategory.teacher_index');
+        }
     }
     public function storeLectureSubCategory(Request $request){
         $userId = auth()->user()->id;

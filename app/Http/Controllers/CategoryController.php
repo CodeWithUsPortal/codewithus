@@ -19,7 +19,14 @@ class CategoryController extends Controller
         return $data;
     }
     public function indexLectureCategories(){
-        return view('category.index');
+        $user = Auth::user();
+        $role = $user->role->role;
+        if($role == "admin"){
+            return view('category.admin_index');
+        }
+        elseif($role == "teacher"){
+            return view('category.teacher_index');
+        }
     }
     public function storeLectureCategory(Request $request){
         $userId = auth()->user()->id;

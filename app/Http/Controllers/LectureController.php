@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LectureSubCategory;
 use App\Lecture;
-
+use Auth;
 class LectureController extends Controller
 {
     public function __construct()
@@ -41,7 +41,14 @@ class LectureController extends Controller
         return response()->json(['lectures'=> $lectures, 'subcategories'=> $subCategories],200);
     }
     public function indexLectures(){
-        return view('lecture.index');
+        $user = Auth::user();
+        $role = $user->role->role;
+        if($role == "admin"){
+            return view('lecture.admin_index');
+        }
+        elseif($role == "admin"){
+            return view('lecture.teacher_index');
+        }
     }
     public function storeLecture(Request $request){
         $userId = auth()->user()->id;
