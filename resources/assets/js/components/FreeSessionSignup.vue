@@ -83,7 +83,7 @@
        methods:{
             getLocations(){
                 var _this = this;
-                axios.get('/codewithus/get_free_session_locations').then(function(response){         
+                axios.get('/get_free_session_locations').then(function(response){         
                     if(response.data.response_msg == "No Locations found."){
                         //
                     }
@@ -94,7 +94,7 @@
             },
             getTopics(){
                 var _this = this;
-                axios.get('/codewithus/get_free_session_topics').then(function(response){         
+                axios.get('/get_free_session_topics').then(function(response){         
                     if(response.data.response_msg == "No Topics found."){
                         //
                     }
@@ -117,7 +117,7 @@
             },
             getAvailableTimeSlots(e){
                 var _this = this;
-                axios.post('/codewithus/get_available_time_slots', _this.studentData).then(function(response){         
+                axios.post('/get_available_time_slots', _this.studentData).then(function(response){         
                     if(response.data.response_msg == "No Available Slots found."){
                         //
                     }
@@ -130,7 +130,7 @@
             },
             addFreeSession(){
                 var _this = this;
-                axios.post('/codewithus/add_free_session', _this.studentData).then(function(response){         
+                axios.post('/add_free_session', _this.studentData).then(function(response){         
                     if(response.data.response_msg == "Error"){
                         //
                     }

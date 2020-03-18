@@ -8,6 +8,8 @@ use App\Topic;
 use App\FreeSessionTimeSlot;
 use App\Day;
 use App\Time;
+use App\Role;
+use App\User;
 use App\FreeSessionBooking;
 
 
@@ -56,17 +58,39 @@ class FreeSessionController extends Controller
         return response()->json(['availableTimeSlots'=> $availableTimeSlots],200);
     }
     public function addFreeSession(Request $request){
+        $phoneNumberInput = str_replace(array('(',')'," ","-"), '',$request->phone_number);
+        $phoneNumber = $phoneNumberInput;
+        if($phoneNumber[0] != "+" && $phoneNumber[0] != 1){
+            $phoneNumber = "+1".$phoneNumber;
+        }
+        elseif($phoneNumber[0] != "+" && $phoneNumber[0] == 1){
+            $phoneNumber = "+".$phoneNumber;
+        }
+
+        $roleId = Role::where('role', "student")->value('id');
+
         $freeSessionBooking = new FreeSessionBooking();
         $freeSessionBooking->location_id = $request->location_id;
         $freeSessionBooking->student_name = $request->student_name;
         $freeSessionBooking->student_age = $request->student_age;
-        $freeSessionBooking->phone_number = $request->phone_number;
+        $freeSessionBooking->phone_number = $phoneNumber;
         $freeSessionBooking->email = $request->email;
         $freeSessionBooking->topic_id = $request->topic_id;
         $freeSessionBooking->ad_source = $request->ad_source;
         $freeSessionBooking->free_session_time_slot_id = $request->time_slot_id;
         $freeSessionBooking->expectations = $request->expectations;
         $freeSessionBooking->save();
+
+        $user = new User();
+        $user->user_name = $request->student_name;
+        $user->password = null;
+        $user->full_name = $request->student_name;
+        $user->email = $request->email;
+        $user->phone_number = $phoneNumber;
+        $user->role_id = $roleId;
+        $user->topic_id = $request->topic_id;
+        $user->is_free_session = true;
+        $user->save();
 
         return response()->json(['response_msg'=>'Data Saved'],200);
     }  

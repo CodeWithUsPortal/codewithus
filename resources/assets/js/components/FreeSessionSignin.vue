@@ -4,7 +4,7 @@
             <div class="col-md-12 ">
                 <div v-show="gotoSignUpPageLink">
                    <p style="color:green">User Record has been found</p>
-                   <a href="/codewithus/students/register">Please, Fill out the necessary details.</a>
+                   <a href="/students/register">Please, Fill out the necessary details.</a>
                 </div>
                 <div v-show="noRecordFound">
                    <p style="color:red">No User Record has been found with this Username for a Free Session.</p><br/>
@@ -33,7 +33,7 @@
         methods:{
             signIn(){
                 var _this = this;
-                axios.post('/codewithus/find_user_record_for_free_session', _this.studentData).then(function(response){         
+                axios.post('/find_user_record_for_free_session', _this.studentData).then(function(response){         
                     if(response.data.response_msg == "Record found"){
                         _this.gotoSignUpPageLink = true;
                         _this.noRecordFound = false;

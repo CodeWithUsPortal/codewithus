@@ -47,7 +47,7 @@ CodeWithUs - Update
         </div>
     </div>
 </div>
-<script type="text/javascript" src="http://localhost/codewithus/public/js/app.js"></script> 
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script> 
 <!-- End XP Contentbar -->
 @endsection 
 @section('script')

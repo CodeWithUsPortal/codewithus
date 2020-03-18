@@ -27,7 +27,7 @@ class StudentAndClassController extends Controller
         $students = array();
         foreach($studentData as $student){
             $dataArray = ["student_id" => $student['id'],
-                      "link_to_profile" => "/codewithus/edit_student_profile/".$student['id'],
+                      "link_to_profile" => "/edit_student_profile/".$student['id'],
                       "student_name" => $student['full_name']." - ".$student['phone_number'],
                       "student_phonenumber" => $student['phone_number'],
             ];
@@ -49,7 +49,7 @@ class StudentAndClassController extends Controller
         $students = array();
         foreach($studentData as $student){
             $dataArray = ["student_id" => $student['id'],
-                      "link_to_profile" => "/codewithus/edit_student_profile/".$student['id'],
+                      "link_to_profile" => "/edit_student_profile/".$student['id'],
                       "student_name" => $student['full_name']." - ".$student['phone_number'],
                       "student_phonenumber" => $student['phone_number'],
             ];
@@ -224,8 +224,10 @@ class StudentAndClassController extends Controller
         $taskClass->ends_at = $classEndingdatetime;
         $taskClass->save();
 
+        
         $user = User::find($teacherId);
         $taskClass->users()->attach($user);
+       
         return response()->json(['response_msg'=>'Data saved'],200);
     }
  

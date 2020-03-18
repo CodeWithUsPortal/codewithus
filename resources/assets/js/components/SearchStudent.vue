@@ -80,7 +80,7 @@ export default {
             getStudentByFullName(e){
                 e.preventDefault();
                 var _this = this;      
-                axios.post('/codewithus/get_student_by_fullName',this.student).then(function(response){
+                axios.post('/get_student_by_fullName',this.student).then(function(response){
                     if(response.data.response_msg === "No Student exists with this information"){
                         _this.displayError = true;
                         _this.showDataTable = false;
@@ -100,7 +100,7 @@ export default {
             getStudentByPhoneNumber(e){
                 e.preventDefault();
                 var _this = this;      
-                axios.post('/codewithus/get_student_by_phoneNumber',this.student).then(function(response){
+                axios.post('/get_student_by_phoneNumber',this.student).then(function(response){
                     if(response.data.response_msg == "No Student exists with this information"){
                         _this.displayError = true;
                         _this.showDataTable = false;

@@ -47,14 +47,14 @@ class CalendarController extends Controller
         foreach($taskClasses as $taskClass){
             $students = array();
             $teacher = "Un-Assigned";
+            $starts_at = $taskClass->starts_at;
+            $ends_at = $taskClass->ends_at;
+            $timestamp = strtotime($taskClass->starts_at);
+            $time = date('H:i', $timestamp);
+            $teacher = $time."-".$teacher."-".$taskClass->name;
             $pivotTableData = $taskClass->users;
             foreach($pivotTableData as $data){
                 $role = Role::where('id',$data->role_id)->value('role');
-                $starts_at = $taskClass->starts_at;
-                $ends_at = $taskClass->ends_at;
-                $timestamp = strtotime($taskClass->starts_at);
-                $time = date('H:i', $timestamp);
-                $teacher = $time."-"."Un-Assigned"."-".$taskClass->name;
                 if($role == "teacher"){
                     $teacher = $time."-".$data->full_name."-".$taskClass->name;
                 }
@@ -72,7 +72,7 @@ class CalendarController extends Controller
                 $title = "<b>".$teacher."</b>";
                 $content = '<div style="background-color:#FCF3CF;margin:5px;color:black">';
                 foreach($students as $student){
-                    $content = $content."<a href='/codewithus/edit_student_profile/".$student['student_id']."'>".$student['student_name'].'</a></div><div style="background-color:#FCF3CF;margin:5px;color:black">';
+                    $content = $content."<a href='/edit_student_profile/".$student['student_id']."'>".$student['student_name'].'</a></div><div style="background-color:#FCF3CF;margin:5px;color:black">';
                     $starts_at = $student['starts_at'];
                     $ends_at = $student['ends_at'];
                 }

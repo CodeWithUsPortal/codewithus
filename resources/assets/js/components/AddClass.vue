@@ -81,7 +81,7 @@
         methods:{
             getLocations(){
                 var _this = this;
-                axios.get('/codewithus/calendar/get_locations').then(function(response){             
+                axios.get('/calendar/get_locations').then(function(response){             
                     _this.locations = response.data.locations; 
                 })
             },
@@ -90,7 +90,7 @@
                 this.location.location_id = event.target.value;
                 this.taskClassData.location_id = event.target.value;
                 var _this = this;
-                axios.post('/codewithus/getTeachers',this.location).then(function(response){                   
+                axios.post('/getTeachers',this.location).then(function(response){                   
                     if(response.data.response_msg == "No teachers found for this location."){
                         _this.displayError = true;
                     }
@@ -106,7 +106,7 @@
             addClass(e){
                 e.preventDefault();
                 var _this = this;    
-                axios.post('/codewithus/task_class',this.taskClassData).then(function(response){
+                axios.post('/add_task_class',this.taskClassData).then(function(response){
                     _this.taskClassData = { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: ''}
                     _this.displaySuccess = true;
                     _this.selectedValueOfTeacher = '';

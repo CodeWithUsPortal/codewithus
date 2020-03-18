@@ -147,31 +147,31 @@
         methods:{
             getTopics(){
                 var _this = this;
-                axios.get('/codewithus/get_topics').then(function(response){             
+                axios.get('/get_topics').then(function(response){             
                     _this.topics = response.data.topics; 
                 })
             },
             getAllLocations(){
                 var _this = this;
-                axios.get('/codewithus/get_all_locations').then(function(response){ 
+                axios.get('/get_all_locations').then(function(response){ 
                     _this.allLocations = response.data.locations; 
                 })
             },
             getStudentProfile(){
                 var _this = this; 
-                axios.post('/codewithus/get_student_profile',this.studentData).then(function(response){
+                axios.post('/get_student_profile',this.studentData).then(function(response){
                     _this.studentProfile = response.data.profile;
                 })   
             },
             getAssignedClasses(){
                 var _this = this; 
-                axios.post('/codewithus/get_assigned_classes',this.studentData).then(function(response){
+                axios.post('/get_assigned_classes',this.studentData).then(function(response){
                     _this.taskClasses = response.data.taskClasses;
                 }) 
             },
             getAssignedLocations(){
                 var _this = this; 
-                axios.post('/codewithus/get_student_location',this.studentData).then(function(response){
+                axios.post('/get_student_location',this.studentData).then(function(response){
                     _this.studentLocations = response.data.student_locations;
                 }) 
             },
@@ -180,7 +180,7 @@
             },
             editStudentProfile(){
                 var _this = this;
-                axios.post('/codewithus/edit_student_profile',this.studentProfile).then(function(response){
+                axios.post('/edit_student_profile',this.studentProfile).then(function(response){
                     _this.selectedValueOfTopic = '';
                     _this.getStudentProfile();
                 }) 
@@ -190,7 +190,7 @@
                 if(confirm('Are you sure?')){
                     _this.studentRemoveLocation.selectedLocationId = locationId;
                    debugger;
-                    axios.post('/codewithus/remove_student_location',_this.studentRemoveLocation).then(function(response){
+                    axios.post('/remove_student_location',_this.studentRemoveLocation).then(function(response){
                         if(response.data.response_msg == "You can not delete this location."){
                             _this.displayLocationRemoveError = true;
                         }
@@ -208,7 +208,7 @@
             addLocationToStudent(){
                 var _this = this;
                 _this.displayLocationRemoveError = false;
-                axios.post('/codewithus/add_student_location',this.studentData).then(function(response){
+                axios.post('/add_student_location',this.studentData).then(function(response){
                     if(response.data.response_msg == "You cannot add duplicate location."){
                         _this.displayLocationAttachmentError = true;
                     }
@@ -223,7 +223,7 @@
             },
             unAssignStudent(data){
                var _this = this;
-                axios.post('/codewithus/un_assign_student',data).then(function(response){
+                axios.post('/un_assign_student',data).then(function(response){
                     _this.getAssignedClasses();
                 })  
             },
@@ -232,7 +232,7 @@
             },
             addStudentToClasses(){
                 var _this = this; 
-                axios.post('/codewithus/add_student_to_class',this.studentData).then(function(response){ 
+                axios.post('/add_student_to_class',this.studentData).then(function(response){ 
                    if(response.data.response_msg == "Data saved"){
                         _this.selectedValueOfTaskClass = "";
                         _this.getAssignedClasses();
@@ -241,7 +241,7 @@
             },
             getAllAvailableClasses(){
                 var _this = this;   
-                axios.post('/codewithus/get_classes',this.studentData).then(function(response){
+                axios.post('/get_classes',this.studentData).then(function(response){
                     if(response.data.response_msg == "No Classes exist for this Information"){
                         _this.allTaskClasses = [];
                         _this.displayNoClassError = true;

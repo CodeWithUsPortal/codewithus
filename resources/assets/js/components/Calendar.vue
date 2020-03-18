@@ -38,7 +38,7 @@ export default {
   methods:{
     getLocations(){
       var _this = this;
-      axios.get('/codewithus/calendar/get_locations').then(function(response){         
+      axios.get('/calendar/get_locations').then(function(response){         
            if(response.data.response_msg == "No Locations found."){
               _this.displayError = true;
             }
@@ -54,7 +54,7 @@ export default {
     },
     getEvents(){
       var _this = this;
-      axios.post('/codewithus/calendar/get_calendar_events',this.location).then(function(response){                   
+      axios.post('/calendar/get_calendar_events',this.location).then(function(response){                   
           if(response.data.response_msg == "No scheduled classes are found for this Location."){
               _this.displayError = true;
               _this.events = [];

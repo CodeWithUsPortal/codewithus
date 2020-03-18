@@ -41,7 +41,7 @@
         methods:{
              getData(){
                 var _this = this;
-                axios.get('/codewithus/get_topics').then(function(response){              
+                axios.get('/get_topics').then(function(response){              
                     _this.topics = response.data.topics;  
                 })
             }, // End of Get Data Method
@@ -49,7 +49,7 @@
                 e.preventDefault();
                 var _this = this;
                 if(_this.edit == false){ 
-                    axios.post('/codewithus/add_topic',this.topic).then(function(response){
+                    axios.post('/add_topic',this.topic).then(function(response){
                         if(response.data.reponse_msg == "Topic cannot be added."){
                             alert("Topic could not be added.");
                         }
@@ -60,7 +60,7 @@
                     })  
                 } 
                 else{
-                    axios.put('/codewithus/topic/edit/'+_this.topic_id,this.topic).then(function(response){
+                    axios.put('/topic/edit/'+_this.topic_id,this.topic).then(function(response){
                         _this.topic = { topic_id : '',topic_name : ''};
                         _this.edit = false;
                         _this.getData(); 
@@ -77,7 +77,7 @@
             deleteData(id){
                 var _this = this;
                 if(confirm('Are you sure?')){
-                    axios.delete('/codewithus/topic/delete/'+id).then(function(response){
+                    axios.delete('/topic/delete/'+id).then(function(response){
                     _this.getData();
                  })
                 }

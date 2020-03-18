@@ -36,7 +36,7 @@ Codewithus
                 </div>
                 <!-- End XP Auth Box -->
             </div>
-            <script type="text/javascript" src="http://localhost/codewithus/public/js/app.js"></script> 
+            <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> 
         </div>
         <!-- End XP Row -->
     </div>

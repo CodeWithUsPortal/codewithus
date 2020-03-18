@@ -63,7 +63,7 @@
             getData(){
                 var _this = this;
               
-                axios.get('/codewithus/getAllLectureSubCategories').then(function(response){                   
+                axios.get('/getAllLectureSubCategories').then(function(response){                   
                     _this.subcategories = response.data.subcategories; 
                     _this.categories= response.data.categories; 
                 })
@@ -72,7 +72,7 @@
                 e.preventDefault();
                 var _this = this;
                 if(_this.edit == false){    
-                    axios.post('/codewithus/addLectureSubCategory',this.subcategory).then(function(response){
+                    axios.post('/addLectureSubCategory',this.subcategory).then(function(response){
                         if(response.data.reponse_msg == "Category cannot be added."){
                             alert("Category cannot be added.");
                         }
@@ -84,7 +84,7 @@
                     })              
                 } 
                 else{
-                    axios.put('/codewithus/subcategory/edit/'+_this.subcategory_id,this.subcategory).then(function(response){
+                    axios.put('/subcategory/edit/'+_this.subcategory_id,this.subcategory).then(function(response){
                         _this.category = { category_id : '', category_name : ''}
                         _this.subcategory = { sub_category_id : '',sub_category_name : '', category_id : '', category_name : ''}
                         _this.edit = false;
@@ -106,7 +106,7 @@
                 debugger;
                 var _this = this;
                 if(confirm('Are you sure?')){
-                    axios.delete('/codewithus/subcategory/delete/'+id).then(function(response){
+                    axios.delete('/subcategory/delete/'+id).then(function(response){
                     _this.getData();
                  })
                 }
@@ -121,7 +121,7 @@
                 _this.subcategories.map((subcategory,index) => {
                     subcategory.priority = index + 1;
                 });debugger;
-                axios.put('/codewithus/updateSubCategoryPriority',{
+                axios.put('/updateSubCategoryPriority',{
                     subcategories : _this.subcategories
                 }).then((response) => {
                     //Success message

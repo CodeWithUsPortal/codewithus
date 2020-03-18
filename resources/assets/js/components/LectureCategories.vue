@@ -53,7 +53,7 @@
             getData(){
                 var _this = this;
               
-                axios.get('/codewithus/getAllLectureCategories').then(function(response){                   
+                axios.get('/getAllLectureCategories').then(function(response){                   
                     _this.categories = response.data; 
                     console.log(_this.categories);
                 })
@@ -62,7 +62,7 @@
                 e.preventDefault();
                 var _this = this;
                 if(_this.edit == false){    
-                    axios.post('/codewithus/addLectureCategory',this.category).then(function(response){
+                    axios.post('/addLectureCategory',this.category).then(function(response){
                         if(response.data.reponse_msg == "Category cannot be added."){
                             alert("Category cannot be added.");
                         }
@@ -73,7 +73,7 @@
                     })              
                 } 
                 else{
-                    axios.put('/codewithus/category/edit/'+_this.category_id,this.category).then(function(response){
+                    axios.put('/category/edit/'+_this.category_id,this.category).then(function(response){
                         _this.category = { category_id : '', category_name : ''}
                         _this.edit = false;
                         _this.getData();  
@@ -92,7 +92,7 @@
                 debugger;
                 var _this = this;
                 if(confirm('Are you sure?')){
-                    axios.delete('/codewithus/category/delete/'+id).then(function(response){
+                    axios.delete('/category/delete/'+id).then(function(response){
                     _this.getData();
                  })
                 }
@@ -103,7 +103,7 @@
                 _this.categories.map((category,index) => {
                     category.priority = index + 1;
                 });debugger;
-                axios.put('/codewithus/updateCategoryPriority',{
+                axios.put('/updateCategoryPriority',{
                     categories : _this.categories
                 }).then((response) => {
                     //Success message

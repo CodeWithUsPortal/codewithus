@@ -22,13 +22,13 @@ Codewithus - Login
                                 <a href="{{url('/')}}" class="xp-web-logo"><img src="assets/images/logo.png" height="40" alt="logo"></a>
                             </h3>
                             <div class="text-center mb-3">
-                                <h4 class="text-black">Free Session Sign Up!</h4>
-                                <p class="text-muted">Already have an account? <a href="{{ route('login') }}">Sign in</a> Here</p>
+                                <h4 class="text-black">Sign In !</h4>
+                                <p class="text-muted">New to CodeWithUs? <a href="{{ route('register-options') }}">Sign Up</a> Here</p>
                             </div>                                        
                                    
                             <div class="p-3">
                                 <div id="app_vue">
-                                    <free-session-signup></free-session-signup>
+                                    <login-component></login-component>
                                 </div>
                             </div>
                         </div>

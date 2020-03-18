@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <h3>Student Profile</h3>
+        <h3>Teacher Profile</h3>
         <div class="row">
             <div class="col-md-12 ">
                 <form @submit.prevent="editTeacherProfile" enctype="multipart/form-data" >
@@ -93,26 +93,26 @@
         methods:{
             getTopics(){
                 var _this = this;
-                axios.get('/codewithus/get_topics').then(function(response){     
+                axios.get('/get_topics').then(function(response){     
                     _this.topics = response.data.topics; 
                 })
             },
             getAllLocations(){
                 var _this = this;
-                axios.get('/codewithus/get_all_locations').then(function(response){     
+                axios.get('/get_all_locations').then(function(response){     
                     _this.allLocations = response.data.locations; 
                 })
             },
             getTeacherProfile(){
                 var _this = this; 
-                axios.post('/codewithus/get_teacher_profile',this.teacherData).then(function(response){
+                axios.post('/get_teacher_profile',this.teacherData).then(function(response){
                     _this.teacherProfile = response.data.profile;
                     _this.displayLocationRemoveError = false;
                 })   
             },
             getAssignedLocations(){
                 var _this = this; 
-                axios.post('/codewithus/get_teacher_location',this.teacherData).then(function(response){
+                axios.post('/get_teacher_location',this.teacherData).then(function(response){
                     _this.teacherLocations = response.data.teacher_locations;
                 }) 
             },
@@ -121,7 +121,7 @@
             },
             editTeacherProfile(){
                 var _this = this;
-                axios.post('/codewithus/edit_teacher_profile',this.teacherProfile).then(function(response){
+                axios.post('/edit_teacher_profile',this.teacherProfile).then(function(response){
                     _this.selectedValueOfTopic = '';
                     _this.getTeacherProfile();
                 }) 
@@ -131,7 +131,7 @@
                 if(confirm('Are you sure?')){
                     _this.teacherRemoveLocation.selectedLocationId = locationId;
                    
-                    axios.post('/codewithus/remove_teacher_location',_this.teacherRemoveLocation).then(function(response){
+                    axios.post('/remove_teacher_location',_this.teacherRemoveLocation).then(function(response){
                         if(response.data.response_msg == "You can not delete this location."){
                             _this.displayLocationRemoveError = true;
                         }
@@ -149,7 +149,7 @@
             addLocationToTeacher(){
                 var _this = this;
                 _this.displayLocationRemoveError = false;
-                axios.post('/codewithus/add_teacher_location',this.teacherData).then(function(response){
+                axios.post('/add_teacher_location',this.teacherData).then(function(response){
                     if(response.data.response_msg == "You cannot add duplicate location."){
                         _this.displayLocationAttachmentError = true;
                     }

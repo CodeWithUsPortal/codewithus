@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Update;
-use Auth;
 use App\User;
+use App\Role;
+use Auth;
+use App\Location;
 class ParentController extends Controller
 {
     public function __construct(){
@@ -44,5 +46,28 @@ class ParentController extends Controller
             }
         }
         return view("parent.updates",compact('updates'));
+    }
+
+    public function studentsListPage(){
+        return view('parent.students');
+    }
+    public function getStudentsList(){
+        $roleId = Role::where('role', 'student')->value('id');
+        $user = Auth::user();
+        $phoneNumber = $user->phone_number;
+        $users = User::where(['phone_number' => $phoneNumber,
+                              'role_id' => $roleId])->get();
+        $students = array();
+        foreach($users as $user){
+            $locations = $user->locations()->get();
+            foreach($locations as $location){
+                $dataArray = ["id" => $user->id,
+                              "student_name" =>  $user->full_name,
+                              "location" => $location->location_name,
+                ];
+                array_push($students,$dataArray);
+            }
+        }
+        return response()->json(['students'=> $students],200);
     }
 }

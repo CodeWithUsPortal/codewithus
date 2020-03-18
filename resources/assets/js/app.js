@@ -32,6 +32,8 @@ Vue.component('search-teachers', require('./components/SearchTeacher.vue'));
 Vue.component('edit-teacher-profile', require('./components/EditTeacherProfile.vue'));
 Vue.component('free-session-signup', require('./components/FreeSessionSignup.vue'));
 Vue.component('free-session-signin', require('./components/FreeSessionSignin.vue'));
+Vue.component('parents-students', require('./components/ParentsStudents.vue'));
+Vue.component('add-student-by-user', require('./components/AddStudentByUser.vue'));
 
 const app = new Vue({
     el: '#app_vue',

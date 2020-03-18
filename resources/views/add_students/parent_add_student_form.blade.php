@@ -7,9 +7,11 @@ CodeWithUs - Dashboard
 <link href="{{ asset('assets/plugins/chartist-js/chartist.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Datepicker CSS -->
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-cal"></script>
 @endsection 
 @section('leftbar')
-    @include('layouts.admin_menu') 
+    @include('layouts.parent_menu') 
 @endsection 
 @section('rightbar-content')
 
@@ -17,10 +19,7 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Search Teachers</h4>
-        </div>
-        <div class="col-md-6 col-lg-6">
-            
+            <h4 class="xp-page-title">Add Student</h4>
         </div>
     </div>          
 </div>
@@ -32,13 +31,13 @@ CodeWithUs - Dashboard
             <div class="card m-b-30">
                 <div class="card-body">
                     <div id="app_vue">
-                        <search-teachers></search-teachers>
+                        <add-student-by-user></add-student-by-user>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> 
+            </div> 
+        </div>   
     </div>
-</div>
+</div>        
 <script type="text/javascript" src="{{ asset('js/app.js') }}"></script> 
 <!-- End XP Contentbar -->
 @endsection 

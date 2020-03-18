@@ -32,8 +32,7 @@
                     <ul class="xp-vertical-submenu">                                
                         <li><a href="{{url('/categories')}}">Lectures</a></li>
                     </ul>
-                </li>            
-               
+                </li>              
             </ul>
         </div>
         <!-- End XP Navigationbar -->

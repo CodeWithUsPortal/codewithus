@@ -72,7 +72,7 @@
         methods:{
             getData(){
                 var _this = this;
-                axios.get('/codewithus/getAllLectures').then(function(response){              
+                axios.get('/getAllLectures').then(function(response){              
                     _this.lectures = response.data.lectures; 
                     _this.subcategories= response.data.subcategories; 
                 })
@@ -81,7 +81,7 @@
                 e.preventDefault();
                 var _this = this;
                 if(_this.edit == false){    
-                    axios.post('/codewithus/addLecture',this.lecture).then(function(response){
+                    axios.post('/addLecture',this.lecture).then(function(response){
                         if(response.data.reponse_msg == "Lecture cannot be added."){
                             alert("Lecture cannot be added.");
                         }
@@ -94,7 +94,7 @@
                     })              
                 } 
                 else{
-                    axios.put('/codewithus/lecture/edit/'+_this.lecture_id,this.lecture).then(function(response){
+                    axios.put('/lecture/edit/'+_this.lecture_id,this.lecture).then(function(response){
                         _this.lecture = { lecture_id : '',lecture_name : '',lecture_link : '', subcategory_id : '', subcategory_name : ''},
                         _this.subcategory = { subcategory_id : '', subcategory_name : ''}
                         _this.edit = false;
@@ -118,7 +118,7 @@
                 debugger;
                 var _this = this;
                 if(confirm('Are you sure?')){
-                    axios.delete('/codewithus/lecture/delete/'+id).then(function(response){
+                    axios.delete('/lecture/delete/'+id).then(function(response){
                     _this.getData();
                  })
                 }
@@ -133,7 +133,7 @@
                 _this.lectures.map((lecture,index) => {
                     lecture.priority = index + 1;
                 });debugger;
-                axios.put('/codewithus/updateLecturePriority',{
+                axios.put('/updateLecturePriority',{
                     lectures : _this.lectures
                 }).then((response) => {
                     //Success message

@@ -18,6 +18,7 @@ $this->get('/', 'HomeController@index')->name('home');
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+$this->get('user_login', 'Auth\LoginController@loginFormForUsersExceptParents')->name('except-parents-login-form');
 $this->post('login', 'Auth\LoginController@login');
 $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 $this->get('/parentsLogin', 'Auth\LoginController@parentsPhoneNumberForm')->name('parent-phone-number-form');
@@ -34,6 +35,7 @@ $this->get('parents/register', 'Auth\RegisterController@showRegistrationForm')->
 
 // Password Reset Routes ...
 $this->post('/usernamesUsingPhoneNumber','UsernameResetController@getUserNamesUsingPhoneNumbers');
+$this->post('/setPassword','UsernameResetController@setUserPassword');
 $this->get('/username/reset','UsernameResetController@forgotUserNameForm')->name('reset-username');
 $this->post('/usernames','UsernameResetController@getUserNames');
 $this->get('/password/reset','PasswordResetController@showPasswordResetForm')->name('reset-password');
@@ -50,6 +52,8 @@ $this->get('/student/dashboard', 'StudentController@index')->name('student.dashb
 // Parent Routes ...
 $this->get('/parent/updates','ParentController@updates');
 $this->get('/parent/update/{phoneNumber}/{updateId}','ViewUpdateController@viewUpdate');
+$this->get('/parent/students','ParentController@studentsListPage');
+$this->get('/parent/getStudents','ParentController@getStudentsList');
 
 // Student Routes ...
 $this->get('/student/updates','StudentController@updates');
@@ -83,7 +87,7 @@ $this->post('/un_assign_student','StudentAndClassController@unAssignStudent');
 $this->post('/get_classes','StudentAndClassController@getClassesForStudentLocationAndDate');
 $this->post('/getTeachers', 'StudentAndClassController@getTeachersForTheLocation');
 $this->get('/task_class','StudentAndClassController@addTaskClassForm');
-$this->post('/task_class','StudentAndClassController@addTaskClass')->name('add-task-class');
+$this->post('/add_task_class','StudentAndClassController@addTaskClass')->name('add-task-class');
 $this->get('/add_student_form','StudentAndClassController@addStudentForm')->name('add-student-form');
 $this->post('/add_student_to_class','StudentAndClassController@addStudentToClass')->name('add-student-to-class');
 
@@ -149,3 +153,9 @@ $this->get('/get_free_session_topics','FreeSessionController@allTopics');
 $this->post('/get_available_time_slots','FreeSessionController@getAvailableTimeSlotsForALocation');
 $this->post('/add_free_session','FreeSessionController@addFreeSession');
 
+
+// Add Student Routes ...
+$this->get('/add_student_form_by_user','AddStudentController@addStudentForm');
+$this->get('/get_parents_phoneNumber','AddStudentController@getParentsPhoneNumber');
+$this->get('/get_locations_for_adding_students','AddStudentController@getLocations');
+$this->post('/add_student_by_user','AddStudentController@addStudent');

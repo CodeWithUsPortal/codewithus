@@ -30,7 +30,7 @@ class TeacherProfileController extends Controller
         $teachers = array();
         foreach($teacherData as $teacher){
             $dataArray = ["teacher_id" => $teacher['id'],
-                      "link_to_profile" => "/codewithus/edit_teacher_profile/".$teacher['id'],
+                      "link_to_profile" => "/edit_teacher_profile/".$teacher['id'],
                       "teacher_name" => $teacher['full_name']." - ".$teacher['phone_number'],
                       "teacher_phonenumber" => $teacher['phone_number'],
             ];
@@ -52,7 +52,7 @@ class TeacherProfileController extends Controller
         $teachers = array();
         foreach($teacherData as $teacher){
             $dataArray = ["teacher_id" => $teacher['id'],
-                      "link_to_profile" => "/codewithus/edit_teacher_profile/".$teacher['id'],
+                      "link_to_profile" => "/edit_teacher_profile/".$teacher['id'],
                       "teacher_name" => $teacher['full_name']." - ".$teacher['phone_number'],
                       "teacher_phonenumber" => $teacher['phone_number'],
             ];
@@ -73,7 +73,7 @@ class TeacherProfileController extends Controller
         $teachers = array();
         foreach($teacherData as $teacher){
             $dataArray = ["teacher_id" => $teacher['id'],
-                      "link_to_profile" => "/codewithus/edit_teacher_profile/".$teacher['id'],
+                      "link_to_profile" => "/edit_teacher_profile/".$teacher['id'],
                       "teacher_name" => $teacher['full_name']." - ".$teacher['phone_number'],
                       "teacher_phonenumber" => $teacher['phone_number'],
             ];

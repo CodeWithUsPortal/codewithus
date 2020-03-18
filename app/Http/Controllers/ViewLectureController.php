@@ -19,7 +19,7 @@ class ViewLectureController extends Controller
         $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
         $categories = array();
         foreach($categoriesData as $category){
-            $url = "/codewithus/subCategories/".$category->id."";
+            $url = "/subCategories/".$category->id."";
             $dataArray = ["id" =>$category->id,
                       "name" => $category->name,
                       "url" => $url,
@@ -40,7 +40,7 @@ class ViewLectureController extends Controller
         }
         $subCategories = array();
         foreach($subCategoriesData as $subCategory){
-            $url = "/codewithus/lectures/".$subCategory->id."";
+            $url = "/lectures/".$subCategory->id."";
             $dataArray = ["id" =>$subCategory->id,
                       "name" => $subCategory->name,
                       "url" => $url,
@@ -73,7 +73,7 @@ class ViewLectureController extends Controller
         $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
         $categories = array();
         foreach($categoriesData as $category){
-            $url = "/codewithus/subCategories/".$category->id."";
+            $url = "/subCategories/".$category->id."";
             $dataArray = ["id" =>$category->id,
                       "name" => $category->name,
                       "url" => $url,
@@ -94,7 +94,7 @@ class ViewLectureController extends Controller
         }
         $subCategories = array();
         foreach($subCategoriesData as $subCategory){
-            $url = "/codewithus/lectures/".$subCategory->id."";
+            $url = "/lectures/".$subCategory->id."";
             $dataArray = ["id" =>$subCategory->id,
                       "name" => $subCategory->name,
                       "url" => $url,

@@ -24,6 +24,15 @@
                         <li><a href="{{url('/parent/updates')}}">Updates</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-social-dropbox"></i><span>Students</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">                                
+                        <li><a href="{{url('/parent/students')}}">Students</a></li>
+                        <li><a href="{{url('/add_student_form_by_user')}}">Add Student</a></li>
+                    </ul>
+                </li>
                
             </ul>
         </div>

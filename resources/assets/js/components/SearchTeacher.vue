@@ -92,7 +92,7 @@ export default {
             getTeacherByFullName(e){
                 e.preventDefault();
                 var _this = this;      
-                axios.post('/codewithus/get_teacher_by_fullName',this.teacher).then(function(response){
+                axios.post('/get_teacher_by_fullName',this.teacher).then(function(response){
                     if(response.data.response_msg === "No teacher exists with this information"){
                         _this.displayError = true;
                         _this.showDataTable = false;
@@ -114,7 +114,7 @@ export default {
             getTeacherByPhoneNumber(e){
                 e.preventDefault();
                 var _this = this;      
-                axios.post('/codewithus/get_teacher_by_phoneNumber',this.teacher).then(function(response){
+                axios.post('/get_teacher_by_phoneNumber',this.teacher).then(function(response){
                     if(response.data.response_msg == "No Teacher exists with this information"){
                         _this.displayError = true;
                         _this.showDataTable = false;
@@ -136,7 +136,7 @@ export default {
             getTeacherByEmail(e){
                 e.preventDefault();
                 var _this = this;      
-                axios.post('/codewithus/get_teacher_by_email',this.teacher).then(function(response){
+                axios.post('/get_teacher_by_email',this.teacher).then(function(response){
                     if(response.data.response_msg == "No Teacher exists with this information"){
                         _this.displayError = true;
                         _this.showDataTable = false;

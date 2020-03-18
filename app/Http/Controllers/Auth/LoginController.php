@@ -30,6 +30,9 @@ class LoginController extends Controller
      *
      * @var string
      */
+    public function loginFormForUsersExceptParents(){
+        return view('auth.users_login');
+    }
     public function parentsPhoneNumberForm(){
         return view('auth.parents_phone_no_form');
     }

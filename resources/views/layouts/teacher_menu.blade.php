@@ -43,6 +43,15 @@
                         <li><a href="{{url('/add_student_form')}}">Assign Students</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-social-dropbox"></i><span>Students</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">                                
+                        <li><a href="{{url('/add_student_form_by_user')}}">Add Students</a></li>
+                    </ul>
+                </li>            
+               
             </ul>
         </div>
         <!-- End XP Navigationbar -->
