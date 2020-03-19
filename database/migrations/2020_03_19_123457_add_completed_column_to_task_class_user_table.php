@@ -14,7 +14,7 @@ class AddCompletedColumnToTaskClassUserTable extends Migration
     public function up()
     {
         Schema::table('task_class_user', function (Blueprint $table) {
-            $table->unsignedBigInteger('completed')->nullable()->default(null)->after('user_id');
+            $table->boolean('completed')->default(0)->after('user_id');
         });
     }
 
@@ -26,7 +26,7 @@ class AddCompletedColumnToTaskClassUserTable extends Migration
     public function down()
     {
         Schema::table('task_class_user', function (Blueprint $table) {
-            $table->dropColumn('user_id');
+            $table->dropColumn('completed');
         });
     }
 }

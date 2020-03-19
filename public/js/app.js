@@ -18525,9 +18525,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 'student_id': this.student.student_id,
                 'message': this.message
             };
-            axios.post('/teacher/store-students-update', data).then(function (response) {
-                console.log(response);
-            });
+            axios.post('/teacher/store-students-update', data).then(function (response) {});
             this.$emit('closeModal');
             this.reset();
         },

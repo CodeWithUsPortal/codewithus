@@ -98,7 +98,7 @@ class StudentAndClassController extends Controller
     }
 
     public function getStudentsClasses(Request $request){
-        $taskClasses = User::find($request->student_id)->taskclasses()->where('is_completed', false)->get();
+        $taskClasses = User::find($request->student_id)->taskclasses()->get();
         $classes = array();
         foreach($taskClasses as $taskClass){
             $teacher = "Un-assigned";
@@ -138,7 +138,6 @@ class StudentAndClassController extends Controller
 
             if($request->selectedDate != null && $request->selectedDate != ""){
                 $classesDataWithoutSelectedDateFilter = TaskClass::where(['is_deleted' => false, 
-                                                'is_completed' => false,
                                                 'location_id' => $location->id,
                                                 ])->get();
                 foreach($classesDataWithoutSelectedDateFilter as $classDataWithoutSelectedDateFilter){
@@ -151,7 +150,6 @@ class StudentAndClassController extends Controller
             }
             else{
                 $classesDataWithoutDate = TaskClass::where(['is_deleted' => false, 
-                                                'is_completed' => false,
                                                 'location_id' => $location->id ])->get();
                 foreach($classesDataWithoutDate as $classDataWithoutDate){
                     array_push($classesData, $classDataWithoutDate);
