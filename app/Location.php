@@ -12,4 +12,9 @@ class Location extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function permanent_class_schedules()
+    {
+        return $this->hasMany(PermanentClassSchedule::class, 'location_id', 'id');
+    }
 }

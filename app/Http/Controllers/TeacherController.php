@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Update;
+use Illuminate\Support\Facades\Auth;
 use PDO;
 use Torann\LaravelAsana\Facade\Asana;
 use App\TaskClass;
@@ -38,7 +39,7 @@ class TeacherController extends Controller
         // When a teacher writes an update, we should get the phone number from the task data
         // Right now, its dummy
         $userId = auth()->user()->id;
-        $content = $request->content; 
+        $content = $request->input('content');
         $teacherName = auth()->user()->user_name;
         if($request->taskId == null){
             Update::create([  
@@ -112,6 +113,61 @@ class TeacherController extends Controller
     }
     public function calendarView(){
         return view('teacher.calendar');
+    }
+
+    public function lessonsForTeachers(){
+        return view('teacher.lessons-for-teachers');
+    }
+    public function storeStudentUpdates(Request $request)
+    {
+        $student = User::find($request->student_id);
+
+        $u = Update::create([
+            'phone_number' => $student->phone_number,
+            'user_id' => $student->id,
+            'content' => $request->message,
+            'is_teacher' => 0,
+            'teacher_id' => Auth::user()->id,
+        ]);
+
+        $sms_url = route('teachers-update', [$student->phone_number, $u->id]);
+
+        $this->sendSMS($sms_url, $u);
+
+        return response()->json(['data' => null, 'message' => 'Update added!'],200);
+    }
+    public function sendSMS($url, $update)
+    {
+        // //Start of SMS sending function
+        $ch = curl_init();
+        $api_key = '23480ecaa2d37d33905eae528df2d19e86c898c4653ec9e73b3d01ba96182f74';
+        $headers = array();
+        $headers[] = "X-Toky-Key: {$api_key}";
+        //{"from":"+16282275444", "to": "+16282275222", "text": "Hello from Toky"}
+        $data = array("from" => "+14089097717", "email" => "team@codewithus.com",
+            "to" => $update->phone_number,
+            "text" => $url);
+
+        $json_data = json_encode($data);
+
+        // set URL and other appropriate options
+        curl_setopt($ch, CURLOPT_URL, "https://api.toky.co/v1/sms/send");
+        curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
+
+        $curl_response = curl_exec($ch); // Send request
+
+        curl_close($ch); // close cURL resource
+        // //End of SMS sending function
+    }
+    public function markClassAsCompleted(TaskClass $taskClass)
+    {
+        $taskClass->is_completed = 1;
+        $taskClass->save();
+
+        return response()->json(['data'=> null, 'message' => 'Task class completed!', 'status'=>'success'],200);
     }
 
 }

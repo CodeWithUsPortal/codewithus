@@ -35,6 +35,12 @@ Vue.component('free-session-signin', require('./components/FreeSessionSignin.vue
 Vue.component('parents-students', require('./components/ParentsStudents.vue'));
 Vue.component('add-student-by-user', require('./components/AddStudentByUser.vue'));
 
+// Training components with categories and sub categories
+Vue.component('lesson-category', require('./components/LessonCategories.vue'));
+Vue.component('lesson-sub-category', require('./components/LessonSubCategories.vue'));
+Vue.component('lesson', require('./components/Lessons.vue'));
+Vue.component('student-updates', require('./components/StudentUpdates'));
+
 const app = new Vue({
     el: '#app_vue',
 });

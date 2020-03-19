@@ -120,7 +120,7 @@ export default {
                         _this.wrongCredentialsError = true;
                     }
                     else{
-                        window.location.href = "http://portal.codewithus.com";
+                        window.location.href = "/";
                         _this.wrongCredentialsError = false;
                     }
                 })
@@ -135,7 +135,7 @@ export default {
                             _this.wrongCredentialsError = true;
                         }
                         else{
-                            window.location.href = "http://portal.codewithus.com";
+                            window.location.href = "/";
                             _this.wrongCredentialsError = false;
                         }
                     })

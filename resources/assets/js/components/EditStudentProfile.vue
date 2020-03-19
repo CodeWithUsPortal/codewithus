@@ -1,8 +1,11 @@
 <template>
     <div class="container">
-        <h3>Student Profile</h3>
         <div class="row">
-            <div class="col-md-12 ">
+            <div class="col-md-6 col-sm-12 ">
+                <h3>
+                    Student Profile
+                    <small><a title="SMS Update" href="#" data-toggle="modal" data-target="#studentUpdateModal"><i class="icon-envelope"></i></a></small>
+                </h3>
                 <form @submit.prevent="editStudentProfile" enctype="multipart/form-data" >
                     <div class="form-group">
                         <label>Phone Number</label>
@@ -24,6 +27,73 @@
                     </div>    
                     <input class="btn btn-primary" type="submit" value="Update Profile" />
                 </form>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3>Add Permanent Class</h3>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form @submit.prevent="addPermanentClassSchedule" enctype="multipart/form-data" >
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Day</label>
+                                                <select class="form-control" v-model="day" required>
+                                                    <option disabled selected>Select day of the week</option>
+                                                    <option value=0>Monday</option>
+                                                    <option value=1>Tuesday</option>
+                                                    <option value=2>Wednesday</option>
+                                                    <option value=3>Thursday</option>
+                                                    <option value=4>Friday</option>
+                                                    <option value=5>Saturday</option>
+                                                    <option value=6>Sunday</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Time</label>
+                                                <input required type="time" class="form-control" name="class_date" v-model="time" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Location</label>
+                                                <select class="form-control" v-model="location_id" required>
+                                                    <option disabled selected>Select Location</option>
+                                                    <option v-for="l in locations" :value=l.location_id>{{l.location_name}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>&nbsp;</label><br>
+                                                <input class="btn btn-primary" type="submit" value="Add" title="Add"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <span class="text-danger" v-if="permanentClassStoreError">{{permanentClassStoreError}}</span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/>
+                <h3>Permanent Classes</h3>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <button type="button" class="btn btn-block btn-primary m-1 text-capitalized" v-for="p in permanentClassSchedules">
+                                    {{p.day}} @ {{p.time}} - {{p.location.location_name}} <span class="badge badge-light float-right" @click="removeSchedule(p.id)">x</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <br/><br/>
@@ -54,12 +124,13 @@
             <div class="col-md-12 ">
                 <div class="panel panel-default">
                    
-                    <table class="table" id="table">
+                    <table class="table" id="table1">
                         <thead>
                             <tr>
                                 <td>Name</td>
                                 <td>Date</td> 
-                                <td>Time</td> 
+                                <td>Time</td>
+                                <td>Completed</td>
                                 <td></td>      
                             </tr>
                         </thead>
@@ -68,6 +139,7 @@
                                 <td>{{ taskClass.taskclass_name }}</td>
                                 <td>{{ taskClass.taskclass_date }}</td>
                                 <td>{{ taskClass.taskclass_time }}</td>
+                                <td><button @click="markTaskClassAsCompleted(taskClass.taskclass_id)" class="btn btn-warning">Mark As Complete</button></td>
                                 <td><button @click="unAssignStudent(taskClass)" class="btn btn-danger">Remove</button></td>
                             </tr>
                         </tbody>
@@ -119,6 +191,22 @@
                 </div>
             </div>
         </div>
+        <br><br>
+        <div class="modal fade" id="studentUpdateModal" tabindex="-1" role="dialog" aria-labelledby="studentUpdateModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="studentUpdateModalLabel">Student Updates</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <student-updates :student="studentData" @closeModal="closeModal"> </student-updates>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -141,6 +229,12 @@
                 displayLocationRemoveError : false,
                 topics : [],
                 studentProfile : {},
+                //
+                day:'',
+                time:'',
+                location_id : '',
+                permanentClassStoreError : '',
+                permanentClassSchedules : []
             }
         },
         props: ['student'],
@@ -256,6 +350,69 @@
                 this.studentData.selectedDate = event.target.value;
                 this.getAllAvailableClasses();
             },
+
+            addPermanentClassSchedule()
+            {
+                let _this = this;
+                let data = {
+                    location_id : _this.location_id,
+                    day : _this.day,
+                    time : _this.time,
+                    student_id : _this.studentData.student_id
+                };
+                axios.post('/add-permanent-class-schedule', data).then(function(response){
+                    console.log('test', response.data);
+                    if(response.data.status == 'error'){
+                        _this.permanentClassStoreError = response.data.message;
+                    }
+                    _this.getPermanentClassSchedule();
+                    _this.reset();
+                })
+            },
+
+            reset(){
+                this.day = '';
+                this.time = '';
+                this.location_id = ''
+            },
+
+            getPermanentClassSchedule()
+            {
+                let _this = this;
+                axios.get('/add-permanent-class-schedule').then(function(response){
+                    _this.permanentClassSchedules = response.data.data;
+                })
+            },
+
+            removeSchedule(id)
+            {
+                if(confirm('Are you sure you want to remove this schedule?'))
+                {
+                    let _this = this;
+                    axios.delete('/add-permanent-class-schedule/' + id).then(function(response){
+                        _this.permanentClassSchedules = response.data.data;
+                    });
+                    this.getPermanentClassSchedule();
+                }
+            },
+            markTaskClassAsCompleted(id)
+            {
+                if(confirm('Are you sure you want to mark this class as completed?'))
+                {
+                    let _this = this;
+                    axios.put('/teacher/mark-task-class-competed/' + id).then(function(response){});
+                    this.getAssignedClasses();
+                }
+            },
+            getLocations(){
+                let _this = this;
+                axios.get('/teacher/get_locations').then(function(response){
+                    _this.locations = response.data.locations;
+                })
+            },
+            closeModal(){
+                $('.modal').modal('toggle');
+            }
         },
         created(){
             this.studentData.student_id = this.student;
@@ -266,7 +423,9 @@
             this.getAssignedClasses();
             this.getAllAvailableClasses();
             this.getAllLocations();
-            this.getAssignedLocations(); 
+            this.getAssignedLocations();
+            this.getLocations();
+            this.getPermanentClassSchedule();
         }
     }
 </script>

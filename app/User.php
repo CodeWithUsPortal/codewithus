@@ -54,4 +54,30 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Location::class);
     }
+
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'created_by', 'id');
+    }
+
+    public function lesson_categories()
+    {
+        return $this->hasMany(LessonCategory::class, 'created_by', 'id');
+    }
+
+    public function lesson_sub_categories()
+    {
+        return $this->hasMany(LessonSubCategory::class, 'created_by', 'id');
+    }
+
+    public function updates()
+    {
+        return $this->hasMany('App\Update', 'teacher_id', 'id');
+    }
+
+    public function permanent_class_schedules()
+    {
+        return $this->hasMany(PermanentClassSchedule::class, 'student_id', 'id');
+    }
 }

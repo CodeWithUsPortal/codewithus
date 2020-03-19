@@ -159,3 +159,43 @@ $this->get('/add_student_form_by_user','AddStudentController@addStudentForm');
 $this->get('/get_parents_phoneNumber','AddStudentController@getParentsPhoneNumber');
 $this->get('/get_locations_for_adding_students','AddStudentController@getLocations');
 $this->post('/add_student_by_user','AddStudentController@addStudent');
+
+
+//Training routes with categories and sub categories
+Route::get('/training', 'LessonController@index')->name('lessons.index');
+Route::get('/training/categories', 'LessonCategoryController@index')->name('lessons.categories');
+Route::get('/training/sub-categories', 'LessonSubCategoryController@index')->name('lessons.subcategories');
+
+//Training section - lesson components api routes
+Route::get('/training/getAllLessons','LessonController@allLessons');
+Route::post('/training/addLesson','LessonController@storeLesson');
+Route::put('/training/lesson/edit/{id}','LessonController@updateLesson');
+Route::delete('/training/lesson/delete/{id}','LessonController@destroyLesson');
+Route::put('/training/updateLessonPriority','LessonController@updateLessonPriority');
+
+//Training section - lesson categories components api routes
+Route::get('/training/getAllLessonCategories','LessonCategoryController@allLessonCategories');
+Route::post('/training/addLessonCategory','LessonCategoryController@storeLessonCategory');
+Route::put('/training/category/edit/{id}','LessonCategoryController@updateLessonCategory');
+Route::delete('/training/category/delete/{id}','LessonCategoryController@destroyLessonCategory');
+Route::put('/training/updateCategoryPriority','LessonCategoryController@updateCategoryPriority');
+
+//Training section - lesson sub-categories components api routes
+Route::get('/training/getAllLessonSubCategories','LessonSubCategoryController@allLessonSubCategories');
+Route::post('/training/addLessonSubCategory','LessonSubCategoryController@storeLessonSubCategory');
+Route::put('/training/subcategory/edit/{id}','LessonSubCategoryController@updateLessonSubCategory');
+Route::delete('/training/subcategory/delete/{id}','LessonSubCategoryController@destroyLessonSubCategory');
+Route::put('/training/updateSubCategoryPriority','LessonSubCategoryController@updateSubCategoryPriority');
+
+//update teacher
+Route::post('/teacher/store-students-update', 'TeacherController@storeStudentUpdates');
+//Teachers update
+Route::get('/parent/teachers/update/{phoneNumber}/{updateId}','ViewUpdateController@viewStudentUpdate')->name('teachers-update');
+
+//Add permanent schedules
+Route::get('/add-permanent-class-schedule', 'PermanentClassScheduleController@index');
+Route::post('/add-permanent-class-schedule', 'PermanentClassScheduleController@store');
+Route::delete('/add-permanent-class-schedule/{permanentClassSchedule}', 'PermanentClassScheduleController@destroy');
+
+//Teacher route for marking task class as completed
+Route::put('/teacher/mark-task-class-competed/{taskClass}', 'TeacherController@markClassAsCompleted');

@@ -50,7 +50,18 @@
                     <ul class="xp-vertical-submenu">                                
                         <li><a href="{{url('/add_student_form_by_user')}}">Add Students</a></li>
                     </ul>
-                </li>            
+                </li>
+
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-social-dropbox"></i><span>Traning</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">
+                        <li><a href="{{route('lessons.categories')}}">Categories</a></li>
+                        <li><a href="{{route('lessons.subcategories')}}">Sub Categories</a></li>
+                        <li><a href="{{route('lessons.index')}}">Training</a></li>
+                    </ul>
+                </li>
                
             </ul>
         </div>
