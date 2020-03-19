@@ -153,6 +153,7 @@
             },
             getAllLocations(){
                 var _this = this;
+                debugger;
                 axios.get('/get_all_locations').then(function(response){ 
                     _this.allLocations = response.data.locations; 
                 })

@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
 use App\Location;
-
+use App\Topic;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -53,5 +53,9 @@ class User extends Authenticatable
     public function locations()
     {
         return $this->belongsToMany(Location::class);
+    }
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class);
     }
 }

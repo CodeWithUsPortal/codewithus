@@ -26,9 +26,9 @@ class CalendarController extends Controller
             $locationData = Location::where('is_deleted', false)->get();
         }
         elseif($role == "teacher"){
-            $locationId = $user->location_id;
-            $locationData = Location::where(['is_deleted' => false,
-                                             'id' => $locationId, ])->get();
+            $locationData = $user->locations()->get();
+            // $locationData = Location::where(['is_deleted' => false,
+            //                                  'id' => $locationId, ])->get();
         }
         $locations = array();
         foreach($locationData as $location){

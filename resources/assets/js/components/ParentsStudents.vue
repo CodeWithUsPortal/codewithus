@@ -35,7 +35,7 @@ export default {
         methods:{
             getStudents(){
                 var _this = this;      
-                axios.get('/codewithus/parent/getStudents').then(function(response){
+                axios.get('/parent/getStudents').then(function(response){
                     
                     if(response.data.response_msg == "No Students exist for this parent."){
                         _this.displayNoStudentsError = true;

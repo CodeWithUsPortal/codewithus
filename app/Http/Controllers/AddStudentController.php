@@ -86,6 +86,9 @@ class AddStudentController extends Controller
         $user->role_id = $roleId;
         $user->save();
 
+        $location = Location::find($request->location_id);
+        $location->users()->attach($user);
+
         return response()->json(['response_msg'=>'Student Added'],200);
     }
 }

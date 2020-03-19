@@ -15,7 +15,7 @@ class TeacherProfileController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin');
+        $this->middleware('role:admin|teacher');
     }
 
     public function searchTeachers(){
@@ -37,7 +37,7 @@ class TeacherProfileController extends Controller
             array_push($teachers,$dataArray);
         }
         if(count($teachers) <= 0){
-            return response()->json(['response_msg'=>'No Student exists with this information'],200);
+            return response()->json(['response_msg'=>'No Teacher exists with this information'],200);
         }
         else{
             return response()->json(['teachers'=> $teachers],200);
@@ -59,7 +59,7 @@ class TeacherProfileController extends Controller
             array_push($teachers,$dataArray);
         }
         if(count($teachers) <= 0){
-            return response()->json(['response_msg'=>'No Student exists with this information'],200);
+            return response()->json(['response_msg'=>'No Teacher exists with this information'],200);
         }
         else{
             return response()->json(['teachers'=> $teachers],200);
@@ -80,7 +80,7 @@ class TeacherProfileController extends Controller
             array_push($teachers,$dataArray);
         }
         if(count($teachers) <= 0){
-            return response()->json(['response_msg'=>'No Student exists with this information'],200);
+            return response()->json(['response_msg'=>'No Teacher exists with this information'],200);
         }
         else{
             return response()->json(['teachers'=> $teachers],200);
@@ -100,6 +100,32 @@ class TeacherProfileController extends Controller
         }
         return response()->json(['teacher_locations'=> $locations],200);
     }
+    public function getTeachersTopics(Request $request){
+        $topicData = User::find($request->teacher_id)->topics()->get();
+        $topics = array();
+        foreach($topicData as $topic){
+            $dataArray = [
+                    "teacher_id" => $request->teacher_id,
+                    "topic_id" => $topic['id'],
+                    "topic_name" => $topic['name'],
+            ];
+            array_push($topics,$dataArray);   
+        }
+        return response()->json(['teacher_topics'=> $topics],200);
+    }
+
+    public function addTopicToTeacher(Request $request){
+        $user = User::find($request->selectedTeacherId);
+        $topic = Topic::find($request->selectedTopicId);
+        if( $user->topics->contains($topic->id)){
+            return response()->json(['response_msg'=>'You cannot add duplicate topic.'],200);
+        }
+        else{
+            $topic->users()->attach($user);
+            return response()->json(['response_msg'=>'Data saved'],200);
+        } 
+    }
+
     public function getAllLocations(){
         $locationData = Location::where('is_deleted', false)->get();
         
@@ -111,6 +137,13 @@ class TeacherProfileController extends Controller
             array_push($locations,$dataArray);           
         }
         return response()->json(['locations'=> $locations],200);
+    }
+
+    public function removeTeacherTopic(Request $request){
+        $user = User::find($request->teacher_id);
+        $topic = Topic::find($request->selectedTopicId);
+        $topic->users()->detach($user);
+        return response()->json(['response_msg'=>'Data deleted'],200);
     }
 
     public function removeTeacherLocation(Request $request){

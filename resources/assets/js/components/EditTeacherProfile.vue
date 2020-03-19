@@ -13,17 +13,51 @@
                         <input type="text" maxlength = "100" class="form-control" v-model="teacherProfile.email" />
                     </div>
                     <div class="form-group">
-                        <label>Teacher's Main Topic : <b style="color:black">{{teacherProfile.topic}}</b></label>
-                        <select  class="option form-control" @change="onChangeOfTopic($event)" v-model="selectedValueOfTopic" >
-                            <option v-for="topic in topics" v-bind:key="topic.topic_id" :value="topic.topic_id"> {{ topic.topic_name }}</option>
-                        </select>
-                    </div>  
-                    <div class="form-group">
                         <label>Notes</label>
                         <input type="text" maxlength = "100" class="form-control" v-model="teacherProfile.notes" />
                     </div>    
                     <input class="btn btn-primary" type="submit" value="Update Profile" />
                 </form>
+            </div>
+        </div>
+        <br/><br/>
+        <h3>Add new Topic</h3>
+        <div v-show="displayTopicAttachmentError">
+            <h6 style="color:red">Teacher already has this Topic</h6>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <form @submit.prevent="addTopicToTeacher" enctype="multipart/form-data" >
+                    <div class="form-group">
+                        <select  class="option form-control" @change="onChangeOfTopic($event)" v-model="selectedValueOfTopic" >
+                            <option v-for="topic in topics" v-bind:key="topic.topic_id" :value="topic.topic_id"> {{ topic.topic_name }}</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Assign" />
+                </form>
+            </div>
+        </div>
+        <br/><br/>
+        <h3>Teacher's Topics</h3>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="panel panel-default">
+                   
+                    <table class="table" id="table">
+                        <thead>
+                            <tr>
+                                <td>Teacher's Topics</td> 
+                                <td></td>      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="topic in teacherTopics" v-bind:key="topic.topic_id">
+                                <td>{{ topic.topic_name }}</td>
+                                <td><button @click="removeTopic(topic.topic_id)" class="btn btn-danger">Remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <br/><br/>
@@ -76,14 +110,17 @@
     export default {
         data(){
             return {
-                teacherData : {teacher_id : '', selectedTeacherId : '', selectedLocationId : ''},
+                teacherData : {teacher_id : '', selectedTeacherId : '', selectedLocationId : '', selectedTopicId :''},
                 teacherRemoveLocation : {teacher_id: '', selectedLocationId : ''},
+                teacherRemoveTopic : {teacher_id: '', selectedTopicId: ''},
                 locations : [],
                 allLocations : [],
                 selectedValueOfLocation : '',
-                teacherLocations : [],
                 selectedValueOfTopic : '',
+                teacherLocations : [],
+                teacherTopics : [],
                 displayLocationAttachmentError : false,
+                displayTopicAttachmentError : false,
                 displayLocationRemoveError : false,
                 topics : [],
                 teacherProfile : {},
@@ -110,6 +147,12 @@
                     _this.displayLocationRemoveError = false;
                 })   
             },
+            getAssignedTopics(){
+                var _this = this; 
+                axios.post('/get_teacher_topic',this.teacherData).then(function(response){
+                    _this.teacherTopics = response.data.teacher_topics;
+                }) 
+            },
             getAssignedLocations(){
                 var _this = this; 
                 axios.post('/get_teacher_location',this.teacherData).then(function(response){
@@ -117,7 +160,7 @@
                 }) 
             },
             onChangeOfTopic(e){
-                this.teacherProfile.topic_id = event.target.value;
+                this.teacherData.selectedTopicId = event.target.value;
             },
             editTeacherProfile(){
                 var _this = this;
@@ -125,6 +168,22 @@
                     _this.selectedValueOfTopic = '';
                     _this.getTeacherProfile();
                 }) 
+            },
+            removeTopic(topicId){
+                var _this = this;
+                if(confirm('Are you sure?')){
+                    _this.teacherRemoveTopic.selectedTopicId = topicId;
+                   
+                    axios.post('/remove_teacher_topic',_this.teacherRemoveTopic).then(function(response){
+                        if(response.data.response_msg == "You can not delete this topic."){
+                           //
+                        }
+                        else{
+                            _this.getAssignedTopics(); 
+                        }
+                        _this.teacherRemoveTopic.selectedTopicId = "";
+                    })  
+                }
             },
             removeLocation(locationId){
                 var _this = this;
@@ -162,6 +221,21 @@
                     _this.getAssignedLocations();
                 }) 
             },
+            addTopicToTeacher(){
+                var _this = this;
+                _this.displayLocationRemoveError = false;
+                axios.post('/add_teacher_topic',this.teacherData).then(function(response){
+                    if(response.data.response_msg == "You cannot add duplicate topic."){
+                        _this.displayTopicAttachmentError = true;
+                    }
+                    else{
+                        _this.displayTopicAttachmentError = false;
+                    }
+                    _this.selectedValueOfTopic = '';
+                    _this.teacherData.selectedTopicId;
+                    _this.getAssignedTopics();
+                }) 
+            },
         },
         created(){
             this.teacherData.teacher_id = this.teacher;
@@ -171,6 +245,7 @@
             this.getAllLocations();
             this.getTeacherProfile();
             this.getAssignedLocations(); 
+            this.getAssignedTopics();
         }
     }
 </script>

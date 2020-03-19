@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LectureCategory;
 use App\LectureSubCategory;
 use App\Lecture;
+use Auth;
 
 class ViewLectureController extends Controller
 {
@@ -16,6 +17,9 @@ class ViewLectureController extends Controller
     }
 
     public function getLectureCategories(){
+
+        $user = Auth::user();
+        $role = $user->role->role;
         $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
         $categories = array();
         foreach($categoriesData as $category){
@@ -26,10 +30,17 @@ class ViewLectureController extends Controller
                     ];
             array_push($categories,$dataArray);           
         }
-        return view('view_lecture.categories')->with(['categories' =>$categories]);   
+        if($role == "student"){
+            return view('view_lecture.categories')->with(['categories' =>$categories]);   
+        }
+        elseif($role == "teacher"){
+            return view('view_lecture.categories_teacher')->with(['categories' =>$categories]);   
+        }
     }
 
     public function getLectureSubCategories($categoryId){
+        $user = Auth::user();
+        $role = $user->role->role;
         if($categoryId != null){
             $subCategoriesData = LectureSubCategory::where('category_id',$categoryId)
                                 ->orderby('priority')->get();
@@ -47,9 +58,17 @@ class ViewLectureController extends Controller
                     ];
             array_push($subCategories,$dataArray);           
         }
-        return view('view_lecture.sub_categories')->with(['subCategories' =>$subCategories]);   
+        if($role == "student"){
+            return view('view_lecture.sub_categories')->with(['subCategories' =>$subCategories]);   
+        }
+        elseif($role == "teacher"){
+            return view('view_lecture.sub_categories_teacher')->with(['subCategories' =>$subCategories]);   
+        }
+        
     }
     public function getLectures($subCategoryId){
+        $user = Auth::user();
+        $role = $user->role->role;
         if($subCategoryId != null){
             $lecturesData = Lecture::where('sub_category_id',$subCategoryId)
                             ->orderby('priority')->get();
@@ -66,7 +85,12 @@ class ViewLectureController extends Controller
                     ];
             array_push($lectures,$dataArray);           
         }
-        return view('view_lecture.lectures')->with(['lectures' =>$lectures]);   
+        if($role == "student"){
+            return view('view_lecture.lectures')->with(['lectures' =>$lectures]);   
+        }
+        elseif($role == "teacher"){
+            return view('view_lecture.lectures_teacher')->with(['lectures' =>$lectures]);   
+        }  
     }
 
     public function getLectureCategoriesForTeachers(){
