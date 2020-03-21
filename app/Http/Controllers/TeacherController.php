@@ -170,5 +170,12 @@ class TeacherController extends Controller
         return response()->json(['data'=> null, 'message' => 'Task class completed!', 'status'=>'success'],200);
     }
 
+    public function completedClasses($id)
+    {
+        $student = User::with('completed_taskclasses')->find($id);
+
+        return view('teacher.completed-classes')->withStudent($student);
+    }
+
 }
 

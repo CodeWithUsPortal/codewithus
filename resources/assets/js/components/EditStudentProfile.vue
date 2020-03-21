@@ -62,7 +62,7 @@
                                                 <label>Location</label>
                                                 <select class="form-control" v-model="location_id" required>
                                                     <option disabled selected>Select Location</option>
-                                                    <option v-for="l in locations" :value=l.location_id>{{l.location_name}}</option>
+                                                    <option v-for="l in allLocations" :value=l.location_id>{{l.location_name}}</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -119,7 +119,10 @@
         </div>
         <br/><br/>
 
-        <h3>Assigned Classes</h3>
+        <h3>
+            Assigned Classes
+            <small class="float-right"><a class="btn btn-warning" title="View completed classes" :href="'/teacher/completed-task-classes/'+studentData.student_id">View Completed Classes</a></small>
+        </h3>
         <div class="row">
             <div class="col-md-12 ">
                 <div class="panel panel-default">
@@ -135,11 +138,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="taskClass in taskClasses" v-bind:key="taskClass.taskclass_id">
+                            <tr v-for="taskClass in taskClasses" v-bind:key="taskClass.taskclass_id" v-if="!taskClass.pivot.completed">
                                 <td>{{ taskClass.taskclass_name }}</td>
                                 <td>{{ taskClass.taskclass_date }}</td>
                                 <td>{{ taskClass.taskclass_time }}</td>
-                                <td><button @click="markTaskClassAsCompleted(taskClass.taskclass_id)" class="btn btn-warning">Mark As Complete</button></td>
+                                <td><button @click="markTaskClassAsCompleted(pivot.id)" class="btn btn-warning">Mark As Complete</button></td>
                                 <td><button @click="unAssignStudent(taskClass)" class="btn btn-danger">Remove</button></td>
                             </tr>
                         </tbody>
@@ -283,7 +286,6 @@
                 var _this = this;
                 if(confirm('Are you sure?')){
                     _this.studentRemoveLocation.selectedLocationId = locationId;
-                   debugger;
                     axios.post('/remove_student_location',_this.studentRemoveLocation).then(function(response){
                         if(response.data.response_msg == "You can not delete this location."){
                             _this.displayLocationRemoveError = true;
@@ -353,6 +355,7 @@
 
             addPermanentClassSchedule()
             {
+                this.permanentClassStoreError ='';
                 let _this = this;
                 let data = {
                     location_id : _this.location_id,
@@ -373,7 +376,7 @@
             reset(){
                 this.day = '';
                 this.time = '';
-                this.location_id = ''
+                this.location_id = '';
             },
 
             getPermanentClassSchedule()

@@ -62,7 +62,16 @@
                         <li><a href="{{route('lessons.index')}}">Training</a></li>
                     </ul>
                 </li>
-               
+
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-social-dropbox"></i><span>Meeting</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">
+                        <li><a href="{{url('/online_meeting_room')}}">Meeting Room</a></li>
+                    </ul>
+                </li>
+
             </ul>
         </div>
         <!-- End XP Navigationbar -->

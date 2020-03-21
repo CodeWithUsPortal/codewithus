@@ -126,7 +126,7 @@ $this->delete('/topic/delete/{id}','TopicController@deleteTopic');
 $this->get('/categories', 'ViewLectureController@getLectureCategories');
 $this->get('/subCategories/{id?}', 'ViewLectureController@getLectureSubCategories');
 $this->get('/lectures/{id?}', 'ViewLectureController@getLectures');
-$this->get('/teacher/categories', 'ViewLectureController@getLectureCategoriesForTeachers');
+$this->get('/teacher/categories', 'ViewLectureController@getLectureCategories');
 $this->get('/teacher/subCategories/{id?}', 'ViewLectureController@getLectureSubCategoriesForTeachers');
 $this->get('/teacher/lectures/{id?}', 'ViewLectureController@getLecturesForTeachers');
 
@@ -135,10 +135,16 @@ $this->get('/teacher_profile','TeacherProfileController@searchTeachers');
 $this->post('/get_teacher_by_fullName','TeacherProfileController@getTeacherByFullName')->name('get-teacher-by-fullname');
 $this->post('/get_teacher_by_phoneNumber','TeacherProfileController@getTeacherByPhoneNumber')->name('get-teacher-by-phonenumber');
 $this->post('/get_teacher_by_email','TeacherProfileController@getTeacherByEmail')->name('get-teacher-by-email');
+
 $this->get('/get_all_locations','TeacherProfileController@getAllLocations');
 $this->post('/get_teacher_location','TeacherProfileController@getTeachersLocations');
 $this->post('/add_teacher_location','TeacherProfileController@addLocationToTeacher');
 $this->post('/remove_teacher_location','TeacherProfileController@removeTeacherLocation');
+
+$this->post('/get_teacher_topic','TeacherProfileController@getTeachersTopics');
+$this->post('/add_teacher_topic','TeacherProfileController@addTopicToTeacher');
+$this->post('/remove_teacher_topic','TeacherProfileController@removeTeacherTopic');
+
 $this->post('/get_teacher_profile','TeacherProfileController@getTeacherProfile');
 $this->get('/edit_teacher_profile/{teacherId?}','TeacherProfileController@editTeacherProfileForm');
 $this->post('/edit_teacher_profile','TeacherProfileController@editTeacherProfile');
@@ -160,6 +166,10 @@ $this->get('/get_parents_phoneNumber','AddStudentController@getParentsPhoneNumbe
 $this->get('/get_locations_for_adding_students','AddStudentController@getLocations');
 $this->post('/add_student_by_user','AddStudentController@addStudent');
 
+//Online Meeting Routes ...
+$this->get('/online_meeting_room', 'OnlineMeetingController@onlineMeetingRoom');
+$this->get('/get_username_for_online_meeting','OnlineMeetingController@getUsernameForOnlineMeeting');
+$this->get('/join_online_meeting_room/{meetingId?}/{userName?}', 'OnlineMeetingController@joinOnlineMeetingRoom');
 
 //Training routes with categories and sub categories
 Route::get('/training', 'LessonController@index')->name('lessons.index');
@@ -196,6 +206,8 @@ Route::get('/parent/teachers/update/{phoneNumber}/{updateId}','ViewUpdateControl
 Route::get('/add-permanent-class-schedule', 'PermanentClassScheduleController@index');
 Route::post('/add-permanent-class-schedule', 'PermanentClassScheduleController@store');
 Route::delete('/add-permanent-class-schedule/{permanentClassSchedule}', 'PermanentClassScheduleController@destroy');
+
+Route::get('/teacher/completed-task-classes/{id}', 'TeacherController@completedClasses')->name('teachers-completed-classes');
 
 //Teacher route for marking task class as completed
 Route::put('/teacher/mark-task-class-competed/{taskClass}', 'TeacherController@markClassAsCompleted');

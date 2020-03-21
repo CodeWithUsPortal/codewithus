@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('phone_number')->nullable();
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('role_id');
-            $table->unsignedBigInteger('topic_id')->nullable();
             $table->boolean('is_free_session')->default(false);
             $table->boolean('is_deleted')->default(false);
             $table->rememberToken();

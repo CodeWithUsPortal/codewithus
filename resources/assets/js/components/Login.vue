@@ -32,7 +32,7 @@
             <div class="form-group">
                 <input type="hidden" maxlength = "100" class="form-control" id="user_name" v-model="user.name" required/>
                 <label>Password</label>
-                <input type="password" maxlength = "100" class="form-control" id="password" placeholder="Password" v-model="user.password" required/>
+                <input type="password" maxlength = "100" class="form-control" id="password2" placeholder="Password" v-model="user.password" required/>
             </div>
             <input class="btn btn-primary" type="submit" value="submit" />
         </form>
@@ -43,7 +43,7 @@
                 <input type="hidden" maxlength = "100" class="form-control" v-model="user.phone_number" required/>
                 <input type="hidden" maxlength = "100" class="form-control" v-model="user.is_password_available" required/>
                 <label>You need to setup a Password*</label>
-                <input type="password" maxlength = "100" class="form-control" id="password" placeholder="Password" v-model="user.password" required/>
+                <input type="password" maxlength = "100" class="form-control" id="password1" placeholder="Password" v-model="user.password" required/>
             </div>
             <input class="btn btn-primary" type="submit" value="submit" />
         </form>

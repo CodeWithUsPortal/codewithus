@@ -92,6 +92,9 @@ class FreeSessionController extends Controller
         $user->is_free_session = true;
         $user->save();
 
+        $location = Location::find($request->location_id);
+        $location->users()->attach($user);
+
         return response()->json(['response_msg'=>'Data Saved'],200);
     }  
 

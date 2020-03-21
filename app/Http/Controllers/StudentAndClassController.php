@@ -64,15 +64,16 @@ class StudentAndClassController extends Controller
     }
 
     public function getStudentProfile(Request $request){
-        $student = User::where('id',$request->student_id)->get();
-        $topic = Topic::where('id',$student[0]->topic_id)->value('name');
-        $profile = ["student_id" => $student[0]->id,
-                    "full_name" => $student[0]->full_name,
-                    "phone_number" => $student[0]->phone_number,
-                    "email" => $student[0]->email,
-                    "notes" => $student[0]->notes,
-                    "topic_id" => $student[0]->topic_id,
-                    "topic" => $topic,
+        $student = User::where('id',$request->student_id)->first();
+        $topic = $student->topics()->first();
+        $studentId = $student['id'];
+        $profile = ["student_id" => $student['id'],
+                    "full_name" => $student['full_name'],
+                    "phone_number" => $student['phone_number'],
+                    "email" => $student['email'],
+                    "notes" => $student['notes'],
+                    "topic_id" => $topic['id'],
+                    "topic" => $topic['name'],
         ];
         return response()->json(['profile'=> $profile],200);
     }
@@ -91,9 +92,19 @@ class StudentAndClassController extends Controller
         $user = User::where('id', $request->student_id)->first();
         $user->phone_number = $request->phone_number;
         $user->email = $request->email;
-        $user->topic_id = $request->topic_id;
         $user->notes = $request->notes;
         $user->save();
+
+        if($request->topic_id != null){
+            $newTopic = Topic::find($request->topic_id);
+            $oldTopic = $user->topics()->first();
+
+            if($oldTopic != null){
+                $oldTopic->users()->detach($user);
+            }      
+            $newTopic->users()->attach($user);
+        }
+        
         return response()->json(['response_msg'=>'Data Updated'],200);
     }
 
@@ -118,6 +129,7 @@ class StudentAndClassController extends Controller
                     "taskclass_name" => $teacher." - ".$taskClass['name'],
                     "taskclass_date" => $date,
                     "taskclass_time" => $time,
+                    "pivot" => $taskClass->users[0]->pivot,
             ];
             array_push($classes,$dataArray);   
         }
@@ -222,7 +234,6 @@ class StudentAndClassController extends Controller
         $taskClass->ends_at = $classEndingdatetime;
         $taskClass->save();
 
-        
         $user = User::find($teacherId);
         $taskClass->users()->attach($user);
        

@@ -13,6 +13,21 @@ class TaskClass extends Model
     ];
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed');
+    }
+
+    public function completed_user_classes()
+    {
+        return $this->belongsToMany(TaskClass::class)
+            ->wherePivot('completed', 1)
+            ->withPivot('id','task_class_id', 'user_id', 'completed');
+    }
+
+    public function incomplete_user_classes()
+    {
+        return $this->belongsToMany(TaskClass::class)
+            ->wherePivot('completed', 0)
+            ->withPivot('id','task_class_id', 'user_id', 'completed');
     }
 }
