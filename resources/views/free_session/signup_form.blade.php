@@ -3,7 +3,11 @@ Codewithus - Login
 @endsection
 @extends('layouts.main')
 @section('style')
-
+<style>
+    body{
+  background-color:#f1f5f8;
+}
+</style>
 @endsection
 <div class="xp-authenticate-bg"></div>
 <!-- Start XP Container -->
@@ -28,7 +32,8 @@ Codewithus - Login
                                    
                             <div class="p-3">
                                 <div id="app_vue">
-                                    <free-session-signup></free-session-signup>
+                                    <example></example> 
+                                    <!-- <free-session-signup></free-session-signup> -->
                                 </div>
                             </div>
                         </div>

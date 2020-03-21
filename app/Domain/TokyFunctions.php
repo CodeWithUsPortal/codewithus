@@ -6,13 +6,13 @@ class TokyFunctions{
     function sms_send($to, $message){
         // create a new cURL resource
         $ch = curl_init();
-        $api_key = '23480ecaa2d37d33905eae528df2d19e86c898c4653ec9e73b3d01ba96182f74';
+        $api_key = '146c720219c08bf338cfd504bd13eff1b1d4c2efc6f665ed16dfa84f4e1c20e1';
         $headers = array();
         $headers[] = "X-Toky-Key: {$api_key}";
         //{"from":"+16282275444", "to": "+16282275222", "text": "Hello from Toky"}
         $data = array("from" => "+14089097717", "email" => "team@codewithus.com",
-                    "to" => "+14089097717", 
-                    "text" => "Bismillah");
+                    "to" => $to, 
+                    "text" => $message);
        
         $json_data = json_encode($data);   
     

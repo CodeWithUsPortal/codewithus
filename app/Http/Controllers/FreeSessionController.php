@@ -11,7 +11,10 @@ use App\Time;
 use App\Role;
 use App\User;
 use App\FreeSessionBooking;
-
+use App\Domain\EmailFunctions;
+use App\Domain\TokyFunctions;
+use App\Domain\MailFunctions;
+use Carbon\Carbon;
 
 class FreeSessionController extends Controller
 {
@@ -44,20 +47,215 @@ class FreeSessionController extends Controller
     }
     public function getAvailableTimeSlotsForALocation(Request $request){
         $timeSlots = FreeSessionTimeSlot::where(['location_id' => $request->location_id])->get();
-        $availableTimeSlots = array();
+        
+        $thisMondayAvailableTimeSlots = array();
+        $thisTuesdayAvailableTimeSlots = array();
+        $thisWednesdayAvailableTimeSlots = array();
+        $thisThursdayAvailableTimeSlots = array();
+        $thisFridayAvailableTimeSlots = array();
+        $thisSaturdayAvailableTimeSlots = array();
+        $thisSundayAvailableTimeSlots = array();
+
+        $nextMondayAvailableTimeSlots = array();
+        $nextTuesdayAvailableTimeSlots = array();
+        $nextWednesdayAvailableTimeSlots = array();
+        $nextThursdayAvailableTimeSlots = array();
+        $nextFridayAvailableTimeSlots = array();
+        $nextSaturdayAvailableTimeSlots = array();
+        $nextSundayAvailableTimeSlots = array();
+
+        $mondayAvailabilityTitle = "";
+        $tuesdayAvailabilityTitle = "";
+        $wednesdayAvailabilityTitle = "";
+        $thursdayAvailabilityTitle = "";
+        $fridayAvailabilityTitle = "";
+        $saturdayAvailabilityTitle = "";
+        $sundayAvailabilityTitle = "";
+
+        $thisMondayWeekDate = "";
+        $thisTuesdayWeekDate = "";
+        $thisWednesdayWeekDate = "";
+        $thisThursdayWeekDate = "";
+        $thisFridayWeekDate = "";
+        $thisSaturdayWeekDate = "";
+        $thisSundayWeekDate = "";
+
+        $nextMondayWeekDate = "";
+        $nextTuesdayWeekDate = "";
+        $nextWednesdayWeekDate = "";
+        $nextThursdayWeekDate = "";
+        $nextFridayWeekDate = "";
+        $nextSaturdayWeekDate = "";
+        $nextSundayWeekDate = "";
+
+        $todaysWeekDay = $this->getTodaysWeekDay();
+        $tomorrowsWeekDay = $this->getTomorrowsWeekDay();
+        $dayAfterTomorrowsWeekDay = $this->getDayAfterTomorrowsWeekDay();
+
+        foreach($timeSlots as $timeSlot){
+            $day = Day::where('id', $timeSlot->day_id)->value('name');
+            $time = Time::where('id', $timeSlot->time_id)->value('time');
+            $dateOfTheDay = "next ".$day;
+            $date = date('Y-m-d', strtotime($dateOfTheDay));
+            $date = Carbon::createFromFormat('Y-m-d', $date);
+            $daysToAdd = 7;
+            $date = $date->addDays($daysToAdd);
+            $date = date('Y-m-d', strtotime($date));
+            $date = date('M d, l', strtotime($date));
+
+            $dateTitle = date('M d', strtotime($date));
+            $dateLabel = date('F d Y', strtotime($date));
+            $dataArray = ["timeslot_id" => $timeSlot->id,
+                          "timeslot_time" => $time,
+                          "timeslot_datetime" => $date." at ".$time,
+            ];
+            switch ($day) {
+                case 'Monday':
+                    $mondayAvailabilityTitle = $dateTitle;
+                    $nextMondayWeekDate = $dateLabel;
+                    array_push($nextMondayAvailableTimeSlots,$dataArray);
+                    break;
+                case 'Tuesday':
+                    $tuesdayAvailabilityTitle = $dateTitle;
+                    $nextTuesdayWeekDate = $dateLabel;
+                    array_push($nextTuesdayAvailableTimeSlots,$dataArray);
+                    break; 
+                case 'Wednesday':
+                    $wednesdayAvailabilityTitle = $dateTitle;
+                    $nextWednesdayWeekDate = $dateLabel;
+                    array_push($nextWednesdayAvailableTimeSlots,$dataArray);
+                    break; 
+                case 'Thursday':
+                    $thursdayAvailabilityTitle = $dateTitle;
+                    $nextThursdayWeekDate = $dateLabel;
+                    array_push($nextThursdayAvailableTimeSlots,$dataArray);
+                    break;
+                case 'Friday':
+                    $fridayAvailabilityTitle = $dateTitle;
+                    $nextFridayWeekDate = $dateLabel;
+                    array_push($nextFridayAvailableTimeSlots,$dataArray);
+                    break;
+                case 'Saturday':
+                    $saturdayAvailabilityTitle = $dateTitle;
+                    $nextSaturdayWeekDate = $dateLabel;
+                    array_push($nextSaturdayAvailableTimeSlots,$dataArray);
+                    break; 
+                case 'Sunday':
+                    $sundayAvailabilityTitle = $dateTitle;
+                    $nextSundayWeekDate = $dateLabel;
+                    array_push($nextSundayAvailableTimeSlots,$dataArray);
+                    break;
+            }
+        }
+
         foreach($timeSlots as $timeSlot){
             $day = Day::where('id', $timeSlot->day_id)->value('name');
             $time = Time::where('id', $timeSlot->time_id)->value('time');
             $dateOfTheDay = "next ".$day;
             $date = date('M d, l', strtotime($dateOfTheDay));
+            $dateTitle = date('M d', strtotime($dateOfTheDay));
+            $dateLabel = date('F d Y', strtotime($dateOfTheDay));
             $dataArray = ["timeslot_id" => $timeSlot->id,
+                          "timeslot_time" => $time,
                           "timeslot_datetime" => $date." at ".$time,
             ];
-            array_push($availableTimeSlots,$dataArray);
+            switch ($day) {
+                case 'Monday':
+                    if($tomorrowsWeekDay != "Monday" && $dayAfterTomorrowsWeekDay != "Monday"){
+                        $mondayAvailabilityTitle = $dateTitle;
+                        $thisMondayWeekDate = $dateLabel;
+                        array_push($thisMondayAvailableTimeSlots,$dataArray);
+                    }
+                    break;
+                case 'Tuesday':
+                    if($tomorrowsWeekDay != "Tuesday" && $dayAfterTomorrowsWeekDay != "Tuesday"){
+                        $tuesdayAvailabilityTitle = $dateTitle;
+                        $thisTuesdayWeekDate = $dateLabel;
+                        array_push($thisTuesdayAvailableTimeSlots,$dataArray);
+                    }
+                    break; 
+                case 'Wednesday':
+                    if($tomorrowsWeekDay != "Wednesday" && $dayAfterTomorrowsWeekDay != "Wednesday"){
+                        $wednesdayAvailabilityTitle = $dateTitle;
+                        $thisWednesdayWeekDate = $dateLabel;
+                        array_push($thisWednesdayAvailableTimeSlots,$dataArray);
+                    }
+                    break; 
+                case 'Thursday':
+                    if($tomorrowsWeekDay != "Thursday" && $dayAfterTomorrowsWeekDay != "Thursday"){
+                        $thursdayAvailabilityTitle = $dateTitle;
+                        $thisThursdayWeekDate = $dateLabel;
+                        array_push($thisThursdayAvailableTimeSlots,$dataArray);
+                    }
+                    break;
+                case 'Friday':
+                    if($tomorrowsWeekDay != "Friday" && $dayAfterTomorrowsWeekDay != "Friday"){
+                        $fridayAvailabilityTitle = $dateTitle;
+                        $thisFridayWeekDate = $dateLabel;
+                        array_push($thisFridayAvailableTimeSlots,$dataArray);
+                    }
+                    break;
+                case 'Saturday':
+                    if($tomorrowsWeekDay != "Saturday" && $dayAfterTomorrowsWeekDay != "Saturday"){
+                        $saturdayAvailabilityTitle = $dateTitle;
+                        $thisSaturdayWeekDate = $dateLabel;
+                        array_push($thisSaturdayAvailableTimeSlots,$dataArray);
+                    }
+                    break; 
+                case 'Sunday':
+                    if($tomorrowsWeekDay != "Sunday" && $dayAfterTomorrowsWeekDay != "Sunday"){
+                        $sundayAvailabilityTitle = $dateTitle;
+                        $thisSundayWeekDate = $dateLabel;
+                        array_push($thisSundayAvailableTimeSlots,$dataArray);
+                    }
+                    break;
+            }
         }
-        return response()->json(['availableTimeSlots'=> $availableTimeSlots],200);
+
+
+        return response()->json([
+                                 'mondayAvailabilityTitle' => $mondayAvailabilityTitle ,
+                                 'tuesdayAvailabilityTitle' => $tuesdayAvailabilityTitle ,
+                                 'wednesdayAvailabilityTitle' => $wednesdayAvailabilityTitle ,
+                                 'thursdayAvailabilityTitle' => $thursdayAvailabilityTitle ,
+                                 'fridayAvailabilityTitle' => $fridayAvailabilityTitle ,
+                                 'saturdayAvailabilityTitle' => $saturdayAvailabilityTitle ,
+                                 'sundayAvailabilityTitle' => $sundayAvailabilityTitle ,
+
+                                 'thisMondayWeekDate' => $thisMondayWeekDate ,
+                                 'thisTuesdayWeekDate' => $thisTuesdayWeekDate ,
+                                 'thisWednesdayWeekDate' => $thisWednesdayWeekDate ,
+                                 'thisThursdayWeekDate' => $thisThursdayWeekDate ,
+                                 'thisFridayWeekDate' => $thisFridayWeekDate ,
+                                 'thisSaturdayWeekDate' => $thisSaturdayWeekDate ,
+                                 'thisSundayWeekDate' => $thisSundayWeekDate ,
+
+                                 'nextMondayWeekDate' => $nextMondayWeekDate ,
+                                 'nextTuesdayWeekDate' => $nextTuesdayWeekDate ,
+                                 'nextWednesdayWeekDate' => $nextWednesdayWeekDate ,
+                                 'nextThursdayWeekDate' => $nextThursdayWeekDate ,
+                                 'nextFridayWeekDate' => $nextFridayWeekDate ,
+                                 'nextSaturdayWeekDate' => $nextSaturdayWeekDate ,
+                                 'nextSundayWeekDate' => $nextSundayWeekDate ,
+
+                                 'thisMondayAvailableTimeSlots'=> $thisMondayAvailableTimeSlots,
+                                 'thisTuesdayAvailableTimeSlots'=> $thisTuesdayAvailableTimeSlots,
+                                 'thisWednesdayAvailableTimeSlots'=> $thisWednesdayAvailableTimeSlots,
+                                 'thisThursdayAvailableTimeSlots'=> $thisThursdayAvailableTimeSlots,
+                                 'thisFridayAvailableTimeSlots'=> $thisFridayAvailableTimeSlots,
+                                 'thisSaturdayAvailableTimeSlots'=> $thisSaturdayAvailableTimeSlots,
+                                 'thisSundayAvailableTimeSlots'=> $thisSundayAvailableTimeSlots,
+
+                                 'nextMondayAvailableTimeSlots'=> $nextMondayAvailableTimeSlots,
+                                 'nextTuesdayAvailableTimeSlots'=> $nextTuesdayAvailableTimeSlots,
+                                 'nextWednesdayAvailableTimeSlots'=> $nextWednesdayAvailableTimeSlots,
+                                 'nextThursdayAvailableTimeSlots'=> $nextThursdayAvailableTimeSlots,
+                                 'nextFridayAvailableTimeSlots'=> $nextFridayAvailableTimeSlots,
+                                 'nextSaturdayAvailableTimeSlots'=> $nextSaturdayAvailableTimeSlots,
+                                 'nextSundayAvailableTimeSlots'=> $nextSundayAvailableTimeSlots,
+                                ],200);
     }
-    public function addFreeSession(Request $request){
+    public function addFreeSession(Request $request,TokyFunctions $toky,MailFunctions $mail){
         $phoneNumberInput = str_replace(array('(',')'," ","-"), '',$request->phone_number);
         $phoneNumber = $phoneNumberInput;
         if($phoneNumber[0] != "+" && $phoneNumber[0] != 1){
@@ -88,14 +286,76 @@ class FreeSessionController extends Controller
         $user->email = $request->email;
         $user->phone_number = $phoneNumber;
         $user->role_id = $roleId;
-        $user->topic_id = $request->topic_id;
         $user->is_free_session = true;
         $user->save();
 
+        $topic = Topic::find($request->topic_id);
+        $topic->users()->attach($user);
         $location = Location::find($request->location_id);
         $location->users()->attach($user);
 
-        return response()->json(['response_msg'=>'Data Saved'],200);
-    }  
+        // Send SMS
+        $timeSlot = FreeSessionTimeSlot::where('id',$request->time_slot_id)->first();
+        $day = Day::where('id', $timeSlot->day_id)->value('name');
+        $time = Time::where('id', $timeSlot->time_id)->value('time');
+        $dateOfTheDay = "next ".$day;
+        $date = date('M d, l', strtotime($dateOfTheDay));    
+        $smsMessage = "We have received ".$request->student_name."'s free session reservation, ".$date." at ".$time.
+                      "! The address for the free session is: Online. We are thrilled to start! To see ".$request->student_name.
+                      "'s schedule or to see subscription options after the first session, please go to codewithus.com/g/4133583006 or text us back.";
+        $toky->sms_send($phoneNumber, $smsMessage);
 
+        // Send Email 
+        $data = array(
+            'student_name' => $request->student_name,
+            'free_session_datetime' => $date." at ".$time,
+        );
+        $mail->send_free_session_successful_registration_email("rida@codewithus.com", $data);
+        
+        return response()->json(['response_msg'=>'Data Saved'],200);
+    } 
+    
+    public function getTodaysWeekDay(){
+        $weekMap = [
+            0 => 'Sunday',
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+        ];
+        $dayOfTheWeek = Carbon::now()->dayOfWeek;
+        $weekday = $weekMap[$dayOfTheWeek];
+        return $weekday;
+    }
+    public function getTomorrowsWeekDay(){
+        $weekMap = [
+            0 => 'Sunday',
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+        ];
+        $dayOfTheWeek = Carbon::now()->addDays(1)->dayOfWeek;
+        $weekday = $weekMap[$dayOfTheWeek];
+        return $weekday;
+    }
+    public function getDayAfterTomorrowsWeekDay(){
+        $weekMap = [
+            0 => 'Sunday',
+            1 => 'Monday',
+            2 => 'Tuesday',
+            3 => 'Wednesday',
+            4 => 'Thursday',
+            5 => 'Friday',
+            6 => 'Saturday',
+        ];
+        $dayOfTheWeek = Carbon::now()->addDays(2)->dayOfWeek;
+        $weekday = $weekMap[$dayOfTheWeek];
+        return $weekday;
+    }
+    
 }

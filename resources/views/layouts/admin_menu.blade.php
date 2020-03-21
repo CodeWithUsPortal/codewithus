@@ -72,10 +72,10 @@
                 </li>            
                 <li>
                     <a href="javaScript:void();">
-                        <i class="icon-social-dropbox"></i><span>Meeting</span><i class="icon-arrow-right pull-right"></i>
+                        <i class="icon-social-dropbox"></i><span>Online Class</span><i class="icon-arrow-right pull-right"></i>
                     </a>
                     <ul class="xp-vertical-submenu">                                
-                        <li><a href="{{url('/online_meeting_room')}}">Meeting Room</a></li>
+                        <li><a href="{{url('/online_meeting_room')}}">Online Classroom</a></li>
                     </ul>
                 </li> 
                
