@@ -6,3 +6,8 @@
 Homestead.json
 Homestead.yaml
 .env
+.vs
+.vscode
+/.vs
+/.vscode
+.idea
