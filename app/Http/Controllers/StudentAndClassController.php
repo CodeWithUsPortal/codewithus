@@ -121,22 +121,26 @@ class StudentAndClassController extends Controller
     public function sendEmailToTeacher($student_id, $notes)
     {
         //get the next class for this student
-        $nextClassId = User::find($student_id)
+        $class = User::find($student_id)
             ->taskclasses()
             ->whereDate('starts_at', '>', Carbon::now())
-            ->first()->pivot->task_class_id;
+            ->first();
 
         //get the email of the teacher of the next class for this student
-        $nextClassTeacher = DB::table('task_class_user as tc')
-            ->where('tc.task_class_id', $nextClassId)
+        $teacher = DB::table('task_class_user as tc')
+            ->where('tc.task_class_id', $class->pivot->task_class_id)
             ->join('users as u', 'tc.user_id','=','u.id')
             ->join('roles as r', 'u.role_id', '=', 'r.id')
             ->where('role', 'teacher')
             ->orderBy('tc.id', 'desc')
-            ->select('u.email')
+            ->select('u.*')
             ->first();
 
-        Mail::to($nextClassTeacher->email)->send(new NotesToTeacher($notes));
+        //send mail is a teacher is assigned to the class
+        if($teacher)
+        {
+            Mail::to($teacher->email)->send(new NotesToTeacher($notes, $teacher, $class));
+        }
     }
 
     public function getStudentsClasses(Request $request)

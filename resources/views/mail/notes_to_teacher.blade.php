@@ -8,6 +8,18 @@
     <title>Teachers Notes</title>
 </head>
 <body>
+Hello {{$teacher->user_name}},
+<br>
+<br>
+Below is a note for your class {{$class->name}}, scheduled on {{$class->starts_at}}:
+<br>
+<br>
 {{$notes}}
+<br>
+<br>
+Thanks
+<br>
+<br>
+CodeWithUs Team
 </body>
 </html>

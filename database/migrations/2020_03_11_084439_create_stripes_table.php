@@ -13,7 +13,13 @@ class CreateStripesTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('stripes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('stripe_id');
+            $table->string('package_name');
+            $table->boolean('is_subscription')->default(false);
+            $table->timestamps();
+        });
     }
 
     /**

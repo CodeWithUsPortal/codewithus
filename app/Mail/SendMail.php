@@ -7,25 +7,21 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NotesToTeacher extends Mailable
+class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    public $notes;
-    public $teacher;
-    public $class;
 
     /**
      * Create a new message instance.
      *
-     * @param $notes
+     * @return void
      */
-    public function __construct($notes, $teacher, $class)
+    public function __construct($subject, $data)
     {
-        $this->notes = $notes;
-        $this->teacher = $teacher;
-        $this->class = $class;
+        $this->subject = $subject;
+        $this->data = $data;
     }
+
 
     /**
      * Build the message.
@@ -34,6 +30,8 @@ class NotesToTeacher extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.notes_to_teacher')->subject('Notes for class '.$this->class->name);
+        return $this->from('ahsanmalikk910@gmail.com')
+                    ->subject($this->subject)->view('mail.email_template')
+                    ->with('data',$this->data);
     }
 }

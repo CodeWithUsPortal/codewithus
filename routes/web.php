@@ -171,6 +171,10 @@ $this->get('/online_meeting_room', 'OnlineMeetingController@onlineMeetingRoom');
 $this->get('/get_username_for_online_meeting','OnlineMeetingController@getUsernameForOnlineMeeting');
 $this->get('/join_online_meeting_room/{meetingId?}/{userName?}', 'OnlineMeetingController@joinOnlineMeetingRoom');
 
+
+
+$this->get('/sendSMS', 'FreeSessionController@sendSMS');
+
 //Training routes with categories and sub categories
 Route::get('/training', 'LessonController@index')->name('lessons.index');
 Route::get('/training/categories', 'LessonCategoryController@index')->name('lessons.categories');

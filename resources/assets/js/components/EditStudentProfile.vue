@@ -26,7 +26,6 @@
                         <input type="text" maxlength = "100" class="form-control" v-model="studentProfile.notes" />
                     </div>
                     <div class="form-group">
-                        {{sendEmail}}
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="sendEmail">
                             <label class="custom-control-label" for="customCheck1">Email notes to teacher</label>
