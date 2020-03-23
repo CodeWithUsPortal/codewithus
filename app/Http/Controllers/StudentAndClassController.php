@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotesToTeacher;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\TaskClass;
 use App\Teacher;
@@ -10,6 +12,8 @@ use App\Role;
 use App\Location;
 use App\Topic;
 use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class StudentAndClassController extends Controller
@@ -104,17 +108,46 @@ class StudentAndClassController extends Controller
             }      
             $newTopic->users()->attach($user);
         }
+        // if send mail flag is true then process mail request
+        if($request->has('sendEmail')) {
+            $this->sendEmailToTeacher($user->id, $request->notes);
+
+            return response()->json(['response_msg'=>'Data Updated & Email Sent'],200);
+        }
         
         return response()->json(['response_msg'=>'Data Updated'],200);
     }
 
-    public function getStudentsClasses(Request $request){
+    public function sendEmailToTeacher($student_id, $notes)
+    {
+        //get the next class for this student
+        $nextClassId = User::find($student_id)
+            ->taskclasses()
+            ->whereDate('starts_at', '>', Carbon::now())
+            ->first()->pivot->task_class_id;
+
+        //get the email of the teacher of the next class for this student
+        $nextClassTeacher = DB::table('task_class_user as tc')
+            ->where('tc.task_class_id', $nextClassId)
+            ->join('users as u', 'tc.user_id','=','u.id')
+            ->join('roles as r', 'u.role_id', '=', 'r.id')
+            ->where('role', 'teacher')
+            ->orderBy('tc.id', 'desc')
+            ->select('u.email')
+            ->first();
+
+        Mail::to($nextClassTeacher->email)->send(new NotesToTeacher($notes));
+    }
+
+    public function getStudentsClasses(Request $request)
+    {
         $taskClasses = User::find($request->student_id)->taskclasses()->get();
         $classes = array();
-        foreach($taskClasses as $taskClass){
+
+        foreach($taskClasses as $taskClass) {
             $teacher = "Un-assigned";
             $usersAttached = $taskClass->users;
-            foreach($usersAttached as $user){
+            foreach($usersAttached as $user) {
                 $role = Role::where('id', $user->role_id)->value('role');
                 if($role == "teacher"){
                     $teacher = $user->full_name;
@@ -131,15 +164,21 @@ class StudentAndClassController extends Controller
                     "taskclass_time" => $time,
                     "pivot" => $taskClass->users[0]->pivot,
             ];
-            array_push($classes,$dataArray);   
+            array_push($classes, $dataArray);
         }
         return response()->json(['taskClasses'=> $classes],200);
     }
 
-    public function unAssignStudent(Request $request){
-        $taskClass = TaskClass::find($request->taskclass_id);
-        $user = User::find($request->taskclass_studentid);
-        $taskClass->users()->detach($user);
+    public function getIncompleteStudentsClasses(Request $request)
+    {
+        $incompleteTaskClasses = User::find($request->input('student_id'))->incomplete_taskclasses()->get();
+
+        return response()->json(['incompleteTaskClasses'=> $incompleteTaskClasses],200);
+    }
+
+    public function unAssignStudent(Request $request)
+    {
+        DB::table('task_class_user')->where('id', $request->input('pivot')['id'])->delete();
     }
 
     public function getClassesForStudentLocationAndDate(Request $request){
@@ -307,5 +346,13 @@ class StudentAndClassController extends Controller
             return response()->json(['response_msg'=>'Data deleted'],200);
         }
     }
+
+    public function getCompletedClasses(Request $request)
+    {
+        $completedClasses = User::find($request->input('student_id'))->completed_taskclasses()->get();
+
+        return response()->json(['completedClasses'=> $completedClasses, 'message' => null, 'status'=>'success'],200);
+    }
+
 
 }

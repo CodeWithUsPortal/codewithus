@@ -8,6 +8,12 @@ CodeWithUs - Update
 <!-- Datepicker CSS -->
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Vue Cal Scripts -->
+<script>
+    import CompletedClasses from "../../assets/js/components/CompletedClasses";
+    export default {
+        components: {CompletedClasses}
+    }
+</script>
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vue-cal"></script>
 <link href="https://unpkg.com/vue-cal/dist/vuecal.css" rel="stylesheet">
@@ -58,4 +64,9 @@ CodeWithUs - Update
 <script src="{{ asset('assets/plugins/datepicker/i18n/datepicker.en.js') }}"></script>
 <!-- Dashboard JS -->
 <script src="{{ asset('assets/js/init/dashborad.js') }}"></script>
+<script>
+    $("#studentsUpdate").click(function(){
+        $("#studentUpdateModal").modal();
+    });
+</script>
 @endsection 

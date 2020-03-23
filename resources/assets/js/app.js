@@ -42,6 +42,8 @@ Vue.component('lesson-sub-category', require('./components/LessonSubCategories.v
 Vue.component('lesson', require('./components/Lessons.vue'));
 Vue.component('student-updates', require('./components/StudentUpdates'));
 
+Vue.component('student-completed-classes', require('./components/CompletedClasses'));
+
 const app = new Vue({
     el: '#app_vue',
 });

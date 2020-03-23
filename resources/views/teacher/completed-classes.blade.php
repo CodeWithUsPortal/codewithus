@@ -8,7 +8,12 @@
     <!-- Datepicker CSS -->
     <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Vue Cal Scripts -->
-    <script src="https://unpkg.com/vue"></script>
+<script>
+    import StudentCompletedClasses from "../../assets/js/components/CompletedClasses";
+    export default {
+        components: {StudentCompletedClasses}
+    }
+</script>
     <script src="https://unpkg.com/vue-cal"></script>
     <link href="https://unpkg.com/vue-cal/dist/vuecal.css" rel="stylesheet">
 @endsection
@@ -38,38 +43,8 @@
     <!-- End XP Breadcrumbbar -->
     <!-- Start XP Contentbar -->
     <div class="xp-contentbar">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card m-b-30">
-                    <div class="card-body">
-                        <h3>
-                            Completed Classes
-                        </h3>
-                        <table class="table" id="table1">
-                            <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Date</td>
-                                <td>Time</td>
-                                <td></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($student->completed_taskclasses as $completed)
-                            <tr>
-                                <td>{{$completed->name}}</td>
-                                <td>{{$completed->starts_at}}</td>
-                                <td>{{$completed->starts_at}}</td>
-                                <td>
-                                    <button class="btn btn-warning">Mark As Incomplete</button>
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div id="app_vue">
+            <student-completed-classes :student_id="'{{ $id }}'"> </student-completed-classes>
         </div>
     </div>
     <!-- End XP Contentbar -->

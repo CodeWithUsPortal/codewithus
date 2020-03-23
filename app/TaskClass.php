@@ -2,8 +2,10 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
+
 class TaskClass extends Model
 {
     protected $table = 'task_classes';
@@ -11,6 +13,17 @@ class TaskClass extends Model
     protected $fillable = [
         'name', 'location_id', 'is_completed', 'is_deleted','starts_at', 'ends_at'
     ];
+
+    public function getStartsAtAttribute($value)
+    {
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
+
+    public function getEndsAtAttribute($value)
+    {
+        return Carbon::parse($value)->toDayDateTimeString();
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class)

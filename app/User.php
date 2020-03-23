@@ -54,12 +54,16 @@ class User extends Authenticatable
 
     public function completed_taskclasses()
     {
-        return $this->belongsToMany(TaskClass::class)->wherePivot('completed', 1);
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed')
+            ->wherePivot('completed', 1);
     }
 
     public function incomplete_taskclasses()
     {
-        return $this->belongsToMany(TaskClass::class)->wherePivot('completed', 0);
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed')
+            ->wherePivot('completed', 0);
     }
 
     public function locations()

@@ -34,6 +34,7 @@
                 axios.post('/teacher/store-students-update', data).then(function(response) {});
                 this.$emit('closeModal');
                 this.reset();
+                $('#studentUpdateModal').modal('toggle');
             },
             reset(){
                 this.message = '';

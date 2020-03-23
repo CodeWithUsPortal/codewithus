@@ -210,4 +210,9 @@ Route::delete('/add-permanent-class-schedule/{permanentClassSchedule}', 'Permane
 Route::get('/teacher/completed-task-classes/{id}', 'TeacherController@completedClasses')->name('teachers-completed-classes');
 
 //Teacher route for marking task class as completed
-Route::put('/teacher/mark-task-class-competed/{taskClass}', 'TeacherController@markClassAsCompleted');
+Route::post('/teacher/mark-task-class-competed', 'TeacherController@markClassAsCompleted');
+Route::post('/teacher/mark-task-class-incomplete', 'TeacherController@markClassAsInCompleted');
+
+
+Route::post('/get-incomplete-assigned-classes','StudentAndClassController@getIncompleteStudentsClasses');
+Route::post('/get-completed-assigned-classes','StudentAndClassController@getCompletedClasses');

@@ -4,7 +4,7 @@
             <div class="col-md-6 col-sm-12 ">
                 <h3>
                     Student Profile
-                    <small><a title="SMS Update" href="#" data-toggle="modal" data-target="#studentUpdateModal"><i class="icon-envelope"></i></a></small>
+                    <small><a href="#" title="SMS Update" id="studentsUpdate"><i class="icon-envelope"></i></a></small>
                 </h3>
                 <form @submit.prevent="editStudentProfile" enctype="multipart/form-data" >
                     <div class="form-group">
@@ -24,7 +24,14 @@
                     <div class="form-group">
                         <label>Notes</label>
                         <input type="text" maxlength = "100" class="form-control" v-model="studentProfile.notes" />
-                    </div>    
+                    </div>
+                    <div class="form-group">
+                        {{sendEmail}}
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" v-model="sendEmail">
+                            <label class="custom-control-label" for="customCheck1">Email notes to teacher</label>
+                        </div>
+                    </div>
                     <input class="btn btn-primary" type="submit" value="Update Profile" />
                 </form>
             </div>
@@ -131,18 +138,18 @@
                         <thead>
                             <tr>
                                 <td>Name</td>
-                                <td>Date</td> 
-                                <td>Time</td>
-                                <td>Completed</td>
+                                <td>Starts</td>
+                                <td>Ends</td>
+                                <td></td>
                                 <td></td>      
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="taskClass in taskClasses" v-bind:key="taskClass.taskclass_id" v-if="!taskClass.pivot.completed">
-                                <td>{{ taskClass.taskclass_name }}</td>
-                                <td>{{ taskClass.taskclass_date }}</td>
-                                <td>{{ taskClass.taskclass_time }}</td>
-                                <td><button @click="markTaskClassAsCompleted(pivot.id)" class="btn btn-warning">Mark As Complete</button></td>
+                            <tr v-for="taskClass in incompleteTaskClasses" v-bind:key="taskClass.pivot.id" v-if="!taskClass.pivot.completed">
+                                <td>{{ taskClass.name }}</td>
+                                <td>{{ taskClass.starts_at }}</td>
+                                <td>{{ taskClass.ends_at }}</td>
+                                <td><button @click="markTaskClassAsCompleted(taskClass.pivot)" class="btn btn-warning">Mark As Complete</button></td>
                                 <td><button @click="unAssignStudent(taskClass)" class="btn btn-danger">Remove</button></td>
                             </tr>
                         </tbody>
@@ -195,7 +202,7 @@
             </div>
         </div>
         <br><br>
-        <div class="modal fade" id="studentUpdateModal" tabindex="-1" role="dialog" aria-labelledby="studentUpdateModalLabel" aria-hidden="true">
+        <div class="modal fade" id="studentUpdateModal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -237,7 +244,9 @@
                 time:'',
                 location_id : '',
                 permanentClassStoreError : '',
-                permanentClassSchedules : []
+                permanentClassSchedules : [],
+                incompleteTaskClasses : [],
+                sendEmail : false
             }
         },
         props: ['student'],
@@ -264,7 +273,8 @@
                 var _this = this; 
                 axios.post('/get_assigned_classes',this.studentData).then(function(response){
                     _this.taskClasses = response.data.taskClasses;
-                }) 
+                })
+                _this.getIncompleteAssignedClasses();
             },
             getAssignedLocations(){
                 var _this = this; 
@@ -277,10 +287,13 @@
             },
             editStudentProfile(){
                 var _this = this;
-                axios.post('/edit_student_profile',this.studentProfile).then(function(response){
+                if(_this.sendEmail) {
+                    _this.studentProfile['sendEmail'] = _this.sendEmail;
+                }
+                axios.post('/edit_student_profile',_this.studentProfile).then(function(response){
                     _this.selectedValueOfTopic = '';
                     _this.getStudentProfile();
-                }) 
+                })
             },
             removeLocation(locationId){
                 var _this = this;
@@ -320,7 +333,7 @@
             unAssignStudent(data){
                var _this = this;
                 axios.post('/un_assign_student',data).then(function(response){
-                    _this.getAssignedClasses();
+                    _this.getIncompleteAssignedClasses();
                 })  
             },
             onChangeOfTaskClass(event){
@@ -398,12 +411,12 @@
                     this.getPermanentClassSchedule();
                 }
             },
-            markTaskClassAsCompleted(id)
+            markTaskClassAsCompleted(pivot)
             {
                 if(confirm('Are you sure you want to mark this class as completed?'))
                 {
                     let _this = this;
-                    axios.put('/teacher/mark-task-class-competed/' + id).then(function(response){});
+                    axios.post('/teacher/mark-task-class-competed/', pivot).then(function(response){});
                     this.getAssignedClasses();
                 }
             },
@@ -413,9 +426,18 @@
                     _this.locations = response.data.locations;
                 })
             },
+            showModal(){
+                $('#studentUpdateModal').modal('show');
+            },
             closeModal(){
-                $('.modal').modal('toggle');
-            }
+                $("#studentUpdateModal").modal("hide");
+            },
+            getIncompleteAssignedClasses(){
+                var _this = this;
+                axios.post('/get-incomplete-assigned-classes',this.studentData).then(function(response){
+                    _this.incompleteTaskClasses = response.data.incompleteTaskClasses;
+                })
+            },
         },
         created(){
             this.studentData.student_id = this.student;
@@ -429,6 +451,7 @@
             this.getAssignedLocations();
             this.getLocations();
             this.getPermanentClassSchedule();
+            this.getIncompleteAssignedClasses();
         }
-    }
+    };
 </script>

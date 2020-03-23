@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Update;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use PDO;
 use Torann\LaravelAsana\Facade\Asana;
 use App\TaskClass;
@@ -132,7 +133,7 @@ class TeacherController extends Controller
 
         $sms_url = route('teachers-update', [$student->phone_number, $u->id]);
 
-        $this->sendSMS($sms_url, $u);
+//        $this->sendSMS($sms_url, $u);
 
         return response()->json(['data' => null, 'message' => 'Update added!'],200);
     }
@@ -162,20 +163,25 @@ class TeacherController extends Controller
         curl_close($ch); // close cURL resource
         // //End of SMS sending function
     }
-    public function markClassAsCompleted(TaskClass $taskClass)
+    public function markClassAsCompleted(Request $request)
     {
-        $taskClass->is_completed = 1;
-        $taskClass->save();
+        DB::table('task_class_user')->where(['id' => $request->input('id')])->update(['completed'=>1]);
 
-        return response()->json(['data'=> null, 'message' => 'Task class completed!', 'status'=>'success'],200);
+        return response()->json(['data'=> null, 'message' => 'Task class marked as completed!', 'status'=>'success'],200);
+    }
+
+    public function markClassAsInCompleted(Request $request)
+    {
+        DB::table('task_class_user')->where(['id' => $request->input('id')])->update(['completed'=>0]);
+
+        return response()->json(['data'=> null, 'message' => 'Task class marked as incomplete!', 'status'=>'success'],200);
     }
 
     public function completedClasses($id)
     {
-        $student = User::with('completed_taskclasses')->find($id);
-
-        return view('teacher.completed-classes')->withStudent($student);
+        return view('teacher.completed-classes')->withId($id);
     }
+
 
 }
 
