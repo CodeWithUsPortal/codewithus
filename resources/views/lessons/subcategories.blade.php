@@ -11,7 +11,7 @@ CodeWithUs - Sub Category
 <script src="https://unpkg.com/vue-cal"></script>
 @endsection 
 @section('leftbar')
-    @include('layouts.teacher_menu') 
+    @include('layouts.admin_menu')
 @endsection 
 @section('rightbar-content')
 

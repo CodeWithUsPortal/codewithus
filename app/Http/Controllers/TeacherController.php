@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
+use App\Lesson;
 use Illuminate\Http\Request;
 use App\Update;
 use Illuminate\Support\Facades\Auth;
@@ -70,30 +72,8 @@ class TeacherController extends Controller
             $student_name = explode (" ", $projectName);
             $textContent = "Teacher ".$teacherName." has written an update for ".$student_name[0]. 
                             ". Click on this link to see it: https://portal.codewithus.com/parent/update/".$phoneNumber."/".$createdUpdate->id;
-            
-            // //Start of SMS sending function
-            $ch = curl_init();
-            $api_key = '23480ecaa2d37d33905eae528df2d19e86c898c4653ec9e73b3d01ba96182f74';
-            $headers = array();
-            $headers[] = "X-Toky-Key: {$api_key}";
-            //{"from":"+16282275444", "to": "+16282275222", "text": "Hello from Toky"}
-            $data = array("from" => "+14089097717", "email" => "team@codewithus.com",
-                        "to" => $phoneNumber, 
-                        "text" => $textContent);
-        
-            $json_data = json_encode($data);   
-        
-            // set URL and other appropriate options
-            curl_setopt($ch, CURLOPT_URL, "https://api.toky.co/v1/sms/send");
-            curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
-            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-            curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
-            
-            $curl_response = curl_exec($ch); // Send request
-        
-            curl_close($ch); // close cURL resource 
-            // //End of SMS sending function
+
+            Helper::sendSMS($phoneNumber,$textContent);
         }
         
         return redirect('/teacher/updates');
@@ -131,38 +111,13 @@ class TeacherController extends Controller
             'teacher_id' => Auth::user()->id,
         ]);
 
-        $sms_url = route('teachers-update', [$student->phone_number, $u->id]);
+        $text = route('teachers-update', [$student->phone_number, $u->id]);
 
-//        $this->sendSMS($sms_url, $u);
+        Helper::sendSMS($text, $u->phone_number);
 
         return response()->json(['data' => null, 'message' => 'Update added!'],200);
     }
-    public function sendSMS($url, $update)
-    {
-        // //Start of SMS sending function
-        $ch = curl_init();
-        $api_key = '23480ecaa2d37d33905eae528df2d19e86c898c4653ec9e73b3d01ba96182f74';
-        $headers = array();
-        $headers[] = "X-Toky-Key: {$api_key}";
-        //{"from":"+16282275444", "to": "+16282275222", "text": "Hello from Toky"}
-        $data = array("from" => "+14089097717", "email" => "team@codewithus.com",
-            "to" => $update->phone_number,
-            "text" => $url);
 
-        $json_data = json_encode($data);
-
-        // set URL and other appropriate options
-        curl_setopt($ch, CURLOPT_URL, "https://api.toky.co/v1/sms/send");
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
-
-        $curl_response = curl_exec($ch); // Send request
-
-        curl_close($ch); // close cURL resource
-        // //End of SMS sending function
-    }
     public function markClassAsCompleted(Request $request)
     {
         DB::table('task_class_user')->where(['id' => $request->input('id')])->update(['completed'=>1]);
@@ -180,6 +135,12 @@ class TeacherController extends Controller
     public function completedClasses($id)
     {
         return view('teacher.completed-classes')->withId($id);
+    }
+
+    public function indexTeacher()
+    {
+        $lessons = Lesson::with('sub_category.category')->get();
+        return view('lessons.lessons_teachers')->withLessons($lessons);
     }
 
 

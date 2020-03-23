@@ -12,7 +12,7 @@ class Lesson extends Model
 
     public function sub_category()
     {
-        return $this->belongsTo(LessonSubCategory::class);
+        return $this->belongsTo(LessonSubCategory::class, 'lesson_sub_category_id', 'id');
     }
 
     public function user()

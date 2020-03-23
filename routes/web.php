@@ -181,6 +181,7 @@ Route::get('/training/categories', 'LessonCategoryController@index')->name('less
 Route::get('/training/sub-categories', 'LessonSubCategoryController@index')->name('lessons.subcategories');
 
 //Training section - lesson components api routes
+Route::get('/training/index-teachers','TeacherController@indexTeacher')->name('teachers.lessons.index');
 Route::get('/training/getAllLessons','LessonController@allLessons');
 Route::post('/training/addLesson','LessonController@storeLesson');
 Route::put('/training/lesson/edit/{id}','LessonController@updateLesson');

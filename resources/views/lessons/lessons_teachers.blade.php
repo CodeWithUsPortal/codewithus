@@ -1,6 +1,6 @@
-@section('title')
-CodeWithUs - Categories
-@endsection
+@section('title') 
+CodeWithUs - Training
+@endsection 
 @extends('layouts.main')
 @section('style')
 <!-- Chartist Chart CSS -->
@@ -9,38 +9,58 @@ CodeWithUs - Categories
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
 <script src="https://unpkg.com/vue"></script>
 <script src="https://unpkg.com/vue-cal"></script>
-@endsection
+@endsection 
 @section('leftbar')
-    @include('layouts.admin_menu')
-@endsection
+    @include('layouts.teacher_menu')
+@endsection 
 @section('rightbar-content')
 
-<!-- Start XP Breadcrumbbar -->
+<!-- Start XP Breadcrumbbar -->                    
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Training Categories</h4>
+            <h4 class="xp-page-title">Training</h4>
         </div>
-    </div>
+    </div>          
 </div>
 <!-- End XP Breadcrumbbar -->
-<!-- Start XP Contentbar -->
+<!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
-    <div class="row">
+    <div class="row">              
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-body">
                     <div id="app_vue">
-                        <lesson-category></lesson-category>
+
+                        <table class="table" id="table">
+                            <thead>
+                            <tr>
+                                <td><h5>Lesson Id</h5></td>
+                                <td><h5>Lesson Title</h5></td>
+                                <td><h5>Lesson Link</h5></td>
+                                <td><h5>Sub Category Id</h5></td>
+                                <td><h5>Sub Category Name</h5></td>
+                            </tr>
+                            </thead>
+                            @foreach($lessons as $lesson)
+                            <tr>
+                                <td>{{$lesson->id}}</td>
+                                <td class="text-capitalize">{{$lesson->title}}</td>
+                                <td>{{$lesson->link}}</td>
+                                <td class="text-capitalize">{{$lesson->sub_category->name}}</td>
+                                <td class="text-capitalize">{{$lesson->sub_category->category->name}}</td>
+                            </tr>
+                            @endforeach
+                        </table>
                     </div>
-                </div>
-            </div>
-        </div>
+                </div> 
+            </div> 
+        </div>   
     </div>
-</div>
+</div>        
 <script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script>
 <!-- End XP Contentbar -->
-@endsection
+@endsection 
 @section('script')
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>
