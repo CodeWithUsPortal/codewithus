@@ -32,8 +32,8 @@ Codewithus - Login
                                    
                             <div class="p-3">
                                 <div id="app_vue">
-                                    <example></example> 
-                                    <!-- <free-session-signup></free-session-signup> -->
+                                    <!-- <example></example>  -->
+                                    <free-session-signup></free-session-signup>
                                 </div>
                             </div>
                         </div>

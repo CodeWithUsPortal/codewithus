@@ -21,7 +21,6 @@
                         <i class="icon-envelope"></i><span>Updates</span><i class="icon-arrow-right pull-right"></i>
                     </a>
                     <ul class="xp-vertical-submenu">                                
-                        <li><a href="{{url('/admin/update')}}">Create Update</a></li>
                         <li><a href="{{url('/admin/updates')}}">Updates</a></li>
                     </ul>
                 </li>
@@ -87,6 +86,14 @@
                     </a>
                     <ul class="xp-vertical-submenu">                                
                         <li><a href="{{url('/online_meeting_room')}}">Online Classroom</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-social-dropbox"></i><span>Free Session</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">                                
+                        <li><a href="{{url('/free_session_time_slots')}}"> Time Slots</a></li>
                     </ul>
                 </li> 
                

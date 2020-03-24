@@ -15,6 +15,7 @@ use App\Domain\EmailFunctions;
 use App\Domain\TokyFunctions;
 use App\Domain\MailFunctions;
 use Carbon\Carbon;
+use App\TaskClass;
 
 class FreeSessionController extends Controller
 {
@@ -111,39 +112,180 @@ class FreeSessionController extends Controller
             ];
             switch ($day) {
                 case 'Monday':
-                    $mondayAvailabilityTitle = $dateTitle;
-                    $nextMondayWeekDate = $dateLabel;
-                    array_push($nextMondayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Monday" && $dayAfterTomorrowsWeekDay != "Monday"){
+                        $mondayAvailabilityTitle = $dateTitle;
+                        $nextMondayWeekDate = $dateLabel;
+                        array_push($nextMondayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $mondayAvailabilityTitle = $dateTitle;
+                        $nextMondayWeekDate = $dateLabel;
+                        array_push($nextMondayAvailableTimeSlots,$dataArray);
+                    }
                     break;
                 case 'Tuesday':
-                    $tuesdayAvailabilityTitle = $dateTitle;
-                    $nextTuesdayWeekDate = $dateLabel;
-                    array_push($nextTuesdayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Tuesday" && $dayAfterTomorrowsWeekDay != "Tuesday"){
+                        $tuesdayAvailabilityTitle = $dateTitle;
+                        $nextTuesdayWeekDate = $dateLabel;
+                        array_push($nextTuesdayAvailableTimeSlots,$dataArray);  
+                    }
+                    else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $tuesdayAvailabilityTitle = $dateTitle;
+                        $nextTuesdayWeekDate = $dateLabel;
+                        array_push($nextTuesdayAvailableTimeSlots,$dataArray);  
+                    }
                     break; 
                 case 'Wednesday':
-                    $wednesdayAvailabilityTitle = $dateTitle;
-                    $nextWednesdayWeekDate = $dateLabel;
-                    array_push($nextWednesdayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Wednesday" && $dayAfterTomorrowsWeekDay != "Wednesday"){
+                        $wednesdayAvailabilityTitle = $dateTitle;
+                        $nextWednesdayWeekDate = $dateLabel;
+                        array_push($nextWednesdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $wednesdayAvailabilityTitle = $dateTitle;
+                        $nextWednesdayWeekDate = $dateLabel;
+                        array_push($nextWednesdayAvailableTimeSlots,$dataArray);
+                    }
                     break; 
                 case 'Thursday':
-                    $thursdayAvailabilityTitle = $dateTitle;
-                    $nextThursdayWeekDate = $dateLabel;
-                    array_push($nextThursdayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Thursday" && $dayAfterTomorrowsWeekDay != "Thursday"){
+                        $thursdayAvailabilityTitle = $dateTitle;
+                        $nextThursdayWeekDate = $dateLabel;
+                        array_push($nextThursdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $thursdayAvailabilityTitle = $dateTitle;
+                        $nextThursdayWeekDate = $dateLabel;
+                        array_push($nextThursdayAvailableTimeSlots,$dataArray);
+                    }
                     break;
                 case 'Friday':
-                    $fridayAvailabilityTitle = $dateTitle;
-                    $nextFridayWeekDate = $dateLabel;
-                    array_push($nextFridayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Friday" && $dayAfterTomorrowsWeekDay != "Friday"){
+                        $fridayAvailabilityTitle = $dateTitle;
+                        $nextFridayWeekDate = $dateLabel;
+                        array_push($nextFridayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $fridayAvailabilityTitle = $dateTitle;
+                        $nextFridayWeekDate = $dateLabel;
+                        array_push($nextFridayAvailableTimeSlots,$dataArray);
+                    }
                     break;
                 case 'Saturday':
-                    $saturdayAvailabilityTitle = $dateTitle;
-                    $nextSaturdayWeekDate = $dateLabel;
-                    array_push($nextSaturdayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Saturday" && $dayAfterTomorrowsWeekDay != "Saturday"){
+                        $saturdayAvailabilityTitle = $dateTitle;
+                        $nextSaturdayWeekDate = $dateLabel;
+                        array_push($nextSaturdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $saturdayAvailabilityTitle = $dateTitle;
+                        $nextSaturdayWeekDate = $dateLabel;
+                        array_push($nextSaturdayAvailableTimeSlots,$dataArray);
+                    }
                     break; 
                 case 'Sunday':
-                    $sundayAvailabilityTitle = $dateTitle;
-                    $nextSundayWeekDate = $dateLabel;
-                    array_push($nextSundayAvailableTimeSlots,$dataArray);
+                    if($tomorrowsWeekDay != "Sunday" && $dayAfterTomorrowsWeekDay != "Sunday"){
+                        $sundayAvailabilityTitle = $dateTitle;
+                        $nextSundayWeekDate = $dateLabel;
+                        array_push($nextSundayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 14;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $sundayAvailabilityTitle = $dateTitle;
+                        $nextSundayWeekDate = $dateLabel;
+                        array_push($nextSundayAvailableTimeSlots,$dataArray);
+                    }
                     break;
             }
         }
@@ -165,10 +307,46 @@ class FreeSessionController extends Controller
                         $mondayAvailabilityTitle = $dateTitle;
                         $thisMondayWeekDate = $dateLabel;
                         array_push($thisMondayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $mondayAvailabilityTitle = $dateTitle;
+                        $thisMondayWeekDate = $dateLabel;
+                        array_push($thisMondayAvailableTimeSlots,$dataArray);
                     }
                     break;
                 case 'Tuesday':
                     if($tomorrowsWeekDay != "Tuesday" && $dayAfterTomorrowsWeekDay != "Tuesday"){
+                        $tuesdayAvailabilityTitle = $dateTitle;
+                        $thisTuesdayWeekDate = $dateLabel;
+                        array_push($thisTuesdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
                         $tuesdayAvailabilityTitle = $dateTitle;
                         $thisTuesdayWeekDate = $dateLabel;
                         array_push($thisTuesdayAvailableTimeSlots,$dataArray);
@@ -179,10 +357,46 @@ class FreeSessionController extends Controller
                         $wednesdayAvailabilityTitle = $dateTitle;
                         $thisWednesdayWeekDate = $dateLabel;
                         array_push($thisWednesdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $wednesdayAvailabilityTitle = $dateTitle;
+                        $thisWednesdayWeekDate = $dateLabel;
+                        array_push($thisWednesdayAvailableTimeSlots,$dataArray);
                     }
                     break; 
                 case 'Thursday':
                     if($tomorrowsWeekDay != "Thursday" && $dayAfterTomorrowsWeekDay != "Thursday"){
+                        $thursdayAvailabilityTitle = $dateTitle;
+                        $thisThursdayWeekDate = $dateLabel;
+                        array_push($thisThursdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
                         $thursdayAvailabilityTitle = $dateTitle;
                         $thisThursdayWeekDate = $dateLabel;
                         array_push($thisThursdayAvailableTimeSlots,$dataArray);
@@ -193,6 +407,24 @@ class FreeSessionController extends Controller
                         $fridayAvailabilityTitle = $dateTitle;
                         $thisFridayWeekDate = $dateLabel;
                         array_push($thisFridayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $fridayAvailabilityTitle = $dateTitle;
+                        $thisFridayWeekDate = $dateLabel;
+                        array_push($thisFridayAvailableTimeSlots,$dataArray);
                     }
                     break;
                 case 'Saturday':
@@ -200,10 +432,46 @@ class FreeSessionController extends Controller
                         $saturdayAvailabilityTitle = $dateTitle;
                         $thisSaturdayWeekDate = $dateLabel;
                         array_push($thisSaturdayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
+                        $saturdayAvailabilityTitle = $dateTitle;
+                        $thisSaturdayWeekDate = $dateLabel;
+                        array_push($thisSaturdayAvailableTimeSlots,$dataArray);
                     }
                     break; 
                 case 'Sunday':
                     if($tomorrowsWeekDay != "Sunday" && $dayAfterTomorrowsWeekDay != "Sunday"){
+                        $sundayAvailabilityTitle = $dateTitle;
+                        $thisSundayWeekDate = $dateLabel;
+                        array_push($thisSundayAvailableTimeSlots,$dataArray);
+                    }else{
+                        $dateOfTheDay = "next ".$day;
+                        $date = date('Y-m-d', strtotime($dateOfTheDay));
+                        $date = Carbon::createFromFormat('Y-m-d', $date);
+                        $daysToAdd = 7;
+                        $date = $date->addDays($daysToAdd);
+                        $date = date('Y-m-d', strtotime($date));
+                        $date = date('M d, l', strtotime($date));
+
+                        $dateTitle = date('M d', strtotime($date));
+                        $dateLabel = date('F d Y', strtotime($date));
+                        $dataArray = ["timeslot_id" => $timeSlot->id,
+                                    "timeslot_time" => $time,
+                                    "timeslot_datetime" => $date." at ".$time,
+                        ];
                         $sundayAvailabilityTitle = $dateTitle;
                         $thisSundayWeekDate = $dateLabel;
                         array_push($thisSundayAvailableTimeSlots,$dataArray);
@@ -265,6 +533,19 @@ class FreeSessionController extends Controller
             $phoneNumber = "+".$phoneNumber;
         }
 
+        $fullTimeSlot =$request->time_slot;
+        $timeslot_array = explode(" ",$fullTimeSlot);
+        $monthPreFix = $timeslot_array[0];
+        $dateArray =explode(",",$timeslot_array[1]);
+        $dateOfTheMonth = $dateArray[0];
+        $dayOfTheWeek = $timeslot_array[2];
+        $timeOfTheDay = $timeslot_array[4];
+
+        $day_id =Day::where('name', $dayOfTheWeek)->value('id');
+        $time_id = Time::where('time', $timeOfTheDay)->value('id'); 
+        $timeslot_id = FreeSessionTimeSlot::where(['day_id' => $day_id,
+                                                   'time_id' => $time_id,
+                                                   'location_id' => $request->location_id])->value('id');
         $roleId = Role::where('role', "student")->value('id');
 
         $freeSessionBooking = new FreeSessionBooking();
@@ -275,7 +556,7 @@ class FreeSessionController extends Controller
         $freeSessionBooking->email = $request->email;
         $freeSessionBooking->topic_id = $request->topic_id;
         $freeSessionBooking->ad_source = $request->ad_source;
-        $freeSessionBooking->free_session_time_slot_id = $request->time_slot_id;
+        $freeSessionBooking->free_session_time_slot_id = $timeslot_id;
         $freeSessionBooking->expectations = $request->expectations;
         $freeSessionBooking->save();
 
@@ -287,6 +568,7 @@ class FreeSessionController extends Controller
         $user->phone_number = $phoneNumber;
         $user->role_id = $roleId;
         $user->is_free_session = true;
+        $user->postal_address = $request->address;
         $user->save();
 
         $topic = Topic::find($request->topic_id);
@@ -294,13 +576,8 @@ class FreeSessionController extends Controller
         $location = Location::find($request->location_id);
         $location->users()->attach($user);
 
-        // Send SMS
-        $timeSlot = FreeSessionTimeSlot::where('id',$request->time_slot_id)->first();
-        $day = Day::where('id', $timeSlot->day_id)->value('name');
-        $time = Time::where('id', $timeSlot->time_id)->value('time');
-        $dateOfTheDay = "next ".$day;
-        $date = date('M d, l', strtotime($dateOfTheDay));    
-        $smsMessage = "We have received ".$request->student_name."'s free session reservation, ".$date." at ".$time.
+        // Send SMS 
+        $smsMessage = "We have received ".$request->student_name."'s free session reservation, on ".$request->time_slot.
                       "! The address for the free session is: Online. We are thrilled to start! To see ".$request->student_name.
                       "'s schedule or to see subscription options after the first session, please go to codewithus.com/g/4133583006 or text us back.";
         $toky->sms_send($phoneNumber, $smsMessage);
@@ -308,9 +585,9 @@ class FreeSessionController extends Controller
         // Send Email 
         $data = array(
             'student_name' => $request->student_name,
-            'free_session_datetime' => $date." at ".$time,
+            'free_session_datetime' => $request->time_slot,
         );
-        $mail->send_free_session_successful_registration_email("rida@codewithus.com", $data);
+        $mail->send_free_session_successful_registration_email($request->email, $data);
         
         return response()->json(['response_msg'=>'Data Saved'],200);
     } 
@@ -357,5 +634,5 @@ class FreeSessionController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         return $weekday;
     }
-    
+
 }

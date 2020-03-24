@@ -34,7 +34,16 @@ class UsernameResetController extends Controller
         }                   
     }
     public function getUserNamesUsingPhoneNumbers(Request $request){
-        $users = User::where('phone_number', $request->phone_number)->get();
+        $phoneNumberInput = str_replace(array('(',')'," ","-"), '',$request->phone_number);
+        $phoneNumber = $phoneNumberInput;
+        if($phoneNumber[0] != "+" && $phoneNumber[0] != 1){
+            $phoneNumber = "+1".$phoneNumber;
+        }
+        elseif($phoneNumber[0] != "+" && $phoneNumber[0] == 1){
+            $phoneNumber = "+".$phoneNumber;
+        }
+
+        $users = User::where('phone_number', $phoneNumber)->get();
         $userNames = array();
         if(count($users)>0){
             foreach($users as $user){

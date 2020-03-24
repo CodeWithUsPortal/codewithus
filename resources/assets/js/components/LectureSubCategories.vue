@@ -120,7 +120,7 @@
               
                 _this.subcategories.map((subcategory,index) => {
                     subcategory.priority = index + 1;
-                });debugger;
+                });
                 axios.put('/updateSubCategoryPriority',{
                     subcategories : _this.subcategories
                 }).then((response) => {

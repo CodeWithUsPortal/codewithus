@@ -9,7 +9,7 @@ CodeWithUs - Dashboard
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
 @endsection 
 @section('leftbar')
-    @include('layouts.student_menu') 
+    @include('layouts.admin_menu') 
 @endsection 
 @section('rightbar-content')
 
@@ -17,29 +17,31 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Dashboard</h4>
+            <h4 class="xp-page-title">Free Session Time Slots</h4>
         </div>
         <div class="col-md-6 col-lg-6">
-            <div class="xp-breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="icon-home"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-                </ol>
-            </div>
+           
         </div>
     </div>          
 </div>
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
-    <a href="{{url('/online_meeting_room')}}" type="button" class="icon-social-dropbox btn btn-primary btn-rounded btn-lg btn-block"> Enter Online Class</a>
-    <a href="{{url('/categories')}}" type="button" class="icon-social-dropbox btn btn-primary btn-rounded btn-lg btn-block"> Lessons</a>
-    <a href="{{url('/student/update')}}" type="button" class="icon-social-dropbox btn btn-primary btn-rounded btn-lg btn-block"> Write an Update</a>
-</div>
-<!-- End XP Contentbar -->
+    <div class="row">              
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-body">
+                    <div id="app_vue">
+                        <free-session-time-slots></free-session-time-slots>
+                    </div>
+                </div> 
+            </div> 
+        </div>   
+    </div>
+</div>        
+<script type="text/javascript" src="{{ asset('js/app.js') }}"></script> 
 @endsection 
 @section('script')
-
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/chartist-js/chartist-plugin-tooltip.min.js') }}"></script>
