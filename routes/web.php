@@ -158,7 +158,7 @@ $this->get('/get_free_session_locations','FreeSessionController@allLocationsForF
 $this->get('/get_free_session_topics','FreeSessionController@allTopics');
 $this->post('/get_available_time_slots','FreeSessionController@getAvailableTimeSlotsForALocation');
 $this->post('/add_free_session','FreeSessionController@addFreeSession');
-
+$this->get('/sendSMS', 'FreeSessionController@sendSMS');
 
 // Add Student Routes ...
 $this->get('/add_student_form_by_user','AddStudentController@addStudentForm');
@@ -171,6 +171,11 @@ $this->get('/online_meeting_room', 'OnlineMeetingController@onlineMeetingRoom');
 $this->get('/get_username_for_online_meeting','OnlineMeetingController@getUsernameForOnlineMeeting');
 $this->get('/join_online_meeting_room/{meetingId?}/{userName?}', 'OnlineMeetingController@joinOnlineMeetingRoom');
 
-
-
-$this->get('/sendSMS', 'FreeSessionController@sendSMS');
+//Free Session Time Slots Routes
+$this->get('/free_session_time_slots', 'FreeSessionTimeSlotController@freeSessionTimeSlots');
+$this->get('/get_locations_for_free_session', 'FreeSessionTimeSlotController@getAllLocationsForFreeSession');
+$this->get('/get_days_for_free_session', 'FreeSessionTimeSlotController@getDaysForFreeSession');
+$this->get('/get_times_for_free_session', 'FreeSessionTimeSlotController@getTimesForFreeSession');
+$this->post('/get_available_timeslots_for_a_location','FreeSessionTimeSlotController@getAvailableTimeSlotsForALocation');
+$this->post('/add_timeslot_to_a_location','FreeSessionTimeSlotController@addTimeSlotToALocation');
+$this->post('/delete_timeslot_from_a_location','FreeSessionTimeSlotController@deleteTimeSlotFromALocation');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\FreeSessionTimeSlot;
 use Illuminate\Http\Request;
 use App\Update;
 use PDO;
@@ -12,6 +13,10 @@ use App\User;
 use App\Role;
 use App\Location;
 use App\Topic;
+use App\Day;
+use App\Time;
+use App\FreeSessionBooking;
+
 
 class AdminController extends Controller
 {

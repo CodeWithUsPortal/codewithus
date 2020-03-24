@@ -31,10 +31,12 @@ CodeWithUs - Dashboard
 </div>
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
-<div class="xp-contentbar">
-   
 
+<div class="xp-contentbar">
+    <a href="{{url('/online_meeting_room')}}" type="button" class="icon-social-dropbox btn btn-primary btn-rounded btn-lg btn-block"> Enter Online Class</a>
+    <a href="#" type="button" class="icon-social-dropbox btn btn-primary btn-rounded btn-lg btn-block"> Billing</a>
 </div>
+
 <!-- End XP Contentbar -->
 @endsection 
 @section('script')

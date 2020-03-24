@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 96);
+/******/ 	return __webpack_require__(__webpack_require__.s = 99);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -11676,7 +11676,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(55);
+__webpack_require__(56);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -11694,9 +11694,9 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(94)
+  module.exports = __webpack_require__(97)
 } else {
-  module.exports = __webpack_require__(93)
+  module.exports = __webpack_require__(96)
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
@@ -13581,7 +13581,7 @@ module.exports = Object.create || function create(O, Properties) {
 /***/ "a352":
 /***/ (function(module, exports) {
 
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(57);
 
 /***/ }),
 
@@ -14982,7 +14982,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(52);
+__webpack_require__(53);
 
 window.Vue = __webpack_require__(13);
 
@@ -14992,25 +14992,26 @@ window.Vue = __webpack_require__(13);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-Vue.component('example', __webpack_require__(62));
-Vue.component('login-component', __webpack_require__(69));
-Vue.component('username-reset', __webpack_require__(63));
-Vue.component('lecture-category', __webpack_require__(66));
-Vue.component('lecture-sub-category', __webpack_require__(67));
-Vue.component('lecture', __webpack_require__(68));
-Vue.component('calendar-component', __webpack_require__(59));
-Vue.component('search-students', __webpack_require__(72));
-Vue.component('edit-student-profile', __webpack_require__(60));
-Vue.component('add-class', __webpack_require__(57));
-Vue.component('topic', __webpack_require__(74));
+Vue.component('example', __webpack_require__(63));
+Vue.component('login-component', __webpack_require__(71));
+Vue.component('username-reset', __webpack_require__(64));
+Vue.component('lecture-category', __webpack_require__(68));
+Vue.component('lecture-sub-category', __webpack_require__(69));
+Vue.component('lecture', __webpack_require__(70));
+Vue.component('calendar-component', __webpack_require__(60));
+Vue.component('search-students', __webpack_require__(74));
+Vue.component('edit-student-profile', __webpack_require__(61));
+Vue.component('add-class', __webpack_require__(58));
+Vue.component('topic', __webpack_require__(76));
 
-Vue.component('search-teachers', __webpack_require__(73));
-Vue.component('edit-teacher-profile', __webpack_require__(61));
-Vue.component('free-session-signup', __webpack_require__(65));
-Vue.component('free-session-signin', __webpack_require__(64));
-Vue.component('parents-students', __webpack_require__(71));
-Vue.component('add-student-by-user', __webpack_require__(58));
-Vue.component('online-meeting', __webpack_require__(70));
+Vue.component('search-teachers', __webpack_require__(75));
+Vue.component('edit-teacher-profile', __webpack_require__(62));
+Vue.component('free-session-signup', __webpack_require__(66));
+Vue.component('free-session-signin', __webpack_require__(65));
+Vue.component('parents-students', __webpack_require__(73));
+Vue.component('add-student-by-user', __webpack_require__(59));
+Vue.component('online-meeting', __webpack_require__(72));
+Vue.component('free-session-time-slots', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app_vue'
@@ -16714,374 +16715,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
-        return {
-            thisMondayWeekDate: '',
-            thisTuesdayWeekDate: '',
-            thisWednesdayWeekDate: '',
-            thisThursdayWeekDate: '',
-            thisFridayWeekDate: '',
-            thisSaturdayWeekDate: '',
-            thisSundayWeekDate: '',
-
-            nextMondayWeekDate: '',
-            nextTuesdayWeekDate: '',
-            nextWednesdayWeekDate: '',
-            nextThursdayWeekDate: '',
-            nextFridayWeekDate: '',
-            nextSaturdayWeekDate: '',
-            nextSundayWeekDate: '',
-
-            MondayAvailabilityTitle: 'Monday',
-            TuesdayAvailabilityTitle: 'Tuesday',
-            WednesdayAvailabilityTitle: 'Wednesday',
-            ThursdayAvailabilityTitle: 'Thursday',
-            FridayAvailabilityTitle: 'Friday',
-            SaturdayAvailabilityTitle: 'Saturday',
-            SundayAvailabilityTitle: 'Sunday',
-
-            ifMondayIsAvailable: false,
-            thisMondayTimeSlotsAvailable: false,
-            nextMondayTimeSlotsAvailable: false,
-
-            ifTuesdayIsAvailable: false,
-            thisTuesdayTimeSlotsAvailable: false,
-            nextTuesdayTimeSlotsAvailable: false,
-
-            ifWednesdayIsAvailable: false,
-            thisWednesdayTimeSlotsAvailable: false,
-            nextWednesdayTimeSlotsAvailable: false,
-
-            ifThursdayIsAvailable: false,
-            thisThursdayTimeSlotsAvailable: false,
-            nextThursdayTimeSlotsAvailable: false,
-
-            ifFridayIsAvailable: false,
-            thisFridayTimeSlotsAvailable: false,
-            nextFridayTimeSlotsAvailable: false,
-
-            ifSaturdayIsAvailable: false,
-            thisSaturdayTimeSlotsAvailable: false,
-            nextSaturdayTimeSlotsAvailable: false,
-
-            ifSundayIsAvailable: false,
-            thisSundayTimeSlotsAvailable: false,
-            nextSundayTimeSlotsAvailable: false,
-
-            thisMondayAvailableTimeSlots: [],
-            thisTuesdayAvailableTimeSlots: [],
-            thisWednesdayAvailableTimeSlots: [],
-            thisThursdayAvailableTimeSlots: [],
-            thisFridayAvailableTimeSlots: [],
-            thisSaturdayAvailableTimeSlots: [],
-            thisSundayAvailableTimeSlots: [],
-
-            nextMondayAvailableTimeSlots: [],
-            nextTuesdayAvailableTimeSlots: [],
-            nextWednesdayAvailableTimeSlots: [],
-            nextThursdayAvailableTimeSlots: [],
-            nextFridayAvailableTimeSlots: [],
-            nextSaturdayAvailableTimeSlots: [],
-            nextSundayAvailableTimeSlots: [],
-
-            studentData: { location_id: '1' },
-            selectedDateTime: ''
-        };
-    },
-
-    methods: {
-        getAvailableTimeSlots: function getAvailableTimeSlots() {
-            var _this = this;
-            axios.post('/codewithus/get_available_time_slots', _this.studentData).then(function (response) {
-                if (response.data.response_msg == "No Available Slots found.") {
-                    //
-                } else {
-                    _this.thisMondayAvailableTimeSlots = response.data.thisMondayAvailableTimeSlots;
-                    _this.thisTuesdayAvailableTimeSlots = response.data.thisTuesdayAvailableTimeSlots;
-                    _this.thisWednesdayAvailableTimeSlots = response.data.thisWednesdayAvailableTimeSlots;
-                    _this.thisThursdayAvailableTimeSlots = response.data.thisThursdayAvailableTimeSlots;
-                    _this.thisFridayAvailableTimeSlots = response.data.thisFridayAvailableTimeSlots;
-                    _this.thisSaturdayAvailableTimeSlots = response.data.thisSaturdayAvailableTimeSlots;
-                    _this.thisSundayAvailableTimeSlots = response.data.thisSundayAvailableTimeSlots;
-
-                    _this.nextMondayAvailableTimeSlots = response.data.nextMondayAvailableTimeSlots;
-                    _this.nextTuesdayAvailableTimeSlots = response.data.nextTuesdayAvailableTimeSlots;
-                    _this.nextWednesdayAvailableTimeSlots = response.data.nextWednesdayAvailableTimeSlots;
-                    _this.nextThursdayAvailableTimeSlots = response.data.nextThursdayAvailableTimeSlots;
-                    _this.nextFridayAvailableTimeSlots = response.data.nextFridayAvailableTimeSlots;
-                    _this.nextSaturdayAvailableTimeSlots = response.data.nextSaturdayAvailableTimeSlots;
-                    _this.nextSundayAvailableTimeSlots = response.data.nextSundayAvailableTimeSlots;
-
-                    if (_this.thisMondayAvailableTimeSlots.length > 0) {
-                        _this.ifMondayIsAvailable = true;
-                        _this.thisMondayTimeSlotsAvailable = true;
-                        _this.thisMondayWeekDate = response.data.thisMondayWeekDate;
-                    }
-                    if (_this.thisTuesdayAvailableTimeSlots.length > 0) {
-                        _this.ifTuesdayIsAvailable = true;
-                        _this.thisTuesdayTimeSlotsAvailable = true;
-                        _this.thisTuesdayWeekDate = response.data.thisTuesdayWeekDate;
-                    }
-                    if (_this.thisWednesdayAvailableTimeSlots.length > 0) {
-                        _this.ifWednesdayIsAvailable = true;
-                        _this.thisWednesdayTimeSlotsAvailable = true;
-                        _this.thisWednesdayWeekDate = response.data.thisWednesdayWeekDate;
-                    }
-                    if (_this.thisThursdayAvailableTimeSlots.length > 0) {
-                        _this.ifThursdayIsAvailable = true;
-                        _this.thisThursdayTimeSlotsAvailable = true;
-                        _this.thisThursdayWeekDate = response.data.thisThursdayWeekDate;
-                    }
-                    if (_this.thisFridayAvailableTimeSlots.length > 0) {
-                        _this.ifFridayIsAvailable = true;
-                        _this.thisFridayTimeSlotsAvailable = true;
-                        _this.thisFridayWeekDate = response.data.thisFridayWeekDate;
-                    }
-                    if (_this.thisSaturdayAvailableTimeSlots.length > 0) {
-                        _this.ifSaturdayIsAvailable = true;
-                        _this.thisSaturdayTimeSlotsAvailable = true;
-                        _this.thisSaturdayWeekDate = response.data.thisSaturdayWeekDate;
-                    }
-                    if (_this.thisSundayAvailableTimeSlots.length > 0) {
-                        _this.ifSundayIsAvailable = true;
-                        _this.thisSundayTimeSlotsAvailable = true;
-                        _this.thisSundayWeekDate = response.data.thisSundayWeekDate;
-                    }
-
-                    if (_this.nextMondayAvailableTimeSlots.length > 0) {
-                        _this.MondayAvailabilityTitle = response.data.mondayAvailabilityTitle;
-                        _this.ifMondayIsAvailable = true;
-                        _this.nextMondayTimeSlotsAvailable = true;
-                        _this.nextMondayWeekDate = response.data.nextMondayWeekDate;
-                    }
-                    if (_this.nextTuesdayAvailableTimeSlots.length > 0) {
-                        _this.TuesdayAvailabilityTitle = response.data.tuesdayAvailabilityTitle;
-                        _this.ifTuesdayIsAvailable = true;
-                        _this.nextTuesdayTimeSlotsAvailable = true;
-                        _this.nextTuesdayWeekDate = response.data.nextTuesdayWeekDate;
-                    }
-                    if (_this.nextWednesdayAvailableTimeSlots.length > 0) {
-                        _this.WednesdayAvailabilityTitle = response.data.wednesdayAvailabilityTitle;
-                        _this.ifWednesdayIsAvailable = true;
-                        _this.nextWednesdayTimeSlotsAvailable = true;
-                        _this.nextWednesdayWeekDate = response.data.nextWednesdayWeekDate;
-                    }
-                    if (_this.nextThursdayAvailableTimeSlots.length > 0) {
-                        _this.ThursdayAvailabilityTitle = response.data.thursdayAvailabilityTitle;
-                        _this.ifThursdayIsAvailable = true;
-                        _this.nextThursdayTimeSlotsAvailable = true;
-                        _this.nextThursdayWeekDate = response.data.nextThursdayWeekDate;
-                    }
-                    if (_this.nextFridayAvailableTimeSlots.length > 0) {
-                        _this.FridayAvailabilityTitle = response.data.fridayAvailabilityTitle;
-                        _this.ifFridayIsAvailable = true;
-                        _this.nextFridayTimeSlotsAvailable = true;
-                        _this.nextFridayWeekDate = response.data.nextFridayWeekDate;
-                    }
-                    if (_this.nextSaturdayAvailableTimeSlots.length > 0) {
-                        _this.SaturdayAvailabilityTitle = response.data.saturdayAvailabilityTitle;
-                        _this.ifSaturdayIsAvailable = true;
-                        _this.nextSaturdayTimeSlotsAvailable = true;
-                        _this.nextSaturdayWeekDate = response.data.nextSaturdayWeekDate;
-                    }
-                    if (_this.nextSundayAvailableTimeSlots.length > 0) {
-                        _this.SundayAvailabilityTitle = response.data.sundayAvailabilityTitle;
-                        _this.ifSundayIsAvailable = true;
-                        _this.nextSundayTimeSlotsAvailable = true;
-                        _this.nextSundayWeekDate = response.data.nextSundayWeekDate;
-                    }
-                }
-            });
-        }
+        return {};
     },
     mounted: function mounted() {
         this.getAvailableTimeSlots();
@@ -17226,6 +16863,528 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        var _ref;
+
+        return _ref = {
+            locations: [],
+            selectedLocationId: '',
+            selectedValueOfLocation: '',
+            topics: [],
+            selectedTopicId: '',
+            selectedValueOfTopic: '',
+            availableTimeSlots: [],
+            selectedTimeSlotId: '',
+            selectedValueOfTimeSlot: '',
+            studentData: { location_id: '', student_name: '', student_age: '', phone_number: '', email: '',
+                address: '', topic_id: '', ad_source: '', time_slot: '', expectations: '' },
+            displayFreeSessionForm1: true,
+            displayFreeSessionForm2: false,
+            thankyouForm: false,
+
+            studentNameForBookedFreeSession: '',
+            timeslotForBookedFreeSession: '',
+            freeSessionBookedDate: '',
+            missingTimeSlotSelectionError: false,
+
+            thisMondayWeekDate: '',
+            thisTuesdayWeekDate: '',
+            thisWednesdayWeekDate: '',
+            thisThursdayWeekDate: '',
+            thisFridayWeekDate: '',
+            thisSaturdayWeekDate: '',
+            thisSundayWeekDate: '',
+
+            nextMondayWeekDate: '',
+            nextTuesdayWeekDate: '',
+            nextWednesdayWeekDate: '',
+            nextThursdayWeekDate: '',
+            nextFridayWeekDate: '',
+            nextSaturdayWeekDate: '',
+            nextSundayWeekDate: '',
+
+            MondayAvailabilityTitle: 'Monday',
+            TuesdayAvailabilityTitle: 'Tuesday',
+            WednesdayAvailabilityTitle: 'Wednesday',
+            ThursdayAvailabilityTitle: 'Thursday',
+            FridayAvailabilityTitle: 'Friday',
+            SaturdayAvailabilityTitle: 'Saturday',
+            SundayAvailabilityTitle: 'Sunday',
+
+            ifMondayIsAvailable: false,
+            thisMondayTimeSlotsAvailable: false,
+            nextMondayTimeSlotsAvailable: false,
+            ifTuesdayIsAvailable: false,
+            thisTuesdayTimeSlotsAvailable: false,
+            nextTuesdayTimeSlotsAvailable: false,
+            ifWednesdayIsAvailable: false,
+            thisWednesdayTimeSlotsAvailable: false,
+            nextWednesdayTimeSlotsAvailable: false,
+            ifThursdayIsAvailable: false,
+            thisThursdayTimeSlotsAvailable: false,
+            nextThursdayTimeSlotsAvailable: false,
+            ifFridayIsAvailable: false,
+            thisFridayTimeSlotsAvailable: false,
+            nextFridayTimeSlotsAvailable: false,
+            ifSaturdayIsAvailable: false,
+            thisSaturdayTimeSlotsAvailable: false,
+            nextSaturdayTimeSlotsAvailable: false,
+            ifSundayIsAvailable: false,
+            thisSundayTimeSlotsAvailable: false,
+            nextSundayTimeSlotsAvailable: false,
+
+            thisMondayAvailableTimeSlots: [],
+            thisTuesdayAvailableTimeSlots: [],
+            thisWednesdayAvailableTimeSlots: [],
+            thisThursdayAvailableTimeSlots: [],
+            thisFridayAvailableTimeSlots: [],
+            thisSaturdayAvailableTimeSlots: [],
+            thisSundayAvailableTimeSlots: [],
+
+            nextMondayAvailableTimeSlots: [],
+            nextTuesdayAvailableTimeSlots: [],
+            nextWednesdayAvailableTimeSlots: [],
+            nextThursdayAvailableTimeSlots: [],
+            nextFridayAvailableTimeSlots: [],
+            nextSaturdayAvailableTimeSlots: [],
+            nextSundayAvailableTimeSlots: []
+
+        }, _defineProperty(_ref, 'studentData', { location_id: '1' }), _defineProperty(_ref, 'selectedDateTime', ''), _ref;
+    },
+
+    methods: {
+        getLocations: function getLocations() {
+            var _this = this;
+            axios.get('/get_free_session_locations').then(function (response) {
+                if (response.data.response_msg == "No Locations found.") {
+                    //
+                } else {
+                    _this.locations = response.data.locations;
+                }
+            });
+        },
+        getTopics: function getTopics() {
+            var _this = this;
+            axios.get('/get_free_session_topics').then(function (response) {
+                if (response.data.response_msg == "No Topics found.") {
+                    //
+                } else {
+                    _this.topics = response.data.topics;
+                }
+            });
+        },
+        onChangeOfLocation: function onChangeOfLocation(e) {
+            this.studentData.location_id = event.target.value;
+            this.selectedLocationId = event.target.value;
+        },
+        onChangeOfTopic: function onChangeOfTopic(e) {
+            this.studentData.topic_id = event.target.value;
+            this.selectedTopicId = event.target.value;
+        },
+        onChangeOfTimeSlot: function onChangeOfTimeSlot(e) {
+            this.studentData.time_slot_id = event.target.value;
+            this.selectedValueOfTimeSlot = event.target.value;
+        },
+        getAvailableTimeSlots: function getAvailableTimeSlots(e) {
+            var _this = this;
+            axios.post('/get_available_time_slots', _this.studentData).then(function (response) {
+                if (response.data.response_msg == "No Available Slots found.") {
+                    //
+                } else {
+                    _this.displayFreeSessionForm1 = false;
+                    _this.displayFreeSessionForm2 = true;
+                    _this.thisMondayAvailableTimeSlots = response.data.thisMondayAvailableTimeSlots;
+                    _this.thisTuesdayAvailableTimeSlots = response.data.thisTuesdayAvailableTimeSlots;
+                    _this.thisWednesdayAvailableTimeSlots = response.data.thisWednesdayAvailableTimeSlots;
+                    _this.thisThursdayAvailableTimeSlots = response.data.thisThursdayAvailableTimeSlots;
+                    _this.thisFridayAvailableTimeSlots = response.data.thisFridayAvailableTimeSlots;
+                    _this.thisSaturdayAvailableTimeSlots = response.data.thisSaturdayAvailableTimeSlots;
+                    _this.thisSundayAvailableTimeSlots = response.data.thisSundayAvailableTimeSlots;
+
+                    _this.nextMondayAvailableTimeSlots = response.data.nextMondayAvailableTimeSlots;
+                    _this.nextTuesdayAvailableTimeSlots = response.data.nextTuesdayAvailableTimeSlots;
+                    _this.nextWednesdayAvailableTimeSlots = response.data.nextWednesdayAvailableTimeSlots;
+                    _this.nextThursdayAvailableTimeSlots = response.data.nextThursdayAvailableTimeSlots;
+                    _this.nextFridayAvailableTimeSlots = response.data.nextFridayAvailableTimeSlots;
+                    _this.nextSaturdayAvailableTimeSlots = response.data.nextSaturdayAvailableTimeSlots;
+                    _this.nextSundayAvailableTimeSlots = response.data.nextSundayAvailableTimeSlots;
+
+                    if (_this.thisMondayAvailableTimeSlots.length > 0) {
+                        _this.ifMondayIsAvailable = true;
+                        _this.thisMondayTimeSlotsAvailable = true;
+                        _this.thisMondayWeekDate = response.data.thisMondayWeekDate;
+                    }
+                    if (_this.thisTuesdayAvailableTimeSlots.length > 0) {
+                        _this.ifTuesdayIsAvailable = true;
+                        _this.thisTuesdayTimeSlotsAvailable = true;
+                        _this.thisTuesdayWeekDate = response.data.thisTuesdayWeekDate;
+                    }
+                    if (_this.thisWednesdayAvailableTimeSlots.length > 0) {
+                        _this.ifWednesdayIsAvailable = true;
+                        _this.thisWednesdayTimeSlotsAvailable = true;
+                        _this.thisWednesdayWeekDate = response.data.thisWednesdayWeekDate;
+                    }
+                    if (_this.thisThursdayAvailableTimeSlots.length > 0) {
+                        _this.ifThursdayIsAvailable = true;
+                        _this.thisThursdayTimeSlotsAvailable = true;
+                        _this.thisThursdayWeekDate = response.data.thisThursdayWeekDate;
+                    }
+                    if (_this.thisFridayAvailableTimeSlots.length > 0) {
+                        _this.ifFridayIsAvailable = true;
+                        _this.thisFridayTimeSlotsAvailable = true;
+                        _this.thisFridayWeekDate = response.data.thisFridayWeekDate;
+                    }
+                    if (_this.thisSaturdayAvailableTimeSlots.length > 0) {
+                        _this.ifSaturdayIsAvailable = true;
+                        _this.thisSaturdayTimeSlotsAvailable = true;
+                        _this.thisSaturdayWeekDate = response.data.thisSaturdayWeekDate;
+                    }
+                    if (_this.thisSundayAvailableTimeSlots.length > 0) {
+                        _this.ifSundayIsAvailable = true;
+                        _this.thisSundayTimeSlotsAvailable = true;
+                        _this.thisSundayWeekDate = response.data.thisSundayWeekDate;
+                    }
+
+                    if (_this.nextMondayAvailableTimeSlots.length > 0) {
+                        _this.MondayAvailabilityTitle = response.data.mondayAvailabilityTitle;
+                        _this.ifMondayIsAvailable = true;
+                        _this.nextMondayTimeSlotsAvailable = true;
+                        _this.nextMondayWeekDate = response.data.nextMondayWeekDate;
+                    }
+                    if (_this.nextTuesdayAvailableTimeSlots.length > 0) {
+                        _this.TuesdayAvailabilityTitle = response.data.tuesdayAvailabilityTitle;
+                        _this.ifTuesdayIsAvailable = true;
+                        _this.nextTuesdayTimeSlotsAvailable = true;
+                        _this.nextTuesdayWeekDate = response.data.nextTuesdayWeekDate;
+                    }
+                    if (_this.nextWednesdayAvailableTimeSlots.length > 0) {
+                        _this.WednesdayAvailabilityTitle = response.data.wednesdayAvailabilityTitle;
+                        _this.ifWednesdayIsAvailable = true;
+                        _this.nextWednesdayTimeSlotsAvailable = true;
+                        _this.nextWednesdayWeekDate = response.data.nextWednesdayWeekDate;
+                    }
+                    if (_this.nextThursdayAvailableTimeSlots.length > 0) {
+                        _this.ThursdayAvailabilityTitle = response.data.thursdayAvailabilityTitle;
+                        _this.ifThursdayIsAvailable = true;
+                        _this.nextThursdayTimeSlotsAvailable = true;
+                        _this.nextThursdayWeekDate = response.data.nextThursdayWeekDate;
+                    }
+                    if (_this.nextFridayAvailableTimeSlots.length > 0) {
+                        _this.FridayAvailabilityTitle = response.data.fridayAvailabilityTitle;
+                        _this.ifFridayIsAvailable = true;
+                        _this.nextFridayTimeSlotsAvailable = true;
+                        _this.nextFridayWeekDate = response.data.nextFridayWeekDate;
+                    }
+                    if (_this.nextSaturdayAvailableTimeSlots.length > 0) {
+                        _this.SaturdayAvailabilityTitle = response.data.saturdayAvailabilityTitle;
+                        _this.ifSaturdayIsAvailable = true;
+                        _this.nextSaturdayTimeSlotsAvailable = true;
+                        _this.nextSaturdayWeekDate = response.data.nextSaturdayWeekDate;
+                    }
+                    if (_this.nextSundayAvailableTimeSlots.length > 0) {
+                        _this.SundayAvailabilityTitle = response.data.sundayAvailabilityTitle;
+                        _this.ifSundayIsAvailable = true;
+                        _this.nextSundayTimeSlotsAvailable = true;
+                        _this.nextSundayWeekDate = response.data.nextSundayWeekDate;
+                    }
+                }
+            });
+        },
+        addFreeSession: function addFreeSession() {
+            var _this = this;
+            if (_this.selectedDateTime == "" || _this.selectedDateTime == null) {
+                _this.missingTimeSlotSelectionError = true;
+            } else {
+                _this.missingTimeSlotSelectionError = false;
+                _this.studentData.time_slot = _this.selectedDateTime;
+                axios.post('/add_free_session', _this.studentData).then(function (response) {
+                    if (response.data.response_msg == "Error") {
+                        //
+                    } else {
+                        _this.displayFreeSessionForm1 = false;
+                        _this.displayFreeSessionForm2 = false;
+                        _this.thankyouForm = true;
+                        _this.studentNameForBookedFreeSession = _this.studentData.student_name;
+                        _this.timeslotForBookedFreeSession = _this.studentData.time_slot;
+                        _this.studentData = { location_id: '', student_name: '', student_age: '', phone_number: '', email: '',
+                            time_slot: '', topic_id: '', ad_source: '', time_slot_id: '', expectations: '' };
+                        _this.selectedValueOfLocation = "";
+                        _this.selectedValueOfTopic = "";
+                        _this.selectedValueOfTimeSlot = "";
+                    }
+                });
+            }
+        }
+    },
+    created: function created() {
+        this.getLocations();
+        this.getTopics();
+        console.log('VueJS component created.');
+    }
+};
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
 //
 //
 //
@@ -17289,100 +17448,104 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
+            displayDuplicateEntryError: false,
+            displaySuccess: false,
+            selected_timeslot: { timeslot_id: '' },
+            location: { location_id: '' },
             locations: [],
-            selectedLocationId: '',
-            selectedValueOfLocation: '',
-            topics: [],
-            selectedTopicId: '',
-            selectedValueOfTopic: '',
+            days: [],
+            times: [],
             availableTimeSlots: [],
-            selectedTimeSlotId: '',
-            selectedValueOfTimeSlot: '',
-            studentData: { location_id: '', student_name: '', student_age: '', phone_number: '', email: '',
-                topic_id: '', ad_source: '', time_slot_id: '', expectations: '' },
-            displayFreeSessionForm1: true,
-            displayFreeSessionForm2: false,
-            thankyouForm: false,
+            timeslot: { location_id: '', day_id: '', time_id: '' },
+            showDataTable: false,
 
-            studentNameForFreeSession: '',
-            freeSessionBookedDate: ''
+            selectedValueOfLocationForFetchingTimeSlots: '',
+            selectedValueOfLocation: '',
+            selectedValueOfDay: '',
+            selectedValueOfTime: ''
         };
     },
 
     methods: {
-        getLocations: function getLocations() {
+        getAllLocations: function getAllLocations() {
             var _this = this;
-            axios.get('/codewithus/get_free_session_locations').then(function (response) {
-                if (response.data.response_msg == "No Locations found.") {
-                    //
-                } else {
-                    _this.locations = response.data.locations;
-                }
+            axios.get('/get_locations_for_free_session').then(function (response) {
+                _this.locations = response.data.locations;
             });
         },
-        getTopics: function getTopics() {
+        getAllDays: function getAllDays() {
             var _this = this;
-            axios.get('/codewithus/get_free_session_topics').then(function (response) {
-                if (response.data.response_msg == "No Topics found.") {
-                    //
-                } else {
-                    _this.topics = response.data.topics;
-                }
+            axios.get('/get_days_for_free_session').then(function (response) {
+                _this.days = response.data.days;
+            });
+        },
+        getAllTimes: function getAllTimes() {
+            var _this = this;
+            axios.get('/get_times_for_free_session').then(function (response) {
+                _this.times = response.data.times;
+            });
+        },
+        onChangeOfLocationSelectionForFetchingTimeSlots: function onChangeOfLocationSelectionForFetchingTimeSlots(e) {
+            this.location.location_id = event.target.value;
+            this.getAvailableTimeSlotsForALocation();
+        },
+        getAvailableTimeSlotsForALocation: function getAvailableTimeSlotsForALocation() {
+            var _this = this;
+            _this.displayDuplicateEntryError = false;
+            _this.displaySuccess = false;
+            axios.post('/get_available_timeslots_for_a_location', _this.location).then(function (response) {
+                _this.showDataTable = true;
+                _this.availableTimeSlots = response.data.availableTimeSlots;
             });
         },
         onChangeOfLocation: function onChangeOfLocation(e) {
-            this.studentData.location_id = event.target.value;
-            this.selectedLocationId = event.target.value;
+            this.timeslot.location_id = event.target.value;
         },
-        onChangeOfTopic: function onChangeOfTopic(e) {
-            this.studentData.topic_id = event.target.value;
-            this.selectedTopicId = event.target.value;
+        onChangeOfDay: function onChangeOfDay(e) {
+            this.timeslot.day_id = event.target.value;
         },
-        onChangeOfTimeSlot: function onChangeOfTimeSlot(e) {
-            this.studentData.time_slot_id = event.target.value;
-            this.selectedValueOfTimeSlot = event.target.value;
+        onChangeOfTime: function onChangeOfTime(e) {
+            this.timeslot.time_id = event.target.value;
         },
-        getAvailableTimeSlots: function getAvailableTimeSlots(e) {
+        addFreeSessionTimeSlot: function addFreeSessionTimeSlot(e) {
             var _this = this;
-            axios.post('/codewithus/get_available_time_slots', _this.studentData).then(function (response) {
-                if (response.data.response_msg == "No Available Slots found.") {
-                    //
+            e.preventDefault();
+            axios.post('/add_timeslot_to_a_location', _this.timeslot).then(function (response) {
+                _this.timeslot = { location_id: '', day_id: '', time_id: '' };
+                _this.selectedValueOfLocation = '';
+                _this.selectedValueOfDay = '';
+                _this.selectedValueOfTime = '';
+                if (response.data.response_msg == "Duplicate Entry") {
+                    _this.displayDuplicateEntryError = true;
+                    _this.displaySuccess = false;
                 } else {
-                    _this.displayFreeSessionForm1 = false;
-                    _this.displayFreeSessionForm2 = true;
-                    _this.availableTimeSlots = response.data.availableTimeSlots;
+                    _this.availableTimeSlots = [];
+                    _this.selectedValueOfLocationForFetchingTimeSlots = '';
+                    _this.displaySuccess = true;
+                    _this.displayDuplicateEntryError = false;
                 }
             });
         },
-        addFreeSession: function addFreeSession() {
+        deleteData: function deleteData(id) {
             var _this = this;
-            axios.post('/codewithus/add_free_session', _this.studentData).then(function (response) {
-                if (response.data.response_msg == "Error") {
-                    //
-                } else {
-                    _this.displayFreeSessionForm1 = false;
-                    _this.displayFreeSessionForm2 = false;
-                    _this.thankyouForm = true;
-                    _this.studentNameForFreeSession = _this.studentData.student_name;
-
-                    _this.studentData = { location_id: '', student_name: '', student_age: '', phone_number: '', email: '',
-                        topic_id: '', ad_source: '', time_slot_id: '', expectations: '' };
-                    _this.selectedValueOfLocation = "";
-                    _this.selectedValueOfTopic = "";
-                    _this.selectedValueOfTimeSlot = "";
+            _this.selected_timeslot.timeslot_id = id;
+            axios.post('/delete_timeslot_from_a_location', _this.selected_timeslot).then(function (response) {
+                if (response.data.reponse_msg == "") {} else {
+                    _this.getAvailableTimeSlotsForALocation();
                 }
             });
         }
     },
     created: function created() {
-        this.getLocations();
-        this.getTopics();
         console.log('VueJS component created.');
+        this.getAllLocations();
+        this.getAllDays();
+        this.getAllTimes();
     }
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17444,7 +17607,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         getData: function getData() {
             var _this = this;
-
             axios.get('/getAllLectureCategories').then(function (response) {
                 _this.categories = response.data;
                 console.log(_this.categories);
@@ -17477,11 +17639,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             _this.category_id = category.id;
             _this.category.category_id = category.id;
             _this.category.category_name = category.name;
-            debugger;
         },
         // End of Edit Data Method
         deleteData: function deleteData(id) {
-            debugger;
             var _this = this;
             if (confirm('Are you sure?')) {
                 axios.delete('/category/delete/' + id).then(function (response) {
@@ -17495,7 +17655,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             _this.categories.map(function (category, index) {
                 category.priority = index + 1;
-            });debugger;
+            });
             axios.put('/updateCategoryPriority', {
                 categories: _this.categories
             }).then(function (response) {
@@ -17510,7 +17670,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17639,7 +17799,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             _this.subcategories.map(function (subcategory, index) {
                 subcategory.priority = index + 1;
-            });debugger;
+            });
             axios.put('/updateSubCategoryPriority', {
                 subcategories: _this.subcategories
             }).then(function (response) {
@@ -17654,7 +17814,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17810,7 +17970,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17961,7 +18121,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18007,7 +18167,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18069,7 +18229,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18184,7 +18344,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     _this.displayError = false;
                     _this.student = { student_id: '', phone_number: '', full_name: '' };
                     _this.students = response.data.students;
-                    debugger;
                     _this.showDataTable = true;
                     _this.showSearchByPhoneNumberForm = false;
                     _this.showSearchByFullNameForm = false;
@@ -18198,7 +18357,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18365,7 +18524,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -18462,11 +18621,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {
-window._ = __webpack_require__(54);
+window._ = __webpack_require__(55);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -18476,7 +18635,7 @@ window._ = __webpack_require__(54);
 
 window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(3);
 
-__webpack_require__(53);
+__webpack_require__(54);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -18513,7 +18672,7 @@ window.axios.defaults.headers.common = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -21100,7 +21259,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -38217,10 +38376,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(95)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(98)(module)))
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -38413,7 +38572,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(4)))
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42124,14 +42283,14 @@ Sortable.mount(Remove, Revert);
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(91),
   /* scopeId */
   null,
   /* cssModules */
@@ -42158,14 +42317,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(80),
+  __webpack_require__(83),
   /* scopeId */
   null,
   /* cssModules */
@@ -42192,14 +42351,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(90),
+  __webpack_require__(93),
   /* scopeId */
   null,
   /* cssModules */
@@ -42226,14 +42385,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(82),
+  __webpack_require__(85),
   /* scopeId */
   null,
   /* cssModules */
@@ -42260,14 +42419,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(76),
+  __webpack_require__(78),
   /* scopeId */
   null,
   /* cssModules */
@@ -42294,14 +42453,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(39),
   /* template */
-  __webpack_require__(75),
+  __webpack_require__(77),
   /* scopeId */
   null,
   /* cssModules */
@@ -42328,14 +42487,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(40),
   /* template */
-  __webpack_require__(81),
+  __webpack_require__(84),
   /* scopeId */
   null,
   /* cssModules */
@@ -42362,14 +42521,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(41),
   /* template */
-  __webpack_require__(85),
+  __webpack_require__(88),
   /* scopeId */
   null,
   /* cssModules */
@@ -42396,14 +42555,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(42),
   /* template */
-  __webpack_require__(83),
+  __webpack_require__(86),
   /* scopeId */
   null,
   /* cssModules */
@@ -42430,14 +42589,48 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(43),
   /* template */
-  __webpack_require__(92),
+  __webpack_require__(79),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\FreeSessionTimeSlots.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] FreeSessionTimeSlots.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1bbf84e3", Component.options)
+  } else {
+    hotAPI.reload("data-v-1bbf84e3", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(44),
+  /* template */
+  __webpack_require__(95),
   /* scopeId */
   null,
   /* cssModules */
@@ -42464,14 +42657,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(44),
+  __webpack_require__(45),
   /* template */
-  __webpack_require__(84),
+  __webpack_require__(87),
   /* scopeId */
   null,
   /* cssModules */
@@ -42498,14 +42691,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(45),
+  __webpack_require__(46),
   /* template */
-  __webpack_require__(78),
+  __webpack_require__(81),
   /* scopeId */
   null,
   /* cssModules */
@@ -42532,14 +42725,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(46),
+  __webpack_require__(47),
   /* template */
-  __webpack_require__(89),
+  __webpack_require__(92),
   /* scopeId */
   null,
   /* cssModules */
@@ -42566,14 +42759,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(47),
+  __webpack_require__(48),
   /* template */
-  __webpack_require__(87),
+  __webpack_require__(90),
   /* scopeId */
   null,
   /* cssModules */
@@ -42600,14 +42793,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(48),
+  __webpack_require__(49),
   /* template */
-  __webpack_require__(77),
+  __webpack_require__(80),
   /* scopeId */
   null,
   /* cssModules */
@@ -42634,14 +42827,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(49),
+  __webpack_require__(50),
   /* template */
-  __webpack_require__(86),
+  __webpack_require__(89),
   /* scopeId */
   null,
   /* cssModules */
@@ -42668,14 +42861,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(50),
+  __webpack_require__(51),
   /* template */
-  __webpack_require__(91),
+  __webpack_require__(94),
   /* scopeId */
   null,
   /* cssModules */
@@ -42702,14 +42895,14 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(51),
+  __webpack_require__(52),
   /* template */
-  __webpack_require__(79),
+  __webpack_require__(82),
   /* scopeId */
   null,
   /* cssModules */
@@ -42736,747 +42929,25 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "xp-contentbar"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', [_c('div', [_vm._m(0), _vm._v(" "), _c('div', [_c('div', {
-    staticClass: "accordion",
-    attrs: {
-      "id": "accordionExample"
-    }
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifMondayIsAvailable),
-      expression: "ifMondayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingOne"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseOne",
-      "aria-expanded": "false",
-      "aria-controls": "collapseOne"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Monday | Next Availability " + _vm._s(_vm.MondayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseOne",
-      "aria-labelledby": "headingOne",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisMondayTimeSlotsAvailable),
-      expression: "thisMondayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisMondayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisMondayAvailableTimeSlots), function(mondayAvailableTimeSlot) {
-    return _c('div', {
-      key: mondayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": mondayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, mondayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = mondayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(mondayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextMondayTimeSlotsAvailable),
-      expression: "nextMondayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextMondayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextMondayAvailableTimeSlots), function(mondayAvailableTimeSlot) {
-    return _c('div', {
-      key: mondayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": mondayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, mondayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = mondayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(mondayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifTuesdayIsAvailable),
-      expression: "ifTuesdayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingTwo"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseTwo",
-      "aria-expanded": "false",
-      "aria-controls": "collapseTwo"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Tuesday | Next Availability " + _vm._s(_vm.TuesdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseTwo",
-      "aria-labelledby": "headingTwo",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisTuesdayTimeSlotsAvailable),
-      expression: "thisTuesdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisTuesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisTuesdayAvailableTimeSlots), function(tuesdayAvailableTimeSlot) {
-    return _c('div', {
-      key: tuesdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": tuesdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, tuesdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = tuesdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(tuesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextTuesdayTimeSlotsAvailable),
-      expression: "nextTuesdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextTuesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextTuesdayAvailableTimeSlots), function(tuesdayAvailableTimeSlot) {
-    return _c('div', {
-      key: tuesdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": tuesdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, tuesdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = tuesdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(tuesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifWednesdayIsAvailable),
-      expression: "ifWednesdayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingThree"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseThree",
-      "aria-expanded": "false",
-      "aria-controls": "collapseThree"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Wednesday | Next Availability " + _vm._s(_vm.WednesdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseThree",
-      "aria-labelledby": "headingThree",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisWednesdayTimeSlotsAvailable),
-      expression: "thisWednesdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisWednesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisWednesdayAvailableTimeSlots), function(wednesdayAvailableTimeSlot) {
-    return _c('div', {
-      key: wednesdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": wednesdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, wednesdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = wednesdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(wednesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextWednesdayTimeSlotsAvailable),
-      expression: "nextWednesdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextWednesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextWednesdayAvailableTimeSlots), function(wednesdayAvailableTimeSlot) {
-    return _c('div', {
-      key: wednesdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": wednesdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, wednesdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = wednesdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(wednesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifThursdayIsAvailable),
-      expression: "ifThursdayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingFour"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseFour",
-      "aria-expanded": "false",
-      "aria-controls": "collapseFour"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Thursday | Next Availability " + _vm._s(_vm.ThursdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseFour",
-      "aria-labelledby": "headingFour",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisThursdayTimeSlotsAvailable),
-      expression: "thisThursdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisThursdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisThursdayAvailableTimeSlots), function(thursdayAvailableTimeSlot) {
-    return _c('div', {
-      key: thursdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": thursdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, thursdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = thursdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(thursdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextThursdayTimeSlotsAvailable),
-      expression: "nextThursdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextThursdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextThursdayAvailableTimeSlots), function(thursdayAvailableTimeSlot) {
-    return _c('div', {
-      key: thursdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": thursdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, thursdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = thursdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(thursdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifFridayIsAvailable),
-      expression: "ifFridayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingFive"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseFive",
-      "aria-expanded": "false",
-      "aria-controls": "collapseFive"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Friday | Next Availability " + _vm._s(_vm.FridayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseFive",
-      "aria-labelledby": "headingFive",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisFridayTimeSlotsAvailable),
-      expression: "thisFridayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisFridayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisFridayAvailableTimeSlots), function(fridayAvailableTimeSlot) {
-    return _c('div', {
-      key: fridayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": fridayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, fridayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = fridayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(fridayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextFridayTimeSlotsAvailable),
-      expression: "nextFridayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextFridayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextFridayAvailableTimeSlots), function(fridayAvailableTimeSlot) {
-    return _c('div', {
-      key: fridayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": fridayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, fridayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = fridayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(fridayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifSaturdayIsAvailable),
-      expression: "ifSaturdayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingSix"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseSix",
-      "aria-expanded": "false",
-      "aria-controls": "collapseSix"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Saturday | Next Availability " + _vm._s(_vm.SaturdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseSix",
-      "aria-labelledby": "headingSix",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisSaturdayTimeSlotsAvailable),
-      expression: "thisSaturdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisSaturdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisSaturdayAvailableTimeSlots), function(saturdayAvailableTimeSlot) {
-    return _c('div', {
-      key: saturdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": saturdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, saturdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = saturdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(saturdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextSaturdayTimeSlotsAvailable),
-      expression: "nextSaturdayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextSaturdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextSaturdayAvailableTimeSlots), function(saturdayAvailableTimeSlot) {
-    return _c('div', {
-      key: saturdayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": saturdayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, saturdayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = saturdayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(saturdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])]), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.ifSundayIsAvailable),
-      expression: "ifSundayIsAvailable"
-    }],
-    staticClass: "card mb-2"
-  }, [_c('div', {
-    staticClass: "card-header p-1",
-    attrs: {
-      "id": "headingSeven"
-    }
-  }, [_c('h5', {
-    staticClass: "mb-0 text-black"
-  }, [_c('button', {
-    staticClass: "btn btn-link text-black collapsed",
-    attrs: {
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "#collapseSeven",
-      "aria-expanded": "false",
-      "aria-controls": "collapseSeven"
-    }
-  }, [_c('i', {
-    staticClass: "icon-question text-primary mr-1"
-  }), _vm._v("\n                                    Sunday | Next Availability " + _vm._s(_vm.SundayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
-    staticClass: "collapse",
-    attrs: {
-      "id": "collapseSeven",
-      "aria-labelledby": "headingSeven",
-      "data-parent": "#accordionExample"
-    }
-  }, [_c('div', {
-    staticClass: "card-body"
-  }, [_c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.thisSundayTimeSlotsAvailable),
-      expression: "thisSundayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.thisSundayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisSundayAvailableTimeSlots), function(sundayAvailableTimeSlot) {
-    return _c('div', {
-      key: sundayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": sundayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, sundayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = sundayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(sundayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2), _vm._v(" "), _c('div', {
-    directives: [{
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.nextSundayTimeSlotsAvailable),
-      expression: "nextSundayTimeSlotsAvailable"
-    }]
-  }, [_c('label', {
-    staticStyle: {
-      "color": "black"
-    }
-  }, [_c('b', [_vm._v(_vm._s(_vm.nextSundayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextSundayAvailableTimeSlots), function(sundayAvailableTimeSlot) {
-    return _c('div', {
-      key: sundayAvailableTimeSlot.timeslot_datetime
-    }, [_c('input', {
-      directives: [{
-        name: "model",
-        rawName: "v-model",
-        value: (_vm.selectedDateTime),
-        expression: "selectedDateTime"
-      }],
-      attrs: {
-        "type": "radio"
-      },
-      domProps: {
-        "value": sundayAvailableTimeSlot.timeslot_datetime,
-        "checked": _vm._q(_vm.selectedDateTime, sundayAvailableTimeSlot.timeslot_datetime)
-      },
-      on: {
-        "change": function($event) {
-          _vm.selectedDateTime = sundayAvailableTimeSlot.timeslot_datetime
-        }
-      }
-    }), _vm._v(" " + _vm._s(sundayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
-  })], 2)])])])])])])])])])
+  return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "card-header bg-white"
-  }, [_c('h5', {
-    staticClass: "card-title text-black"
-  }, [_vm._v("Pick a suitable time:")])])
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -43487,7 +42958,7 @@ if (false) {
 }
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43777,7 +43248,240 @@ if (false) {
 }
 
 /***/ }),
-/* 77 */
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.displayDuplicateEntryError),
+      expression: "displayDuplicateEntryError"
+    }]
+  }, [_c('h6', {
+    staticStyle: {
+      "color": "red"
+    }
+  }, [_vm._v("A similar Time Slot already exists for the selected Location.")])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.displaySuccess),
+      expression: "displaySuccess"
+    }]
+  }, [_c('h6', {
+    staticStyle: {
+      "color": "green"
+    }
+  }, [_vm._v("Time Slot has been added.")])]), _vm._v(" "), _c('br'), _c('h3', [_vm._v("Add a Free Session Time Slots ")]), _c('br'), _vm._v(" "), _c('form', {
+    attrs: {
+      "enctype": "multipart/form-data"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        return _vm.addFreeSessionTimeSlot($event)
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group row"
+  }, [_vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "col-lg-3"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedValueOfLocation),
+      expression: "selectedValueOfLocation"
+    }],
+    staticClass: "option form-control",
+    attrs: {
+      "required": ""
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedValueOfLocation = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        return _vm.onChangeOfLocation($event)
+      }]
+    }
+  }, _vm._l((_vm.locations), function(location) {
+    return _c('option', {
+      key: location.location_id,
+      domProps: {
+        "value": location.location_id
+      }
+    }, [_vm._v(" " + _vm._s(location.location_name))])
+  }), 0)])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_vm._m(1), _vm._v(" "), _c('div', {
+    staticClass: "col-lg-3"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedValueOfDay),
+      expression: "selectedValueOfDay"
+    }],
+    staticClass: "option form-control",
+    attrs: {
+      "required": ""
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedValueOfDay = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        return _vm.onChangeOfDay($event)
+      }]
+    }
+  }, _vm._l((_vm.days), function(day) {
+    return _c('option', {
+      key: day.day_id,
+      domProps: {
+        "value": day.day_id
+      }
+    }, [_vm._v(" " + _vm._s(day.day_name))])
+  }), 0)])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group row"
+  }, [_vm._m(2), _vm._v(" "), _c('div', {
+    staticClass: "col-lg-3"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedValueOfTime),
+      expression: "selectedValueOfTime"
+    }],
+    staticClass: "option form-control",
+    attrs: {
+      "required": ""
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedValueOfTime = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        return _vm.onChangeOfTime($event)
+      }]
+    }
+  }, _vm._l((_vm.times), function(time) {
+    return _c('option', {
+      key: time.time_id,
+      domProps: {
+        "value": time.time_id
+      }
+    }, [_vm._v(" " + _vm._s(time.time_time))])
+  }), 0)])]), _vm._v(" "), _c('input', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit",
+      "value": "Add Time Slot"
+    }
+  })]), _vm._v(" "), _c('br'), _c('br'), _c('br'), _c('h3', [_vm._v("Free Session Time Slots ")]), _c('br'), _vm._v(" "), _vm._m(3), _vm._v(" "), _c('div', [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.selectedValueOfLocationForFetchingTimeSlots),
+      expression: "selectedValueOfLocationForFetchingTimeSlots"
+    }],
+    staticClass: "option form-control",
+    attrs: {
+      "required": ""
+    },
+    on: {
+      "change": [function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.selectedValueOfLocationForFetchingTimeSlots = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }, function($event) {
+        return _vm.onChangeOfLocationSelectionForFetchingTimeSlots($event)
+      }]
+    }
+  }, _vm._l((_vm.locations), function(location) {
+    return _c('option', {
+      key: location.location_id,
+      domProps: {
+        "value": location.location_id
+      }
+    }, [_vm._v(" " + _vm._s(location.location_name))])
+  }), 0)]), _vm._v(" "), (_vm.showDataTable) ? _c('table', {
+    staticClass: "table",
+    attrs: {
+      "id": "table"
+    }
+  }, [_vm._m(4), _vm._v(" "), _c('tbody', _vm._l((_vm.availableTimeSlots), function(availableTimeSlot) {
+    return _c('tr', {
+      key: availableTimeSlot.timeslot_id
+    }, [_c('td', [_vm._v(_vm._s(availableTimeSlot.location_name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(availableTimeSlot.day_name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(availableTimeSlot.time_time))]), _vm._v(" "), _c('td', [_c('button', {
+      staticClass: "btn btn-danger",
+      on: {
+        "click": function($event) {
+          return _vm.deleteData(availableTimeSlot.timeslot_id)
+        }
+      }
+    }, [_vm._v("DELETE")])])])
+  }), 0)]) : _vm._e()])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "col-lg-3 col-form-label"
+  }, [_vm._v("Location"), _c('span', {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "col-lg-3 col-form-label"
+  }, [_vm._v("Day"), _c('span', {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('label', {
+    staticClass: "col-lg-3 col-form-label"
+  }, [_vm._v("Time"), _c('span', {
+    staticClass: "text-danger"
+  }, [_vm._v("*")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('h6', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v("Note: ")]), _vm._v("To add a Class, you must select a location first.")])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('td', [_c('h5', [_vm._v("Location")])]), _vm._v(" "), _c('td', [_c('h5', [_vm._v("Day")])]), _vm._v(" "), _c('td', [_c('h5', [_vm._v("Time")])]), _vm._v(" "), _c('td')])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-1bbf84e3", module.exports)
+  }
+}
+
+/***/ }),
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43816,7 +43520,7 @@ if (false) {
 }
 
 /***/ }),
-/* 78 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -43972,7 +43676,7 @@ if (false) {
 }
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44052,7 +43756,7 @@ if (false) {
 }
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44216,7 +43920,7 @@ if (false) {
 }
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44312,7 +44016,7 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44666,7 +44370,7 @@ if (false) {
 }
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -44676,7 +44380,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "row"
   }, [_c('div', {
     staticClass: "col-md-12 "
-  }, [_c('form', {
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.missingTimeSlotSelectionError),
+      expression: "missingTimeSlotSelectionError"
+    }]
+  }, [_c('p', {
+    staticStyle: {
+      "color": "red"
+    }
+  }, [_vm._v("*You have to pick a tiem slot.")])]), _vm._v(" "), _c('form', {
     directives: [{
       name: "show",
       rawName: "v-show",
@@ -44752,7 +44467,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("Student's Age")]), _vm._v(" "), _c('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -44761,6 +44476,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
+      "placeholder": "Student's Age",
       "type": "number",
       "min": "3",
       "max": "20",
@@ -44777,7 +44493,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("Phone Number")]), _vm._v(" "), _c('input', {
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -44823,6 +44539,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.$set(_vm.studentData, "email", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.studentData.address),
+      expression: "studentData.address"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "placeholder": "Postal Address",
+      "rows": "4",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.studentData.address)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.studentData, "address", $event.target.value)
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -44907,38 +44647,745 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("Pick a Time Slot")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.selectedValueOfTimeSlot),
-      expression: "selectedValueOfTimeSlot"
-    }],
-    staticClass: "option form-control",
+  }, [_vm._m(0), _vm._v(" "), _c('div', [_c('div', {
+    staticClass: "accordion",
     attrs: {
-      "required": ""
-    },
-    on: {
-      "change": [function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.selectedValueOfTimeSlot = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }, function($event) {
-        return _vm.onChangeOfTimeSlot($event)
-      }]
+      "id": "accordionExample"
     }
-  }, _vm._l((_vm.availableTimeSlots), function(availableTimeSlot) {
-    return _c('option', {
-      key: availableTimeSlot.timeslot_id,
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifMondayIsAvailable),
+      expression: "ifMondayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingOne"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseOne",
+      "aria-expanded": "false",
+      "aria-controls": "collapseOne"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Monday | Next Availability " + _vm._s(_vm.MondayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseOne",
+      "aria-labelledby": "headingOne",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisMondayTimeSlotsAvailable),
+      expression: "thisMondayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisMondayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisMondayAvailableTimeSlots), function(mondayAvailableTimeSlot) {
+    return _c('div', {
+      key: mondayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
       domProps: {
-        "value": availableTimeSlot.timeslot_id
+        "value": mondayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, mondayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = mondayAvailableTimeSlot.timeslot_datetime
+        }
       }
-    }, [_vm._v(" " + _vm._s(availableTimeSlot.timeslot_datetime))])
-  }), 0)]), _vm._v(" "), _c('div', {
+    }), _vm._v(" " + _vm._s(mondayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextMondayTimeSlotsAvailable),
+      expression: "nextMondayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextMondayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextMondayAvailableTimeSlots), function(mondayAvailableTimeSlot) {
+    return _c('div', {
+      key: mondayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": mondayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, mondayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = mondayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(mondayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifTuesdayIsAvailable),
+      expression: "ifTuesdayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingTwo"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseTwo",
+      "aria-expanded": "false",
+      "aria-controls": "collapseTwo"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Tuesday | Next Availability " + _vm._s(_vm.TuesdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseTwo",
+      "aria-labelledby": "headingTwo",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisTuesdayTimeSlotsAvailable),
+      expression: "thisTuesdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisTuesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisTuesdayAvailableTimeSlots), function(tuesdayAvailableTimeSlot) {
+    return _c('div', {
+      key: tuesdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": tuesdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, tuesdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = tuesdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(tuesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextTuesdayTimeSlotsAvailable),
+      expression: "nextTuesdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextTuesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextTuesdayAvailableTimeSlots), function(tuesdayAvailableTimeSlot) {
+    return _c('div', {
+      key: tuesdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": tuesdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, tuesdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = tuesdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(tuesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifWednesdayIsAvailable),
+      expression: "ifWednesdayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingThree"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseThree",
+      "aria-expanded": "false",
+      "aria-controls": "collapseThree"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Wednesday | Next Availability " + _vm._s(_vm.WednesdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseThree",
+      "aria-labelledby": "headingThree",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisWednesdayTimeSlotsAvailable),
+      expression: "thisWednesdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisWednesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisWednesdayAvailableTimeSlots), function(wednesdayAvailableTimeSlot) {
+    return _c('div', {
+      key: wednesdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": wednesdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, wednesdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = wednesdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(wednesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextWednesdayTimeSlotsAvailable),
+      expression: "nextWednesdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextWednesdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextWednesdayAvailableTimeSlots), function(wednesdayAvailableTimeSlot) {
+    return _c('div', {
+      key: wednesdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": wednesdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, wednesdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = wednesdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(wednesdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifThursdayIsAvailable),
+      expression: "ifThursdayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingFour"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseFour",
+      "aria-expanded": "false",
+      "aria-controls": "collapseFour"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Thursday | Next Availability " + _vm._s(_vm.ThursdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseFour",
+      "aria-labelledby": "headingFour",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisThursdayTimeSlotsAvailable),
+      expression: "thisThursdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisThursdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisThursdayAvailableTimeSlots), function(thursdayAvailableTimeSlot) {
+    return _c('div', {
+      key: thursdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": thursdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, thursdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = thursdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(thursdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextThursdayTimeSlotsAvailable),
+      expression: "nextThursdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextThursdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextThursdayAvailableTimeSlots), function(thursdayAvailableTimeSlot) {
+    return _c('div', {
+      key: thursdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": thursdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, thursdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = thursdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(thursdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifFridayIsAvailable),
+      expression: "ifFridayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingFive"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseFive",
+      "aria-expanded": "false",
+      "aria-controls": "collapseFive"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Friday | Next Availability " + _vm._s(_vm.FridayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseFive",
+      "aria-labelledby": "headingFive",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisFridayTimeSlotsAvailable),
+      expression: "thisFridayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisFridayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisFridayAvailableTimeSlots), function(fridayAvailableTimeSlot) {
+    return _c('div', {
+      key: fridayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": fridayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, fridayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = fridayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(fridayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextFridayTimeSlotsAvailable),
+      expression: "nextFridayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextFridayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextFridayAvailableTimeSlots), function(fridayAvailableTimeSlot) {
+    return _c('div', {
+      key: fridayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": fridayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, fridayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = fridayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(fridayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifSaturdayIsAvailable),
+      expression: "ifSaturdayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingSix"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseSix",
+      "aria-expanded": "false",
+      "aria-controls": "collapseSix"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Saturday | Next Availability " + _vm._s(_vm.SaturdayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseSix",
+      "aria-labelledby": "headingSix",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisSaturdayTimeSlotsAvailable),
+      expression: "thisSaturdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisSaturdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisSaturdayAvailableTimeSlots), function(saturdayAvailableTimeSlot) {
+    return _c('div', {
+      key: saturdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": saturdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, saturdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = saturdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(saturdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextSaturdayTimeSlotsAvailable),
+      expression: "nextSaturdayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextSaturdayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextSaturdayAvailableTimeSlots), function(saturdayAvailableTimeSlot) {
+    return _c('div', {
+      key: saturdayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "name": "radioInput",
+        "type": "radio"
+      },
+      domProps: {
+        "value": saturdayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, saturdayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = saturdayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(saturdayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])]), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.ifSundayIsAvailable),
+      expression: "ifSundayIsAvailable"
+    }],
+    staticClass: "card mb-2"
+  }, [_c('div', {
+    staticClass: "card-header p-1",
+    attrs: {
+      "id": "headingSeven"
+    }
+  }, [_c('h5', {
+    staticClass: "mb-0 text-black"
+  }, [_c('button', {
+    staticClass: "btn btn-link text-black collapsed",
+    attrs: {
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "#collapseSeven",
+      "aria-expanded": "false",
+      "aria-controls": "collapseSeven"
+    }
+  }, [_c('i', {
+    staticClass: "icon-question text-primary mr-1"
+  }), _vm._v("\n                                    Sunday | Next Availability " + _vm._s(_vm.SundayAvailabilityTitle) + "\n                                ")])])]), _vm._v(" "), _c('div', {
+    staticClass: "collapse",
+    attrs: {
+      "id": "collapseSeven",
+      "aria-labelledby": "headingSeven",
+      "data-parent": "#accordionExample"
+    }
+  }, [_c('div', {
+    staticClass: "card-body"
+  }, [_c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.thisSundayTimeSlotsAvailable),
+      expression: "thisSundayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.thisSundayWeekDate))])]), _vm._v(" "), _vm._l((_vm.thisSundayAvailableTimeSlots), function(sundayAvailableTimeSlot) {
+    return _c('div', {
+      key: sundayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "type": "radio"
+      },
+      domProps: {
+        "value": sundayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, sundayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = sundayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(sundayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2), _vm._v(" "), _c('div', {
+    directives: [{
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.nextSundayTimeSlotsAvailable),
+      expression: "nextSundayTimeSlotsAvailable"
+    }]
+  }, [_c('label', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_c('b', [_vm._v(_vm._s(_vm.nextSundayWeekDate))])]), _vm._v(" "), _vm._l((_vm.nextSundayAvailableTimeSlots), function(sundayAvailableTimeSlot) {
+    return _c('div', {
+      key: sundayAvailableTimeSlot.timeslot_datetime
+    }, [_c('input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (_vm.selectedDateTime),
+        expression: "selectedDateTime"
+      }],
+      attrs: {
+        "type": "radio"
+      },
+      domProps: {
+        "value": sundayAvailableTimeSlot.timeslot_datetime,
+        "checked": _vm._q(_vm.selectedDateTime, sundayAvailableTimeSlot.timeslot_datetime)
+      },
+      on: {
+        "change": function($event) {
+          _vm.selectedDateTime = sundayAvailableTimeSlot.timeslot_datetime
+        }
+      }
+    }), _vm._v(" " + _vm._s(sundayAvailableTimeSlot.timeslot_time) + "\n                                        ")])
+  })], 2)])])])])])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', [_vm._v("What is your main goal for signing up for a coding class?")]), _vm._v(" "), _c('textarea', {
     directives: [{
@@ -44974,8 +45421,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       value: (_vm.thankyouForm),
       expression: "thankyouForm"
     }]
-  }, [_c('h2', [_vm._v("THANKYOU !")]), _vm._v(" "), _c('h5', [_vm._v("You have successfully subscribed for a Free Session for " + _vm._s(_vm.studentNameForFreeSession))])])])])])
-},staticRenderFns: []}
+  }, [_c('h4', {
+    staticStyle: {
+      "color": "black"
+    }
+  }, [_vm._v("THANKYOU !")]), _vm._v(" "), _c('h6', [_vm._v("You have successfully subscribed for a Free Session for " + _vm._s(_vm.studentNameForBookedFreeSession) + " at " + _vm._s(_vm.timeslotForBookedFreeSession) + ".")])])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "card-header bg-white"
+  }, [_c('h5', {
+    staticClass: "card-title text-black"
+  }, [_vm._v("Pick a suitable time:")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -44985,7 +45442,7 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45116,7 +45573,7 @@ if (false) {
 }
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45204,7 +45661,7 @@ if (false) {
 }
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45372,7 +45829,7 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45402,7 +45859,7 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45643,7 +46100,7 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -45937,7 +46394,7 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -46015,7 +46472,7 @@ if (false) {
 }
 
 /***/ }),
-/* 91 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -46229,7 +46686,7 @@ if (false) {
 }
 
 /***/ }),
-/* 92 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -46327,7 +46784,7 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58294,7 +58751,7 @@ module.exports = Vue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(12).setImmediate))
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58307,7 +58764,7 @@ var e=Object.freeze({});function t(e){return null==e}function n(e){return null!=
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(12).setImmediate))
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -58335,7 +58792,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(15);

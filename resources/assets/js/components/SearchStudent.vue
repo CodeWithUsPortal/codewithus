@@ -111,7 +111,6 @@ export default {
                         _this.displayError = false;
                         _this.student = { student_id: '', phone_number : '', full_name : ''}
                          _this.students = response.data.students;
-                         debugger;
                         _this.showDataTable = true;
                         _this.showSearchByPhoneNumberForm = false;
                         _this.showSearchByFullNameForm = false;

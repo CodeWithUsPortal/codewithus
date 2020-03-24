@@ -20,8 +20,9 @@ class CalendarController extends Controller
     }
 
     public function getLocations(){
-        $user = Auth::user();
-        $role = $user->role->role;
+        //$user = Auth::user();
+        //$role = $user->role->role;
+        $role = "admin";
         if($role == "admin"){
             $locationData = Location::where('is_deleted', false)->get();
         }
@@ -42,21 +43,26 @@ class CalendarController extends Controller
     public function getCalendarEvents(Request $request){
         $taskClasses = TaskClass::where(['is_deleted' => false,
                                      'is_completed' => false,
-                                     'location_id' => $request->location_id])->get();
+                                     'location_id' => $request->location_id])
+                                     ->orderBy('starts_at','ASC')->get();
         $events = array();
         foreach($taskClasses as $taskClass){
             $students = array();
             $teacher = "Un-Assigned";
             $starts_at = $taskClass->starts_at;
             $ends_at = $taskClass->ends_at;
-            $timestamp = strtotime($taskClass->starts_at);
-            $time = date('H:i', $timestamp);
-            $teacher = $time."-".$teacher."-".$taskClass->name;
+            $timestamp_starttime = strtotime($taskClass->starts_at);
+            $startTime = date('H:i', $timestamp_starttime);
+
+            $timestamp_endtime = strtotime($taskClass->ends_at);
+            $endTime = date('H:i', $timestamp_endtime);
+
+            $teacher = $startTime."-".$teacher."-".$taskClass->name."-".$endTime;
             $pivotTableData = $taskClass->users;
             foreach($pivotTableData as $data){
                 $role = Role::where('id',$data->role_id)->value('role');
                 if($role == "teacher"){
-                    $teacher = $time."-".$data->full_name."-".$taskClass->name;
+                    $teacher = $startTime."-".$data->full_name."-".$taskClass->name."-".$endTime;
                 }
                 else{
                     $dataArray = [

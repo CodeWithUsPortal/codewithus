@@ -21,7 +21,6 @@
                         <i class="icon-envelope"></i><span>Updates</span><i class="icon-arrow-right pull-right"></i>
                     </a>
                     <ul class="xp-vertical-submenu">                                
-                        <li><a href="{{url('/teacher/update')}}">Create Update</a></li>
                         <li><a href="{{url('/teacher/updates')}}">Updates</a></li>
                     </ul>
                 </li>

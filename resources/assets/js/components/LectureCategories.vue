@@ -52,7 +52,6 @@
         methods:{
             getData(){
                 var _this = this;
-              
                 axios.get('/getAllLectureCategories').then(function(response){                   
                     _this.categories = response.data; 
                     console.log(_this.categories);
@@ -86,10 +85,8 @@
                 _this.category_id = category.id;
                 _this.category.category_id = category.id;
                 _this.category.category_name = category.name;
-                debugger;
             }, // End of Edit Data Method
             deleteData(id){
-                debugger;
                 var _this = this;
                 if(confirm('Are you sure?')){
                     axios.delete('/category/delete/'+id).then(function(response){
@@ -102,7 +99,7 @@
               
                 _this.categories.map((category,index) => {
                     category.priority = index + 1;
-                });debugger;
+                });
                 axios.put('/updateCategoryPriority',{
                     categories : _this.categories
                 }).then((response) => {
