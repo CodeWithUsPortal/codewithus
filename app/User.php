@@ -1,14 +1,12 @@
 <?php
 
 namespace App;
-
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
 use App\Location;
 use App\Topic;
-
 class User extends Authenticatable
 {
     use Notifiable;
@@ -48,6 +46,7 @@ class User extends Authenticatable
         return false;
     }
 
+    
     public function taskclasses()
     {
         return $this->belongsToMany(TaskClass::class)

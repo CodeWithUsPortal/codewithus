@@ -7,12 +7,19 @@ use App\Lesson;
 use App\LessonCategory;
 use App\LessonSubCategory;
 use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 use App\Update;
+use PDO;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Torann\LaravelAsana\Facade\Asana;
+use App\TaskClass;
+use App\Teacher;
 use App\User;
+use App\Role;
+use App\Location;
+use App\Topic;
 
 class TeacherController extends Controller
 {
@@ -69,8 +76,8 @@ class TeacherController extends Controller
             $student_name = explode (" ", $projectName);
             $textContent = "Teacher ".$teacherName." has written an update for ".$student_name[0]. 
                             ". Click on this link to see it: https://portal.codewithus.com/parent/update/".$phoneNumber."/".$createdUpdate->id;
-
-            Helper::sendSMS($phoneNumber,$textContent);
+            
+                            Helper::sendSMS($phoneNumber,$textContent);
         }
         
         return redirect('/teacher/updates');
@@ -92,7 +99,6 @@ class TeacherController extends Controller
     public function calendarView(){
         return view('teacher.calendar');
     }
-
     public function lessonsForTeachers(){
         return view('teacher.lessons-for-teachers');
     }

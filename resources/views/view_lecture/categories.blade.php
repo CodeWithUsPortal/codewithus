@@ -17,7 +17,7 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Lectures</h4>
+        <h4 class="xp-page-title">Lectures</h4>
         </div>
         <div class="col-md-6 col-lg-6">
             <div class="xp-breadcrumb">
@@ -32,7 +32,7 @@ CodeWithUs - Dashboard
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
-    @include('layouts.session_messages')
+@include('layouts.session_messages')
     <div class="row"> 
         <div class="col-lg-12">
             <div class="card m-b-30">

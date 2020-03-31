@@ -12,8 +12,7 @@ class LectureCategory extends Model
         'name', 'priority', 'password'
     ];
 
-    public function sub_categories()
-    {
+    public function sub_categories(){
         return $this->hasMany(LectureSubCategory::class);
     }
 

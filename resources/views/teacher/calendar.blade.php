@@ -56,7 +56,7 @@ CodeWithUs - Dashboard
 @endsection 
 @section('script')
 <!-- VueJS scripts -->
-<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script> 
 
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>

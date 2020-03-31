@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStripessTable extends Migration
+class CreateUserParentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateStripessTable extends Migration
      */
     public function up()
     {
-        Schema::create('stripes', function (Blueprint $table) {
+        Schema::create('user_parents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('product_id');
-            $table->string('product_name');
-            $table->decimal('price',9,4);
-            $table->string('currency')->default('USD');
-            $table->float('number_of_credits');
-            $table->boolean('is_subscription')->default(false);
-            
+            $table->unsignedBigInteger('user_id');
+            $table->string('stripe_customer_id')->nullable()->default(null);
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -33,6 +31,6 @@ class CreateStripessTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('user_parents');
     }
 }

@@ -31,7 +31,7 @@ class ViewLectureController extends Controller
                 ->get();
 
         } else {
-            $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
+        $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
         }
         $categories = array();
         foreach($categoriesData as $category){
@@ -159,7 +159,7 @@ class ViewLectureController extends Controller
         }
         return view('view_lecture.lectures_teacher')->with(['lectures' =>$lectures]);   
     }
-
+    
     public function addStudentLectureCategory(Request $request)
     {
         $this->validate($request, [

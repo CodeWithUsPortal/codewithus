@@ -34,7 +34,7 @@ CodeWithUs - Dashboard
                 </div>
                 <div class="card-body">
                 @foreach($categories as $key => $value)
-                    <a href="{{  $value['url'] }}">{{ $value['name'] }}</a> ({{ $value['password'] }})<br/>
+                <a href="{{  $value['url'] }}">{{ $value['name'] }}</a> ({{ $value['password'] }})<br/>
                 @endforeach
                 </div>
             </div>

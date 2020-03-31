@@ -18,6 +18,7 @@ class CreateFreeSessionTimeSlotsTable extends Migration
             $table->unsignedBigInteger('day_id');
             $table->unsignedBigInteger('time_id');
             $table->unsignedBigInteger('location_id');
+            $table->boolean('is_deleted')->default(false);
             $table->timestamps();
 
             $table->foreign('day_id')->references('id')->on('days');

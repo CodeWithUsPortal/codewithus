@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         'App\Console\Commands\TaskClassReminder',
+        'App\Console\Commands\PaymentsReceivedToday',
     ];
 
     /**
@@ -25,6 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('registered:users')->dailyAt('17:00');
+        $schedule->command('payments_received:today')->dailyAt('22:00');
     }
 
     /**

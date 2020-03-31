@@ -38,7 +38,7 @@ CodeWithUs - Dashboard
         </div>   
     </div>
 </div>        
-<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script> 
 <!-- End XP Contentbar -->
 @endsection 
 @section('script')
