@@ -47,7 +47,7 @@ class PaymentsReceivedToday extends Command
         $todayUT = strtotime($today);
         $now = Carbon::now();
         $nowDateTime =date('Y-m-d H:i:s',strtotime($now));
-        \Stripe\Stripe::setApiKey('sk_live_0VSsL4U2pIIGNevF5xmQwCJJ');
+        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
         $listOfPayments = \Stripe\Charge::all(['created[gte]' => $todayUT]);
 
