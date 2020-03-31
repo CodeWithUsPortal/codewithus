@@ -30,4 +30,20 @@ class ViewUpdateController extends Controller
             }
         }
     }
+
+    public function viewStudentUpdate($phoneNumber, $updateId)
+    {
+        $update = Update::where('phone_number',$phoneNumber)
+            ->where('id', $updateId)
+            ->where('teacher_id', '<>', null)
+            ->with('teacher')
+            ->first();
+
+        if(!$update) {
+            return view("view_updates.blank");
+        } else {
+            return view("view_updates.teachers-update")->withUpdate($update);
+        }
+
+    }
 }

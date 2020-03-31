@@ -17,13 +17,13 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Dashboard</h4>
+            <h4 class="xp-page-title">Lectures</h4>
         </div>
         <div class="col-md-6 col-lg-6">
             <div class="xp-breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="icon-home"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    <li class="breadcrumb-item active" aria-current="page">Lectures</li>
                 </ol>
             </div>
         </div>
@@ -32,6 +32,7 @@ CodeWithUs - Dashboard
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
+    @include('layouts.session_messages')
     <div class="row"> 
         <div class="col-lg-12">
             <div class="card m-b-30">
@@ -42,6 +43,32 @@ CodeWithUs - Dashboard
                 @foreach($categories as $key => $value)
                     <a href="{{  $value['url'] }}">{{ $value['name'] }}</a><br/>
                 @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card m-b-30">
+                <div class="card-header bg-white">
+                    <h5 class="card-title text-black mb-0">Add Category</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{{route('students.add.lecture.category')}}">
+                        {{csrf_field()}}
+                        <div class="form-group">
+                            <label for="password">Enter Category Password</label>
+                            <input type="text" class="form-control" id="password" name="password">
+                            @if ($errors->any())
+                                <div class="text-danger">
+                                    @foreach ($errors->all() as $error)
+                                        {{$errors->all()[0]}}
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

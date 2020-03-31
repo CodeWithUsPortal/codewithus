@@ -23,7 +23,7 @@ class CreateFreeSessionBookingsTable extends Migration
             $table->unsignedBigInteger('topic_id')->nullable();
             $table->string('ad_source');
             $table->unsignedBigInteger('free_session_time_slot_id')->nullable();
-            $table->text('student_expectations');
+            $table->text('expectations');
             $table->timestamps();
      
             $table->foreign('location_id')->references('id')->on('locations');

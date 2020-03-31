@@ -49,7 +49,8 @@
                     <ul class="xp-vertical-submenu">                                
                         <li><a href="{{url('/add_student_form_by_user')}}">Add Students</a></li>
                     </ul>
-                </li> 
+                </li>
+
                 <li>
                     <a href="javaScript:void();">
                         <i class="icon-social-dropbox"></i><span>Online Class</span><i class="icon-arrow-right pull-right"></i>
@@ -57,8 +58,13 @@
                     <ul class="xp-vertical-submenu">                                
                         <li><a href="{{url('/online_meeting_room')}}">Online Classroom</a></li>
                     </ul>
-                </li>            
-               
+                </li>
+                <li>
+                    <a href="{{route('teachers.training.categories')}}">
+                        <i class="icon-social-dropbox"></i><span>Training</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
         <!-- End XP Navigationbar -->

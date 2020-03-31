@@ -28,7 +28,7 @@ class StudentController extends Controller
     public function writeAnUpdate(Request $request){
         $phoneNumber = auth()->user()->phone_number;
         $userId = auth()->user()->id;
-        $content = $request->content; 
+        $content = $request->input('content');
         Update::create([  
             'phone_number' => $phoneNumber,
             'user_id' => $userId,

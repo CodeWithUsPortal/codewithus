@@ -15,7 +15,7 @@ CodeWithUs - Dashboard
 
 <!-- Start XP Breadcrumbbar -->                    
 <div class="xp-breadcrumbbar">
-    <div class="row">
+    <div class="row mb-4">
         <div class="col-md-6 col-lg-6">
             <h4 class="xp-page-title">Dashboard</h4>
         </div>
@@ -27,7 +27,10 @@ CodeWithUs - Dashboard
                 </ol>
             </div>
         </div>
-    </div>          
+    </div>
+    <div id="app_vue">
+        <teacher-dashboard> </teacher-dashboard>
+    </div>
 </div>
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
@@ -38,6 +41,8 @@ CodeWithUs - Dashboard
 <!-- End XP Contentbar -->
 @endsection 
 @section('script')
+<!-- VueJS scripts -->
+<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script>
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/chartist-js/chartist-plugin-tooltip.min.js') }}"></script>
@@ -48,4 +53,9 @@ CodeWithUs - Dashboard
 <script src="{{ asset('assets/plugins/datepicker/i18n/datepicker.en.js') }}"></script>
 <!-- Dashboard JS -->
 <script src="{{ asset('assets/js/init/dashborad.js') }}"></script>
-@endsection 
+<script>
+    $("#studentsUpdate").click(function(){
+        $("#studentUpdateModal").modal();
+    });
+</script>
+@endsection

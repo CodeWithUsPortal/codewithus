@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
 use App\Location;
 use App\Topic;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -48,8 +50,24 @@ class User extends Authenticatable
 
     public function taskclasses()
     {
-        return $this->belongsToMany(TaskClass::class);
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed');
     }
+
+    public function completed_taskclasses()
+    {
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed')
+            ->wherePivot('completed', 1);
+    }
+
+    public function incomplete_taskclasses()
+    {
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed')
+            ->wherePivot('completed', 0);
+    }
+
     public function locations()
     {
         return $this->belongsToMany(Location::class);
@@ -57,5 +75,56 @@ class User extends Authenticatable
     public function topics()
     {
         return $this->belongsToMany(Topic::class);
+    }
+
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'created_by', 'id');
+    }
+
+    public function lesson_categories()
+    {
+        return $this->hasMany(LessonCategory::class, 'created_by', 'id');
+    }
+
+    public function lesson_sub_categories()
+    {
+        return $this->hasMany(LessonSubCategory::class, 'created_by', 'id');
+    }
+
+    public function updates()
+    {
+        return $this->hasMany('App\Update', 'teacher_id', 'id');
+    }
+
+    public function permanent_class_schedules()
+    {
+        return $this->hasMany(PermanentClassSchedule::class, 'student_id', 'id');
+    }
+
+    public function scopeAdmins($query)
+    {
+        return $query->where('role_id', 1);
+    }
+
+    public function scopeTeachers($query)
+    {
+        return $query->where('role_id', 2);
+    }
+
+    public function scopeParents($query)
+    {
+        return $query->where('role_id', 3);
+    }
+
+    public function scopeStudents($query)
+    {
+        return $query->where('role_id', 4);
+    }
+
+    public function lecture_categories()
+    {
+        return $this->belongsToMany(LectureCategory::class);
     }
 }

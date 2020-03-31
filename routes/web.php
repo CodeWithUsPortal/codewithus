@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
 
 $this->get('registeration', function () {
     return view('register_options');
@@ -179,3 +170,71 @@ $this->get('/get_times_for_free_session', 'FreeSessionTimeSlotController@getTime
 $this->post('/get_available_timeslots_for_a_location','FreeSessionTimeSlotController@getAvailableTimeSlotsForALocation');
 $this->post('/add_timeslot_to_a_location','FreeSessionTimeSlotController@addTimeSlotToALocation');
 $this->post('/delete_timeslot_from_a_location','FreeSessionTimeSlotController@deleteTimeSlotFromALocation');
+
+//Training routes with categories and sub categories
+Route::get('/training', 'LessonController@index')->name('lessons.index');
+Route::get('/training/categories', 'LessonCategoryController@index')->name('lessons.categories');
+Route::get('/training/sub-categories', 'LessonSubCategoryController@index')->name('lessons.subcategories');
+
+//Training section - lesson components api routes
+
+Route::get('/teacher/training/categories', 'TeacherController@lessonCategories')->name('teachers.training.categories');
+Route::get('/teacher/training/sub-categories/{id}', 'TeacherController@lessonSubCategories')->name('teachers.training.sub.categories');
+Route::get('/teacher/training/lessons-sub-categories/{id}', 'TeacherController@lessons')->name('teachers.training.lessons');
+
+
+Route::get('/training/getAllLessons','LessonController@allLessons');
+Route::post('/training/addLesson','LessonController@storeLesson');
+Route::put('/training/lesson/edit/{id}','LessonController@updateLesson');
+Route::delete('/training/lesson/delete/{id}','LessonController@destroyLesson');
+Route::put('/training/updateLessonPriority','LessonController@updateLessonPriority');
+
+//Training section - lesson categories components api routes
+Route::get('/training/getAllLessonCategories','LessonCategoryController@allLessonCategories');
+Route::post('/training/addLessonCategory','LessonCategoryController@storeLessonCategory');
+Route::put('/training/category/edit/{id}','LessonCategoryController@updateLessonCategory');
+Route::delete('/training/category/delete/{id}','LessonCategoryController@destroyLessonCategory');
+Route::put('/training/updateCategoryPriority','LessonCategoryController@updateCategoryPriority');
+
+//Training section - lesson sub-categories components api routes
+Route::get('/training/getAllLessonSubCategories','LessonSubCategoryController@allLessonSubCategories');
+Route::post('/training/addLessonSubCategory','LessonSubCategoryController@storeLessonSubCategory');
+Route::put('/training/subcategory/edit/{id}','LessonSubCategoryController@updateLessonSubCategory');
+Route::delete('/training/subcategory/delete/{id}','LessonSubCategoryController@destroyLessonSubCategory');
+Route::put('/training/updateSubCategoryPriority','LessonSubCategoryController@updateSubCategoryPriority');
+
+//update teacher
+Route::post('/teacher/store-students-update', 'TeacherController@storeStudentUpdates');
+//Teachers update
+Route::get('/parent/teachers/update/{phoneNumber}/{updateId}','ViewUpdateController@viewStudentUpdate')->name('teachers-update');
+
+//Add permanent schedules
+Route::get('/add-permanent-class-schedule', 'PermanentClassScheduleController@index');
+Route::post('/add-permanent-class-schedule', 'PermanentClassScheduleController@store');
+Route::delete('/add-permanent-class-schedule/{permanentClassSchedule}', 'PermanentClassScheduleController@destroy');
+
+Route::get('/teacher/completed-task-classes/{id}', 'TeacherController@completedClasses')->name('teachers-completed-classes');
+
+//Teacher route for marking task class as completed
+Route::post('/teacher/mark-task-class-competed', 'TeacherController@markClassAsCompleted');
+Route::post('/teacher/mark-task-class-incomplete', 'TeacherController@markClassAsInCompleted');
+Route::get('/teacher/get-all-upcoming-classes', 'TeacherController@getAllUpcomingClasses');
+
+
+Route::post('/get-incomplete-assigned-classes','StudentAndClassController@getIncompleteStudentsClasses');
+Route::post('/get-completed-assigned-classes','StudentAndClassController@getCompletedClasses');
+Route::get('/get-all-student-for-task-class/{id}','StudentAndClassController@getAllStudentForTaskClass');
+
+//Mass Contacts
+Route::get('/bulk-messages/teachers','BulkMessageController@showMessageFormTeachers')->name('admins.bulk.message.teachers');
+Route::get('/bulk-messages/students','BulkMessageController@showMessageFormStudents')->name('admins.bulk.message.students');
+Route::get('/bulk-messages/get-bulk-message-data','BulkMessageController@getBulkMessageData');
+Route::post('/bulk-messages/send-message','BulkMessageController@sendMessage');
+
+//Locations
+Route::get('locations', 'LocationController@index')->name('locations.index');
+Route::get('get-locations', 'LocationController@getLocations');
+Route::post('locations/store', 'LocationController@store');
+
+//Add lecture category to students list
+Route::post('add-student-lecture-category','ViewLectureController@addStudentLectureCategory')->name('students.add.lecture.category');

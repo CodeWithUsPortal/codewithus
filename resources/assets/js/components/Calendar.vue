@@ -7,13 +7,15 @@
     <label class="col-lg-3 col-form-label" >Select a Location<span class="text-danger">*</span></label>
     <div class="col-lg-3">      
         <select  class="option form-control" @change="onChangeOfLocation($event)" v-model="selectedValueOfLocation" required>
-            <option v-for="location in locations" v-bind:key="location.location_id" :value="location.location_id"> {{ location.location_name }}</option>
+            <option v-for="location in locations"
+                    v-bind:key="location.location_id"
+                    :value="location.location_id"
+            > {{ location.location_name }}
+            </option>
         </select>
     </div>
-  </div> 
-
-  <vue-cal :events="events" style="height: 950px" :time="false" 
-         :disable-views="['years', 'year']"/>
+  </div>
+  <vue-cal :events="events" style="height: 950px" :time="false" :disable-views="['years', 'year']"/>
 </div>
 </template>
 

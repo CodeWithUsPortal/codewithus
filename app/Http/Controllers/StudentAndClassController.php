@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\NotesToTeacher;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\TaskClass;
 use App\Teacher;
@@ -10,6 +12,8 @@ use App\Role;
 use App\Location;
 use App\Topic;
 use Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class StudentAndClassController extends Controller
@@ -104,17 +108,50 @@ class StudentAndClassController extends Controller
             }      
             $newTopic->users()->attach($user);
         }
+        // if send mail flag is true then process mail request
+        if($request->has('sendEmail')) {
+            $this->sendEmailToTeacher($user->id, $request->notes);
+
+            return response()->json(['response_msg'=>'Data Updated & Email Sent'],200);
+        }
         
         return response()->json(['response_msg'=>'Data Updated'],200);
     }
 
-    public function getStudentsClasses(Request $request){
-        $taskClasses = User::find($request->student_id)->taskclasses()->where('is_completed', false)->get();
+    public function sendEmailToTeacher($student_id, $notes)
+    {
+        //get the next class for this student
+        $class = User::find($student_id)
+            ->taskclasses()
+            ->whereDate('starts_at', '>', Carbon::now())
+            ->first();
+
+        //get the email of the teacher of the next class for this student
+        $teacher = DB::table('task_class_user as tc')
+            ->where('tc.task_class_id', $class->pivot->task_class_id)
+            ->join('users as u', 'tc.user_id','=','u.id')
+            ->join('roles as r', 'u.role_id', '=', 'r.id')
+            ->where('role', 'teacher')
+            ->orderBy('tc.id', 'desc')
+            ->select('u.*')
+            ->first();
+
+        //send mail is a teacher is assigned to the class
+        if($teacher)
+        {
+            Mail::to($teacher->email)->send(new NotesToTeacher($notes, $teacher, $class));
+        }
+    }
+
+    public function getStudentsClasses(Request $request)
+    {
+        $taskClasses = User::find($request->student_id)->taskclasses()->get();
         $classes = array();
-        foreach($taskClasses as $taskClass){
+
+        foreach($taskClasses as $taskClass) {
             $teacher = "Un-assigned";
             $usersAttached = $taskClass->users;
-            foreach($usersAttached as $user){
+            foreach($usersAttached as $user) {
                 $role = Role::where('id', $user->role_id)->value('role');
                 if($role == "teacher"){
                     $teacher = $user->full_name;
@@ -129,16 +166,23 @@ class StudentAndClassController extends Controller
                     "taskclass_name" => $teacher." - ".$taskClass['name'],
                     "taskclass_date" => $date,
                     "taskclass_time" => $time,
+                    "pivot" => $taskClass->users[0]->pivot,
             ];
-            array_push($classes,$dataArray);   
+            array_push($classes, $dataArray);
         }
         return response()->json(['taskClasses'=> $classes],200);
     }
 
-    public function unAssignStudent(Request $request){
-        $taskClass = TaskClass::find($request->taskclass_id);
-        $user = User::find($request->taskclass_studentid);
-        $taskClass->users()->detach($user);
+    public function getIncompleteStudentsClasses(Request $request)
+    {
+        $incompleteTaskClasses = User::find($request->input('student_id'))->incomplete_taskclasses()->get();
+
+        return response()->json(['incompleteTaskClasses'=> $incompleteTaskClasses],200);
+    }
+
+    public function unAssignStudent(Request $request)
+    {
+        DB::table('task_class_user')->where('id', $request->input('pivot')['id'])->delete();
     }
 
     public function getClassesForStudentLocationAndDate(Request $request){
@@ -149,7 +193,6 @@ class StudentAndClassController extends Controller
 
             if($request->selectedDate != null && $request->selectedDate != ""){
                 $classesDataWithoutSelectedDateFilter = TaskClass::where(['is_deleted' => false, 
-                                                'is_completed' => false,
                                                 'location_id' => $location->id,
                                                 ])->get();
                 foreach($classesDataWithoutSelectedDateFilter as $classDataWithoutSelectedDateFilter){
@@ -162,7 +205,6 @@ class StudentAndClassController extends Controller
             }
             else{
                 $classesDataWithoutDate = TaskClass::where(['is_deleted' => false, 
-                                                'is_completed' => false,
                                                 'location_id' => $location->id ])->get();
                 foreach($classesDataWithoutDate as $classDataWithoutDate){
                     array_push($classesData, $classDataWithoutDate);
@@ -233,6 +275,7 @@ class StudentAndClassController extends Controller
         $taskClass->is_completed = false;
         $taskClass->starts_at = $classStartingdatetime;
         $taskClass->ends_at = $classEndingdatetime;
+        $taskClass->is_free_session = $request->input('isFreeSessionClass');
         $taskClass->save();
 
         $user = User::find($teacherId);
@@ -308,5 +351,29 @@ class StudentAndClassController extends Controller
             return response()->json(['response_msg'=>'Data deleted'],200);
         }
     }
+
+    public function getCompletedClasses(Request $request)
+    {
+        $completedClasses = User::find($request->input('student_id'))->completed_taskclasses()->get();
+
+        return response()->json(['completedClasses'=> $completedClasses, 'message' => null, 'status'=>'success'],200);
+    }
+
+    public function getAllStudentForTaskClass($id)
+    {
+        // $id = task_class_is
+        $taskClasses = DB::table('task_classes as tc')
+            ->join('task_class_user as tcu', 'tc.id', '=', 'tcu.task_class_id')
+            ->join('users as u', 'u.id', '=', 'tcu.user_id')
+            ->join('roles as r', 'r.id', '=', 'u.role_id')
+            ->where('r.id', 4)
+            ->where('tcu.completed', 0)
+            ->where('tc.id', $id)
+            ->select('u.*', 'tcu.id as pivot_id', 'tcu.completed as pivot_completed')
+            ->get();
+
+        return response()->json(['taskClasses'=> $taskClasses, 'message' => null, 'status'=>'success'],200);
+    }
+
 
 }

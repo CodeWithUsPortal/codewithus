@@ -42,7 +42,7 @@ class AdminController extends Controller
         // When an admin writes an update, we should get the phone number from the task data
         // Right now, its dummy
         $userId = auth()->user()->id;
-        $content = $request->content; 
+        $content = $request->input('content');
         $teacherOrAdminName = auth()->user()->user_name;
         if($request->taskId == null){
             Update::create([  
