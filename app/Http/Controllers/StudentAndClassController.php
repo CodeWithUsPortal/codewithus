@@ -275,6 +275,7 @@ class StudentAndClassController extends Controller
         $taskClass->is_completed = false;
         $taskClass->starts_at = $classStartingdatetime;
         $taskClass->ends_at = $classEndingdatetime;
+        $taskClass->is_free_session = $request->input('isFreeSessionClass');
         $taskClass->save();
 
         $user = User::find($teacherId);
@@ -356,6 +357,22 @@ class StudentAndClassController extends Controller
         $completedClasses = User::find($request->input('student_id'))->completed_taskclasses()->get();
 
         return response()->json(['completedClasses'=> $completedClasses, 'message' => null, 'status'=>'success'],200);
+    }
+
+    public function getAllStudentForTaskClass($id)
+    {
+        // $id = task_class_is
+        $taskClasses = DB::table('task_classes as tc')
+            ->join('task_class_user as tcu', 'tc.id', '=', 'tcu.task_class_id')
+            ->join('users as u', 'u.id', '=', 'tcu.user_id')
+            ->join('roles as r', 'r.id', '=', 'u.role_id')
+            ->where('r.id', 4)
+            ->where('tcu.completed', 0)
+            ->where('tc.id', $id)
+            ->select('u.*', 'tcu.id as pivot_id', 'tcu.completed as pivot_completed')
+            ->get();
+
+        return response()->json(['taskClasses'=> $taskClasses, 'message' => null, 'status'=>'success'],200);
     }
 
 

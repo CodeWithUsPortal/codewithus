@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\LectureCategory;
 use App\LectureSubCategory;
 use App\Lecture;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ViewLectureController extends Controller
 {
@@ -20,13 +21,25 @@ class ViewLectureController extends Controller
 
         $user = Auth::user();
         $role = $user->role->role;
-        $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
+        if($role == "student") {
+            $categoriesData = DB::table('users as u')
+                ->where('u.id', $user->id)
+                ->join('lecture_category_user as lcu','lcu.user_id','=','u.id')
+                ->join('lecture_categories as lc','lc.id','=','lcu.lecture_category_id')
+                ->where('lc.is_deleted', 0)
+                ->select('lc.*')
+                ->get();
+
+        } else {
+            $categoriesData = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
+        }
         $categories = array();
         foreach($categoriesData as $category){
             $url = "/subCategories/".$category->id."";
             $dataArray = ["id" =>$category->id,
                       "name" => $category->name,
                       "url" => $url,
+                      "password" => $category->password,
                     ];
             array_push($categories,$dataArray);           
         }
@@ -146,6 +159,24 @@ class ViewLectureController extends Controller
         }
         return view('view_lecture.lectures_teacher')->with(['lectures' =>$lectures]);   
     }
+
+    public function addStudentLectureCategory(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+        ]);
+
+        $lectureCategory = LectureCategory::where('password', $request->input('password'))
+            ->where('is_deleted', 0)
+            ->first();
+
+        Auth::user()->lecture_categories()->syncWithoutDetaching($lectureCategory);
+
+        return back()->with('success', 'Category added to your list');
+    }
+
+
+
     // Following method is to show all the categories, sub_categories and lectures
     // on the same page
 

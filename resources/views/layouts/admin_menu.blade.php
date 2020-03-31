@@ -15,6 +15,12 @@
                       <i class="icon-speedometer"></i><span>Dashboard</span>
                   </a>
                 </li>
+
+                <li>
+                    <a href="{{route('locations.index')}}">
+                        <i class="icon-speedometer"></i><span>Locations</span>
+                    </a>
+                </li>
                
                 <li>
                     <a href="javaScript:void();">
@@ -24,6 +30,17 @@
                         <li><a href="{{url('/admin/updates')}}">Updates</a></li>
                     </ul>
                 </li>
+
+                <li>
+                    <a href="javaScript:void();">
+                        <i class="icon-envelope"></i><span>Bulk Messages</span><i class="icon-arrow-right pull-right"></i>
+                    </a>
+                    <ul class="xp-vertical-submenu">
+                        <li><a href="{{route('admins.bulk.message.teachers')}}">Teachers</a></li>
+                        <li><a href="{{route('admins.bulk.message.students')}}">Students</a></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="javaScript:void();">
                         <i class="icon-social-dropbox"></i><span>Lectures</span><i class="icon-arrow-right pull-right"></i>

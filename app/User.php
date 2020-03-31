@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
@@ -49,7 +50,8 @@ class User extends Authenticatable
 
     public function taskclasses()
     {
-        return $this->belongsToMany(TaskClass::class)->withPivot('id','task_class_id', 'user_id', 'completed');
+        return $this->belongsToMany(TaskClass::class)
+            ->withPivot('id','task_class_id', 'user_id', 'completed');
     }
 
     public function completed_taskclasses()
@@ -99,5 +101,30 @@ class User extends Authenticatable
     public function permanent_class_schedules()
     {
         return $this->hasMany(PermanentClassSchedule::class, 'student_id', 'id');
+    }
+
+    public function scopeAdmins($query)
+    {
+        return $query->where('role_id', 1);
+    }
+
+    public function scopeTeachers($query)
+    {
+        return $query->where('role_id', 2);
+    }
+
+    public function scopeParents($query)
+    {
+        return $query->where('role_id', 3);
+    }
+
+    public function scopeStudents($query)
+    {
+        return $query->where('role_id', 4);
+    }
+
+    public function lecture_categories()
+    {
+        return $this->belongsToMany(LectureCategory::class);
     }
 }

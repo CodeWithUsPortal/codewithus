@@ -60,7 +60,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="{{route('teachers.lessons.index')}}">
+                    <a href="{{route('teachers.training.categories')}}">
                         <i class="icon-social-dropbox"></i><span>Training</span>
                     </a>
                 </li>

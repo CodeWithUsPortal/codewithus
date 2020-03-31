@@ -177,7 +177,12 @@ Route::get('/training/categories', 'LessonCategoryController@index')->name('less
 Route::get('/training/sub-categories', 'LessonSubCategoryController@index')->name('lessons.subcategories');
 
 //Training section - lesson components api routes
-Route::get('/training/index-teachers','TeacherController@indexTeacher')->name('teachers.lessons.index');
+
+Route::get('/teacher/training/categories', 'TeacherController@lessonCategories')->name('teachers.training.categories');
+Route::get('/teacher/training/sub-categories/{id}', 'TeacherController@lessonSubCategories')->name('teachers.training.sub.categories');
+Route::get('/teacher/training/lessons-sub-categories/{id}', 'TeacherController@lessons')->name('teachers.training.lessons');
+
+
 Route::get('/training/getAllLessons','LessonController@allLessons');
 Route::post('/training/addLesson','LessonController@storeLesson');
 Route::put('/training/lesson/edit/{id}','LessonController@updateLesson');
@@ -213,7 +218,23 @@ Route::get('/teacher/completed-task-classes/{id}', 'TeacherController@completedC
 //Teacher route for marking task class as completed
 Route::post('/teacher/mark-task-class-competed', 'TeacherController@markClassAsCompleted');
 Route::post('/teacher/mark-task-class-incomplete', 'TeacherController@markClassAsInCompleted');
+Route::get('/teacher/get-all-upcoming-classes', 'TeacherController@getAllUpcomingClasses');
 
 
 Route::post('/get-incomplete-assigned-classes','StudentAndClassController@getIncompleteStudentsClasses');
 Route::post('/get-completed-assigned-classes','StudentAndClassController@getCompletedClasses');
+Route::get('/get-all-student-for-task-class/{id}','StudentAndClassController@getAllStudentForTaskClass');
+
+//Mass Contacts
+Route::get('/bulk-messages/teachers','BulkMessageController@showMessageFormTeachers')->name('admins.bulk.message.teachers');
+Route::get('/bulk-messages/students','BulkMessageController@showMessageFormStudents')->name('admins.bulk.message.students');
+Route::get('/bulk-messages/get-bulk-message-data','BulkMessageController@getBulkMessageData');
+Route::post('/bulk-messages/send-message','BulkMessageController@sendMessage');
+
+//Locations
+Route::get('locations', 'LocationController@index')->name('locations.index');
+Route::get('get-locations', 'LocationController@getLocations');
+Route::post('locations/store', 'LocationController@store');
+
+//Add lecture category to students list
+Route::post('add-student-lecture-category','ViewLectureController@addStudentLectureCategory')->name('students.add.lecture.category');

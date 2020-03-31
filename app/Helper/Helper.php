@@ -4,6 +4,8 @@
 namespace App\Helper;
 
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Helper
 {
@@ -35,5 +37,25 @@ class Helper
 
         // close cURL resource
         curl_close($ch);
+    }
+
+    public static function generateUniqueValue($table, $column)
+    {
+        $random = Str::random(4);
+
+        $isDuplicate = DB::table($table)->where($column, $random)->count();
+
+        while ($isDuplicate > 0)
+        {
+            $random = Str::random(4);
+            $isDuplicate = DB::table($table)->where($column, $random)->count();
+        }
+
+        return Str::lower($random);
+    }
+
+    public static function isStudentAuthorized($id)
+    {
+        
     }
 }

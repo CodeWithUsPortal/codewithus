@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->text('notes')->nullable();
             $table->unsignedBigInteger('role_id');
             $table->boolean('is_free_session')->default(false);
+            $table->text('postal_address')->nullable()->default(null);
             $table->boolean('is_deleted')->default(false);
             $table->rememberToken();
             $table->timestamps();

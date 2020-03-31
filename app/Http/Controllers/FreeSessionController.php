@@ -16,18 +16,22 @@ use App\Domain\TokyFunctions;
 use App\Domain\MailFunctions;
 use Carbon\Carbon;
 use App\TaskClass;
+use Illuminate\Support\Facades\DB;
 
 class FreeSessionController extends Controller
 {
     public function formOptions(){
         return view('free_session.free_session_form_options');
     }
+
     public function signUpForm(){   
         return view('free_session.signup_form');
     }
+
     public function signInForm(){
         return view('free_session.signin_form');
     }
+
     public function findStudentRecordForFreeSession(Request $request){
         $freeSessionUserData = FreeSessionBooking::where(['student_name' => $request->student_name])->get();
         if(count($freeSessionUserData) >= 1){
@@ -37,15 +41,18 @@ class FreeSessionController extends Controller
             return response()->json(['response_msg'=>'Record not found'],200); 
         }
     }
+
     public function allLocationsForFreeSession(){
         $locations = Location::where(['is_deleted' => false,
                                       'show_free_session' => true])->get();
         return response()->json(['locations'=> $locations],200);
     }
+
     public function allTopics(){
         $topics = Topic::where(['is_deleted' => false])->get();
         return response()->json(['topics'=> $topics],200);
     }
+
     public function getAvailableTimeSlotsForALocation(Request $request){
         $timeSlots = FreeSessionTimeSlot::where(['location_id' => $request->location_id])->get();
         
@@ -523,7 +530,9 @@ class FreeSessionController extends Controller
                                  'nextSundayAvailableTimeSlots'=> $nextSundayAvailableTimeSlots,
                                 ],200);
     }
+
     public function addFreeSession(Request $request,TokyFunctions $toky,MailFunctions $mail){
+
         $phoneNumberInput = str_replace(array('(',')'," ","-"), '',$request->phone_number);
         $phoneNumber = $phoneNumberInput;
         if($phoneNumber[0] != "+" && $phoneNumber[0] != 1){
@@ -540,6 +549,7 @@ class FreeSessionController extends Controller
         $dateOfTheMonth = $dateArray[0];
         $dayOfTheWeek = $timeslot_array[2];
         $timeOfTheDay = $timeslot_array[4];
+
 
         $day_id =Day::where('name', $dayOfTheWeek)->value('id');
         $time_id = Time::where('time', $timeOfTheDay)->value('id'); 
@@ -576,11 +586,14 @@ class FreeSessionController extends Controller
         $location = Location::find($request->location_id);
         $location->users()->attach($user);
 
-        // Send SMS 
+        //search or create a free session task class and add student to it
+        $this->addFreeSessionTaskClass($request->input(), $user);
+
+        // Send SMS
         $smsMessage = "We have received ".$request->student_name."'s free session reservation, on ".$request->time_slot.
-                      "! The address for the free session is: Online. We are thrilled to start! To see ".$request->student_name.
+                      "! The address for the free session is: ".$location->address.". We are thrilled to start! To see ".$request->student_name.
                       "'s schedule or to see subscription options after the first session, please go to codewithus.com/g/4133583006 or text us back.";
-        $toky->sms_send($phoneNumber, $smsMessage);
+//        $toky->sms_send($phoneNumber, $smsMessage);
 
         // Send Email 
         $data = array(
@@ -606,6 +619,7 @@ class FreeSessionController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         return $weekday;
     }
+
     public function getTomorrowsWeekDay(){
         $weekMap = [
             0 => 'Sunday',
@@ -620,6 +634,7 @@ class FreeSessionController extends Controller
         $weekday = $weekMap[$dayOfTheWeek];
         return $weekday;
     }
+
     public function getDayAfterTomorrowsWeekDay(){
         $weekMap = [
             0 => 'Sunday',
@@ -633,6 +648,54 @@ class FreeSessionController extends Controller
         $dayOfTheWeek = Carbon::now()->addDays(2)->dayOfWeek;
         $weekday = $weekMap[$dayOfTheWeek];
         return $weekday;
+    }
+
+    public function addFreeSessionTaskClass($data, $student)
+    {
+        $fullTimeSlot =$data['time_slot'];
+        $timeslot_array = explode(" ",$fullTimeSlot);
+        $month = $this->convertStringToMonth($timeslot_array[0]);
+        $dateArray =explode(",",$timeslot_array[1]);
+        $date = $dateArray[0];
+        $day = $timeslot_array[2];
+        $time = $timeslot_array[4];
+        $time = explode(':', $time);
+        $year = Carbon::now()->year;
+
+
+        $d = Carbon::create($year, $month, $date, $time[0], $time[1], $time[2]);
+
+        $taskClass = TaskClass::where('starts_at','=' ,$d)
+            ->where('is_free_session', 1)
+            ->where('location_id', $data['location_id'])
+            ->first();
+
+        $taskClass = $taskClass ? $taskClass : null;
+
+        if(!$taskClass)
+        {
+            $taskClass =TaskClass::create([
+                'name' => 'Free Session',
+                'location_id' => $data['location_id'],
+                'is_free_session' => true,
+                'starts_at' => $d,
+                'ends_at' => $d,
+            ]);
+        }
+
+        $taskClass->users()->attach($student->id);
+
+        return response()->json(['data' => null, 'message' => 'Student added to free session class!'],200);
+    }
+
+    public function convertStringToMonth($str)
+    {
+            $monthsMap = collect([
+                'Jan' => 1, 'Feb'=> 2, 'Mar'=> 3, 'Apr'=> 4, 'May'=> 5, 'Jun'=> 6, 'Jul'=> 7,
+                'Aug'=> 8, 'Sep'=> 9, 'Oct'=> 10, 'Nov'=> 11, 'Dec'=> 12
+            ]);
+
+            return $monthsMap[$str];
     }
 
 }

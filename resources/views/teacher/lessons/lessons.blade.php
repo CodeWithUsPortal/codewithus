@@ -1,5 +1,5 @@
 @section('title') 
-CodeWithUs - Dashboard
+CodeWithUs - Training
 @endsection 
 @extends('layouts.main')
 @section('style')
@@ -7,9 +7,11 @@ CodeWithUs - Dashboard
 <link href="{{ asset('assets/plugins/chartist-js/chartist.min.css') }}" rel="stylesheet" type="text/css" />
 <!-- Datepicker CSS -->
 <link href="{{ asset('assets/plugins/datepicker/datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-cal"></script>
 @endsection 
 @section('leftbar')
-    @include('layouts.teacher_menu') 
+    @include('layouts.teacher_menu')
 @endsection 
 @section('rightbar-content')
 
@@ -17,34 +19,29 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Lectures Categories</h4>
-        </div>
-        <div class="col-md-6 col-lg-6">
+            <h4 class="xp-page-title">Lessons</h4>
         </div>
     </div>          
 </div>
 <!-- End XP Breadcrumbbar -->
 <!-- Start XP Contentbar -->    
 <div class="xp-contentbar">
-    <div class="row"> 
+    <div class="row">              
         <div class="col-lg-12">
             <div class="card m-b-30">
-                <div class="card-header bg-white">
-                    <h5 class="card-title text-black mb-0">Lecture Categories</h5>
-                </div>
                 <div class="card-body">
-                @foreach($categories as $key => $value)
-                    <a href="{{  $value['url'] }}">{{ $value['name'] }}</a> ({{ $value['password'] }})<br/>
-                @endforeach
-                </div>
-            </div>
-        </div>
+                    @foreach($lessons as $lesson)
+                        <a href="{{$lesson->link}}" target="new" class="text-capitalize">{{$lesson->title}}</a><br>
+                    @endforeach
+                </div> 
+            </div> 
+        </div>   
     </div>
-</div>
+</div>        
+<script type="text/javascript" src="{{ asset('public/js/app.js') }}"></script>
 <!-- End XP Contentbar -->
 @endsection 
 @section('script')
-
 <!-- Chartist Chart JS -->
 <script src="{{ asset('assets/plugins/chartist-js/chartist.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/chartist-js/chartist-plugin-tooltip.min.js') }}"></script>

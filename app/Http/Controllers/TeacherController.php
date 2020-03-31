@@ -4,18 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Helper\Helper;
 use App\Lesson;
+use App\LessonCategory;
+use App\LessonSubCategory;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Update;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use PDO;
 use Torann\LaravelAsana\Facade\Asana;
-use App\TaskClass;
-use App\Teacher;
 use App\User;
-use App\Role;
-use App\Location;
-use App\Topic;
 
 class TeacherController extends Controller
 {
@@ -137,12 +134,37 @@ class TeacherController extends Controller
         return view('teacher.completed-classes')->withId($id);
     }
 
-    public function indexTeacher()
+    public function getAllUpcomingClasses()
     {
-        $lessons = Lesson::with('sub_category.category')->get();
-        return view('lessons.lessons_teachers')->withLessons($lessons);
+        $upComingClasses = User::find(Auth::user()->id)
+            ->taskclasses()
+            ->whereDate('ends_at', '>', Carbon::now())
+            ->whereDate('ends_at', '<', Carbon::now()->addWeeks(2))
+            ->orderBy('starts_at')
+            ->paginate(10);
+
+        return response()->json(['upComingClasses'=> $upComingClasses],200);
     }
 
+    public function lessonCategories()
+    {
+        $categories = LessonCategory::where('is_deleted', 0)->get();
 
+        return view('teacher.lessons.categories')->withCategories($categories);
+    }
+
+    public function lessonSubCategories($id)
+    {
+        $sub = LessonSubCategory::where('is_deleted', 0)->where('lesson_category_id', $id)->get();
+
+        return view('teacher.lessons.sub-categories')->withSub($sub);
+    }
+
+    public function lessons($id)
+    {
+        $lessons = Lesson::where('is_deleted', 0)->where('lesson_sub_category_id', $id)->get();
+
+        return view('teacher.lessons.lessons')->withLessons($lessons);
+    }
 }
 

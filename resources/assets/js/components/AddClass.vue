@@ -44,6 +44,12 @@
                         <input class="form-control" type="datetime-local" v-model="taskClassData.endingDatetime"/>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label" >Free Session Class: </label>
+                    <div class="col-lg-3">
+                        <input type="checkbox" class="form-control" style="font-size: 4px;" id="customCheck1" v-model="taskClassData.isFreeSessionClass">
+                    </div>
+                </div>
             
                 <div class="form-group row">
                     <label class="col-lg-3 col-form-label"></label>
@@ -75,7 +81,7 @@
                 teachers:[],
                 selectedValueOfTeacher : '',
 
-                taskClassData: { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: ''}
+                taskClassData: { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: '', isFreeSessionClass:false}
             };
         },
         methods:{
@@ -107,7 +113,7 @@
                 e.preventDefault();
                 var _this = this;    
                 axios.post('/add_task_class',this.taskClassData).then(function(response){
-                    _this.taskClassData = { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: ''}
+                    _this.taskClassData = { location_id: '', teacher_id: '', taskclass_name: '', startingDatetime: '', endingDatetime: '', isFreeSessionClass:false}
                     _this.displaySuccess = true;
                     _this.selectedValueOfTeacher = '';
                     _this.selectedValueOfLocation = '';

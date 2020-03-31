@@ -19,7 +19,7 @@ CodeWithUs - Training
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Training</h4>
+            <h4 class="xp-page-title">Training Sub Categories</h4>
         </div>
     </div>          
 </div>
@@ -30,29 +30,9 @@ CodeWithUs - Training
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <div id="app_vue">
-
-                        <table class="table" id="table">
-                            <thead>
-                            <tr>
-                                <td><h5>Lesson Id</h5></td>
-                                <td><h5>Lesson Title</h5></td>
-                                <td><h5>Lesson Link</h5></td>
-                                <td><h5>Sub Category Id</h5></td>
-                                <td><h5>Sub Category Name</h5></td>
-                            </tr>
-                            </thead>
-                            @foreach($lessons as $lesson)
-                            <tr>
-                                <td>{{$lesson->id}}</td>
-                                <td class="text-capitalize">{{$lesson->title}}</td>
-                                <td>{{$lesson->link}}</td>
-                                <td class="text-capitalize">{{$lesson->sub_category->name}}</td>
-                                <td class="text-capitalize">{{$lesson->sub_category->category->name}}</td>
-                            </tr>
-                            @endforeach
-                        </table>
-                    </div>
+                    @foreach($sub as $s)
+                        <a href="{{route('teachers.training.lessons', $s->id)}}" class="text-capitalize">{{$s->name}}</a><br>
+                    @endforeach
                 </div> 
             </div> 
         </div>   

@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
 use App\TaskClass;
 use App\Teacher;
 use App\User;
 use App\Role;
 use App\Location;
 use App\Topic;
+use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
@@ -20,7 +20,7 @@ class CalendarController extends Controller
     }
 
     public function getLocations(){
-        //$user = Auth::user();
+        $user = Auth::user();
         //$role = $user->role->role;
         $role = "admin";
         if($role == "admin"){
@@ -51,6 +51,7 @@ class CalendarController extends Controller
             $teacher = "Un-Assigned";
             $starts_at = $taskClass->starts_at;
             $ends_at = $taskClass->ends_at;
+            $isFreeSession = $taskClass->is_free_session;
             $timestamp_starttime = strtotime($taskClass->starts_at);
             $startTime = date('H:i', $timestamp_starttime);
 
@@ -68,6 +69,7 @@ class CalendarController extends Controller
                     $dataArray = [
                         "student_id" => $data->id,
                         "student_name" => $data->full_name,
+                        'completed' => $data->pivot->completed ? 1 : 0,
                         "starts_at" => $starts_at,
                         "ends_at" => $ends_at,
                     ];
@@ -78,7 +80,11 @@ class CalendarController extends Controller
                 $title = "<b>".$teacher."</b>";
                 $content = '<div style="background-color:#FCF3CF;margin:5px;color:black">';
                 foreach($students as $student){
-                    $content = $content."<a href='/edit_student_profile/".$student['student_id']."'>".$student['student_name'].'</a></div><div style="background-color:#FCF3CF;margin:5px;color:black">';
+                    if($student['completed'] == 1) {
+                        $content = $content . "<a style='background-color:darkgrey; color:black' href='/edit_student_profile/" . $student['student_id'] . "'>" . $student['student_name'] . '</a></div><div style="background-color:#FCF3CF;margin:5px;color:black">';
+                    } else {
+                        $content = $content . "<a href='/edit_student_profile/" . $student['student_id'] . "'>" . $student['student_name'] . '</a></div><div style="background-color:#FCF3CF;margin:5px;color:black">';
+                    }
                     $starts_at = $student['starts_at'];
                     $ends_at = $student['ends_at'];
                 }
@@ -88,7 +94,7 @@ class CalendarController extends Controller
                                 "end" => $ends_at,
                                 "title" => $title,
                                 "content" => $content,
-                                "class" => 'leisure'
+                                "class" => !$isFreeSession ? 'leisure' : 'sport'
                 ];
                 array_push($events, $dataArray);
             }      

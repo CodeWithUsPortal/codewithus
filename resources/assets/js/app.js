@@ -1,21 +1,11 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 import axios from 'axios';
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+//reusable components
+Vue.component('pagination', require('./components/Pagination.vue'));
+
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('login-component', require('./components/Login.vue'));
 Vue.component('username-reset', require('./components/ForgotUsername.vue'));
@@ -42,8 +32,18 @@ Vue.component('lesson-category', require('./components/LessonCategories.vue'));
 Vue.component('lesson-sub-category', require('./components/LessonSubCategories.vue'));
 Vue.component('lesson', require('./components/Lessons.vue'));
 Vue.component('student-updates', require('./components/StudentUpdates'));
-
 Vue.component('student-completed-classes', require('./components/CompletedClasses'));
+
+//Dashboards
+Vue.component('teacher-dashboard', require('./components/TeacherDashboard'));
+
+//Bulk Messages Component
+Vue.component('bulk-messages', require('./components/BulkMessages'));
+//locations
+Vue.component('locations-index', require('./components/locations/Index'));
+Vue.component('locations-create', require('./components/locations/Create'));
+
+
 
 const app = new Vue({
     el: '#app_vue',
