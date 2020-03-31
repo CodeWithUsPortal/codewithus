@@ -30,7 +30,7 @@ class ViewUpdateController extends Controller
             }
         }
     }
-
+    
     public function viewStudentUpdate($phoneNumber, $updateId)
     {
         $update = Update::where('phone_number',$phoneNumber)

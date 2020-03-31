@@ -171,6 +171,12 @@ $this->post('/get_available_timeslots_for_a_location','FreeSessionTimeSlotContro
 $this->post('/add_timeslot_to_a_location','FreeSessionTimeSlotController@addTimeSlotToALocation');
 $this->post('/delete_timeslot_from_a_location','FreeSessionTimeSlotController@deleteTimeSlotFromALocation');
 
+//Billing and Payment Routes
+$this->post('/add_parents_email','BillingAndPaymentController@addEmailId')->name('add_parents_email_id');
+$this->get('/plans', 'BillingAndPaymentController@plans')->name('plans.index');
+$this->get('/plan/{plan}', 'BillingAndPaymentController@showPlan')->name('plans.show');
+$this->post('/make-payment', 'BillingAndPaymentController@makePayment');
+
 //Training routes with categories and sub categories
 Route::get('/training', 'LessonController@index')->name('lessons.index');
 Route::get('/training/categories', 'LessonCategoryController@index')->name('lessons.categories');

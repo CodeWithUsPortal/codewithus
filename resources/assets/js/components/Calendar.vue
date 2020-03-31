@@ -14,8 +14,10 @@
             </option>
         </select>
     </div>
-  </div>
-  <vue-cal :events="events" style="height: 950px" :time="false" :disable-views="['years', 'year']"/>
+  </div> 
+
+  <vue-cal :events="events" style="height: 950px" :time="false" 
+         :disable-views="['years', 'year']"/>
 </div>
 </template>
 

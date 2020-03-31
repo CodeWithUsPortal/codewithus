@@ -15,7 +15,7 @@
                       <i class="icon-speedometer"></i><span>Dashboard</span>
                   </a>
                 </li>
-
+               
                 <li>
                     <a href="{{route('locations.index')}}">
                         <i class="icon-speedometer"></i><span>Locations</span>
@@ -30,7 +30,7 @@
                         <li><a href="{{url('/admin/updates')}}">Updates</a></li>
                     </ul>
                 </li>
-
+       
                 <li>
                     <a href="javaScript:void();">
                         <i class="icon-envelope"></i><span>Bulk Messages</span><i class="icon-arrow-right pull-right"></i>
@@ -72,7 +72,7 @@
                         <li><a href="{{route('lessons.index')}}">Training</a></li>
                     </ul>
                 </li>
-
+                
                 <li>
                     <a href="javaScript:void();">
                         <i class="icon-event"></i><span>Topics</span><i class="icon-arrow-right pull-right"></i>

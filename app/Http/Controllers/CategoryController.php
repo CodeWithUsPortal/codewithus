@@ -17,12 +17,10 @@ class CategoryController extends Controller
         $this->middleware('auth');
         $this->middleware('role:teacher|admin');
     }
-
     public function allLectureCategories(){
         $data = LectureCategory::where('is_deleted', false)->orderby('priority')->get();
         return $data;
     }
-
     public function indexLectureCategories(){
         $user = Auth::user();
         $role = $user->role->role;
@@ -33,7 +31,6 @@ class CategoryController extends Controller
             return view('category.teacher_index');
         }
     }
-
     public function storeLectureCategory(Request $request){
         $userId = auth()->user()->id;
         $data = new LectureCategory();
@@ -47,9 +44,9 @@ class CategoryController extends Controller
         $categoryAdded->update();
         return response()->json(['response_msg'=>'Data saved'],200);
     }
-
+    
     public function updateLectureCategory(Request $request, $id){
-
+        
         $isDuplicate = LectureCategory::where('password', $request->input('password'))
             ->where('id', '!=', $id)
             ->count();
@@ -58,15 +55,16 @@ class CategoryController extends Controller
         {
             return response()->json(['response_msg' => 'Duplicate password given, try something else!'], 200);
         } else {
-            $userId = auth()->user()->id;
-            $data = LectureCategory::find($id);
-            $data->name = $request->category_name;
-            $data->password = $request->password;
-            $data->created_by = $userId;
-            $data->update();
-            return response()->json(['response_msg' => 'Data saved'], 200);
-        }
+        $userId = auth()->user()->id;
+        $data = LectureCategory::find($id);
+        $data->name = $request->category_name;
+        $data->password = $request->password;
+        $data->created_by = $userId;
+        //$data->created_at = Now();
+        $data->update();
+        return response()->json(['response_msg'=>'Data saved'],200);
     }
+}
 
 //    public function updatePassword(Request $request)
 //    {
@@ -94,7 +92,6 @@ class CategoryController extends Controller
         $data->update();
         return response()->json(['response_msg'=>'Data saved'],200);
     }
-
     public function updateCategoryPriority(Request $request){
         $categories = LectureCategory::all();
         foreach($categories as $category){

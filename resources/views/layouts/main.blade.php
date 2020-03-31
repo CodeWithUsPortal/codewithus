@@ -16,11 +16,13 @@
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+   
         <!-- End CSS -->
         <!-- Vue Cal Scripts -->
         <script src="https://unpkg.com/vue"></script>
         <script src="https://unpkg.com/vue-cal"></script>
         <link href="https://unpkg.com/vue-cal/dist/vuecal.css" rel="stylesheet">
+        <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body class="xp-vertical">
         <!-- Search Modal -->
@@ -49,9 +51,7 @@
            
             <!-- End XP Leftbar -->
             <!-- Start XP Rightbar -->
-            @include('layouts.rightbar')
-
-
+            @include('layouts.rightbar')  
             @yield('content')
             <!-- End XP Rightbar -->  
         </div>

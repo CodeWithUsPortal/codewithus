@@ -27,7 +27,7 @@ CodeWithUs - Dashboard
                 </ol>
             </div>
         </div>
-    </div>
+    </div>          
     <div id="app_vue">
         <teacher-dashboard> </teacher-dashboard>
     </div>
@@ -58,4 +58,4 @@ CodeWithUs - Dashboard
         $("#studentUpdateModal").modal();
     });
 </script>
-@endsection
+@endsection 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStripessTable extends Migration
+class CreateTaskClassTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,10 @@ class CreateStripessTable extends Migration
      */
     public function up()
     {
-        Schema::create('stripes', function (Blueprint $table) {
+        Schema::create('task_class_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('product_id');
-            $table->string('product_name');
-            $table->decimal('price',9,4);
-            $table->string('currency')->default('USD');
-            $table->float('number_of_credits');
-            $table->boolean('is_subscription')->default(false);
-            
+            $table->string('type_name');
+            $table->boolean('send_reminder')->default(false);
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ class CreateStripessTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('task_class_types');
     }
 }

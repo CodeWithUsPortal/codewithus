@@ -20,8 +20,8 @@ class StudentAndClassController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:teacher|admin');
+         $this->middleware('auth');
+         $this->middleware('role:teacher|admin');
     }
     public function getStudentByFullName(Request $request){
         $roleId = Role::where('role','student')->value('id');
@@ -108,12 +108,13 @@ class StudentAndClassController extends Controller
             }      
             $newTopic->users()->attach($user);
         }
-        // if send mail flag is true then process mail request
-        if($request->has('sendEmail')) {
+         // if send mail flag is true then process mail request
+         if($request->has('sendEmail')) {
             $this->sendEmailToTeacher($user->id, $request->notes);
 
             return response()->json(['response_msg'=>'Data Updated & Email Sent'],200);
         }
+        
         
         return response()->json(['response_msg'=>'Data Updated'],200);
     }
@@ -168,7 +169,7 @@ class StudentAndClassController extends Controller
                     "taskclass_time" => $time,
                     "pivot" => $taskClass->users[0]->pivot,
             ];
-            array_push($classes, $dataArray);
+            array_push($classes, $dataArray);   
         }
         return response()->json(['taskClasses'=> $classes],200);
     }
@@ -205,6 +206,7 @@ class StudentAndClassController extends Controller
             }
             else{
                 $classesDataWithoutDate = TaskClass::where(['is_deleted' => false, 
+                                                'is_completed' => false,
                                                 'location_id' => $location->id ])->get();
                 foreach($classesDataWithoutDate as $classDataWithoutDate){
                     array_push($classesData, $classDataWithoutDate);
@@ -352,6 +354,7 @@ class StudentAndClassController extends Controller
         }
     }
 
+    
     public function getCompletedClasses(Request $request)
     {
         $completedClasses = User::find($request->input('student_id'))->completed_taskclasses()->get();

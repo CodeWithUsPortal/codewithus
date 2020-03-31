@@ -17,5 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DaysTableSeeder::class);
         $this->call(TimesTableSeeder::class);
         $this->call(FreeSessionTimeSlotsTableSeeder::class);
+        $this->call(TaskClassTypesTableSeeder::class);
+        $this->call(StripesTableSeeder::class);
     }
 }
