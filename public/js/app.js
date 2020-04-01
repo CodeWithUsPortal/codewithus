@@ -16227,6 +16227,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
   name: 'calendar',
@@ -43660,7 +43662,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/AddClass.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\AddClass.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AddClass.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43694,7 +43696,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/AddStudentByUser.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\AddStudentByUser.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] AddStudentByUser.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43728,7 +43730,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/BulkMessages.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\BulkMessages.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] BulkMessages.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43762,7 +43764,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Calendar.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Calendar.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Calendar.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43796,7 +43798,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/CompletedClasses.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\CompletedClasses.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] CompletedClasses.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43830,7 +43832,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/EditStudentProfile.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\EditStudentProfile.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] EditStudentProfile.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43864,7 +43866,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/EditTeacherProfile.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\EditTeacherProfile.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] EditTeacherProfile.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43898,7 +43900,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Example.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Example.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43932,7 +43934,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/ForgotUsername.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\ForgotUsername.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ForgotUsername.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -43966,7 +43968,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/FreeSessionSignin.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\FreeSessionSignin.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] FreeSessionSignin.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44000,7 +44002,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/FreeSessionSignup.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\FreeSessionSignup.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] FreeSessionSignup.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44034,7 +44036,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/FreeSessionTimeSlots.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\FreeSessionTimeSlots.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] FreeSessionTimeSlots.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44068,7 +44070,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/LectureCategories.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\LectureCategories.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LectureCategories.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44102,7 +44104,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/LectureSubCategories.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\LectureSubCategories.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LectureSubCategories.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44136,7 +44138,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Lectures.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Lectures.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lectures.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44170,7 +44172,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/LessonCategories.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\LessonCategories.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LessonCategories.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44204,7 +44206,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/LessonSubCategories.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\LessonSubCategories.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] LessonSubCategories.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44238,7 +44240,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Lessons.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Lessons.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Lessons.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44272,7 +44274,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Login.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Login.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44306,7 +44308,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/OnlineMeeting.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\OnlineMeeting.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] OnlineMeeting.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44340,7 +44342,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Pagination.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Pagination.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Pagination.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44374,7 +44376,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/ParentsStudents.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\ParentsStudents.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ParentsStudents.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44408,7 +44410,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/SearchStudent.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\SearchStudent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SearchStudent.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44442,7 +44444,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/SearchTeacher.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\SearchTeacher.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] SearchTeacher.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44476,7 +44478,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/StudentUpdates.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\StudentUpdates.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] StudentUpdates.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44510,7 +44512,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/TeacherDashboard.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\TeacherDashboard.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] TeacherDashboard.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44544,7 +44546,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/Topic.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\Topic.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Topic.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44578,7 +44580,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/locations/Create.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\locations\\Create.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Create.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -44612,7 +44614,7 @@ var Component = __webpack_require__(0)(
   /* cssModules */
   null
 )
-Component.options.__file = "/home/ahmad/www/cws/codewithus/resources/assets/js/components/locations/Index.vue"
+Component.options.__file = "C:\\laragon\\www\\codewithus\\resources\\assets\\js\\components\\locations\\Index.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Index.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -50032,7 +50034,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": location.location_id
       }
-    }, [_vm._v(" " + _vm._s(location.location_name) + "\n            ")])
+    }, [_vm._v(" " + _vm._s(location.location_name) + "\r\n            ")])
   }), 0)])]), _vm._v(" "), _c('vue-cal', {
     staticStyle: {
       "height": "950px"
