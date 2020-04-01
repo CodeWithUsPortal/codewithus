@@ -9,6 +9,8 @@ use App\Stripe as stripeModel;
 use Auth;
 use App\User;
 use App\UserParent;
+use App\Configuration;
+use App\Role;
 
 class BillingAndPaymentController extends Controller
 {
@@ -25,25 +27,39 @@ class BillingAndPaymentController extends Controller
             return view('billing_and_payment.parents_email');
         }
         else{
-            $plansData = stripeModel::all();
-            $plans = array();
-            foreach($plansData as $plan){
-                $url = "/codewithus/plan/".$plan->product_id."";
-                $dataArray = ["id" =>$plan->id,
-                            "product_id" => $plan->product_id,
-                            "product_name" => $plan->product_name,
-                            "url" => $url,
-                            ];
-                array_push($plans,$dataArray);           
-            }
-            return view('billing_and_payment.parents_billing', compact('plans'));
+            $plans = $this->getPlans();
+            return view('billing_and_payment.parents_billing', compact('plans'))->withError("");
         }
     }
 
+    public function getPlans(){
+        $user = Auth::user();
+        $phoneNumber = $user->phone_number;
+        $roleId = Role::where('role','student')->value('id');
+        $getStudentsOfThisParent = User::where(['phone_number' => $phoneNumber,
+                                                'role_id' =>  $roleId ])->get();
+        $plans = array();
+        foreach($getStudentsOfThisParent as $student){
+            $locations = $student->locations()->get();
+            foreach($locations as $location){
+                $plansData = stripeModel::where('location_id', $location->id)->get();
+                foreach($plansData as $plan){
+                    $url = "/codewithus/plan/".$plan->product_id."";
+                    $dataArray = ["id" =>$plan->id,
+                                "product_id" => $plan->product_id,
+                                "product_name" => $plan->product_name,
+                                "url" => $url,
+                                ];
+                    array_push($plans,$dataArray);           
+                }
+            }
+        }
+        return $plans;
+    }
     public function showPlan($planId, Request $request){
         $user = Auth::user();
         $emailId = $user->email;
-        // $plan = stripeModel::where('product_id',$planId)->first();
+     
         return view('billing_and_payment.plan')->withPlanid($planId)->withEmailid($emailId);    
     }
     
@@ -57,7 +73,8 @@ class BillingAndPaymentController extends Controller
 
     public function makePayment(Request $request){
 
-        \Stripe\Stripe::setApiKey('sk_test_eFoYt2xRkwYbgQPtDwm952ko');
+        $stripeTestSecretKey = Configuration::where('key', 'stripe_test_secret_key')->value('value');
+        \Stripe\Stripe::setApiKey($stripeTestSecretKey);
 
         //Check if customer already exists in Asana
         $user = Auth::user();
@@ -89,14 +106,34 @@ class BillingAndPaymentController extends Controller
             $stripeCustomerId = $parentStripeId;
         }
         
-        $subscription = \Stripe\Subscription::create([
-            'customer' => $stripeCustomerId,
-            'items' => [
-                [
-                    'plan' => $request->plan_id,
-                ],
-            ],
-            'expand' => ['latest_invoice.payment_intent'],
-        ]);  
+        // $subscription = \Stripe\Subscription::create([
+        //     'customer' => $stripeCustomerId,
+        //     'items' => [
+        //         [
+        //             'plan' => $request->plan_id,
+        //         ],
+        //     ],
+        //     'expand' => ['latest_invoice.payment_intent'],
+        // ]);  
+        
+        return redirect()->route('thankyou.page');
+    }
+    public function thankyouPage(){
+        return view('billing_and_payment.parents_thankyou');
+    }
+
+    public function showPromo(Request $request){
+        $promo = stripeModel::where(['password' => $request->promo_code,
+                                     'is_promo' => true])->first();
+        if($promo != null){
+            $promo_id = $promo->product_id;
+            $user = Auth::user();
+            $emailId = $user->email;    
+            return view('billing_and_payment.plan')->withPlanid($promo_id)->withEmailid($emailId);    
+        }
+        else{
+            $plans = $this->getPlans();
+            return view('billing_and_payment.parents_billing', compact('plans'))->withError("No such promotion exists.");
+        }
     }
 }

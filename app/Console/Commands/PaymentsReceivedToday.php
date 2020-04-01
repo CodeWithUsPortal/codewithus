@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Stripe as StripeModel;
 use App\Credit;
 use App\TaskClassType;
+use App\Configuration;
 
 class PaymentsReceivedToday extends Command
 {
@@ -43,11 +44,12 @@ class PaymentsReceivedToday extends Command
      */
     public function handle()
     {
+        $stripeLiveSecretKey = Configuration::where('key', 'stripe_live_secret_key')->value('value');
         $today = Carbon::today();
         $todayUT = strtotime($today);
         $now = Carbon::now();
         $nowDateTime =date('Y-m-d H:i:s',strtotime($now));
-        \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        \Stripe\Stripe::setApiKey($stripeLiveSecretKey);
 
         $listOfPayments = \Stripe\Charge::all(['created[gte]' => $todayUT]);
 
@@ -63,26 +65,15 @@ class PaymentsReceivedToday extends Command
             $credits = $stripeData->number_of_credits;
             $taskClassTypeId = $stripeData->task_class_type_id;
 
-            $creditModelObj = Credit::where(['customer_email' =>$emailId ,
-                                             'task_class_type_id' =>$taskClassTypeId])->first();
-            if($creditModelObj == null){
-                $creditObj = new Credit();
-                $creditObj->remaining_credits = $credits;
-                $creditObj->credits_given_date =$nowDateTime;
-                $creditObj->customer_email = $emailId;
-                $creditObj->payment_id = $paymentId;
-                $creditObj->product_id = $product_id;
-                $creditObj->task_class_type_id = $taskClassTypeId;
-                $creditObj->save();
-            }
-            else{
-                $alreadyAvailableCredits = $creditModelObj->remaining_credits;
-                $creditModelObj->remaining_credits = $alreadyAvailableCredits + $credits;
-                $creditModelObj->credits_given_date =$nowDateTime;
-                $creditModelObj->payment_id = $paymentId;
-                $creditModelObj->product_id = $product_id;
-                $creditModelObj->save();
-            }
+            $creditObj = new Credit();
+            $creditObj->remaining_credits = $credits;
+            $creditObj->credits_given_date =$nowDateTime;
+            $creditObj->customer_email = $emailId;
+            $creditObj->payment_id = $paymentId;
+            $creditObj->product_id = $product_id;
+            $creditObj->task_class_type_id = $taskClassTypeId;
+            $creditObj->save();
+           
         }
     }
 }

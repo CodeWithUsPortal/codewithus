@@ -122,7 +122,7 @@ form.addEventListener('submit', function(event) {
 function stripePaymentMethodHandler(result, email) {
   var emailId = document.getElementById('emailId').value;
   var planId = document.getElementById('planId').value;
-debugger;
+
   let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   if (result.error) {
     // Show error in payment form
@@ -141,6 +141,8 @@ debugger;
         plan_id : planId
       }),
     }).then(function(result) {
+      debugger;
+      window.location = result.url;
      return result.json();
     }).then(function(customer) {
       // The customer has been created

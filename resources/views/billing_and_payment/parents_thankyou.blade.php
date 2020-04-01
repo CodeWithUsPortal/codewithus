@@ -16,7 +16,7 @@ CodeWithUs - Dashboard
 <div class="xp-breadcrumbbar">
     <div class="row">
         <div class="col-md-6 col-lg-6">
-            <h4 class="xp-page-title">Billing And Payment</h4>
+            <h4 class="xp-page-title">Payment Confirmation!</h4>
         </div>
         <div class="col-md-6 col-lg-6">
         </div>
@@ -30,36 +30,8 @@ CodeWithUs - Dashboard
         <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    
-                @if ($error != null && $error != "")
-                   <p style="color:red">{{ $error }}</p>
-                @endif
-                    <form class="form-horizontal" method="POST" action="{{ route('promos.show') }}">
-                    {{ csrf_field() }}
-                        <div class="text-center mb-3">
-                            <h4 class="text-black">Promo Code</h4>
-                        </div>   
-                        <div class="text-center mb-3">                                     
-                        <div class="form-group ">
-                            <input type="text" class="form-control" id="promo_code" name="promo_code" placeholder="Promo code" required>
-                        </div>
-                        </div>                
-                        <button type="submit" class="btn btn-primary btn-rounded btn-lg btn-block">Choose</button>
-                    </form>
-                    <br/><br/><br/>
-                    <div class="card-body">
-                        <ul class="list-group">
-                            @foreach($plans as $plan)
-                            <li class="list-group-item clearfix">
-                                <div>
-                                    <h5>{{ $plan['product_name'] }}</h5>
-                                    <a href="{{ route('plans.show', $plan['product_id']) }}" class="btn btn-outline-dark">Choose</a>
-                                </div>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </div>
-
+                    <h3 style="color:green">Thankyou for being a part of CodeWithUs!</h3>
+                    <h6>Your payment has been received.</h6>
                 </div> 
             </div> 
         </div>   

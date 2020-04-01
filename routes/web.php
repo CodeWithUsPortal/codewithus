@@ -176,6 +176,8 @@ $this->post('/add_parents_email','BillingAndPaymentController@addEmailId')->name
 $this->get('/plans', 'BillingAndPaymentController@plans')->name('plans.index');
 $this->get('/plan/{plan}', 'BillingAndPaymentController@showPlan')->name('plans.show');
 $this->post('/make-payment', 'BillingAndPaymentController@makePayment');
+$this->post('/promo', 'BillingAndPaymentController@showPromo')->name('promos.show');
+$this->get('/thankyou', 'BillingAndPaymentController@thankyouPage')->name('thankyou.page');
 
 //Training routes with categories and sub categories
 Route::get('/training', 'LessonController@index')->name('lessons.index');
