@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\Helper;
 use Illuminate\Http\Request;
 use App\LectureCategory;
-use App\Role;
-use Auth;
-use Illuminate\Support\Facades\DB;
-use League\Flysystem\Adapter\AbstractAdapter;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -56,7 +53,7 @@ class CategoryController extends Controller
 
         if($isDuplicate)
         {
-            return response()->json(['response_msg' => 'Duplicate password given, try something else!'], 200);
+            return response()->json(['response_msg' => 'Duplicate password given, try something else!'], 404);
         } else {
             $userId = auth()->user()->id;
             $data = LectureCategory::find($id);
@@ -67,23 +64,6 @@ class CategoryController extends Controller
             return response()->json(['response_msg' => 'Data saved'], 200);
         }
     }
-
-//    public function updatePassword(Request $request)
-//    {
-//        $lecture_category = LectureCategory::find($request->input('id'));
-//
-//        $isDuplicate = LectureCategory::where('password', $request->input('password'))
-//            ->where('id', '!=', $request->input('id'))
-//            ->count();
-//
-//        if($isDuplicate > 0) {
-//            return response()->json(['data'=> null, 'message' => 'Duplicate password given, try something else!', 'status'=>'error'],200);
-//        } else {
-//            $lecture_category->password = $request->input('password');
-//            $lecture_category->save();
-//            return response()->json(['data'=> null, 'message' => 'Password saved', 'status'=>'success'],200);
-//        }
-//    }
 
     public function destroyLectureCategory($id){
         $userId = auth()->user()->id;

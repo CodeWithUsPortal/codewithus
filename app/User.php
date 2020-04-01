@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helper\Helper;
 use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -19,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_name','full_name', 'email', 'phone_number','password','role_id','location_id'
+        'user_name','full_name', 'email', 'phone_number','dob','password','role_id','location_id'
     ];
 
     /**

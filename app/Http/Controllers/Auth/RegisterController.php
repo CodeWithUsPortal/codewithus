@@ -56,7 +56,9 @@ class RegisterController extends Controller
     {
         return view('auth.students_register_page1');
     }
-    public function studentsRegistrationPage1(Request $request){
+
+    public function studentsRegistrationPage1(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'user_name' => 'required|max:255|unique:users',
         ]);
@@ -68,17 +70,22 @@ class RegisterController extends Controller
               ->withUsername($request->user_name)->withPassword($request->password)->withError("");
         }
     }
-    public function showRegistrationFormForTeachers(){
+
+    public function showRegistrationFormForTeachers()
+    {
         return view('auth.teachers_register');
     }
 
-    public function showRegistrationFormForAdmins(){
+    public function showRegistrationFormForAdmins()
+    {
         return view('auth.admins_register');
     }
+
     // When the registration forms gets submit, it calls RegisterController@register
     // function but we are putting an intermediate method here to perform some extra 
     // checks before the registration happens.
-    public function registrationChecks(Request $request){
+    public function registrationChecks(Request $request)
+    {
         if($request->role_type == "teacher" || $request->role_type == "admin" ){
             $location = Location::where('secret_code',$request->secret_code)->get();
             if(count($location) <= 0){
@@ -113,7 +120,8 @@ class RegisterController extends Controller
                 }
             }
         }
-        elseif($request->role_type == "student"){
+        elseif($request->role_type == "student")
+        {
 
             $location = Location::where('secret_code',$request->secret_code)->get();
             if(count($location) > 0){

@@ -40,8 +40,7 @@ Vue.component('teacher-dashboard', require('./components/TeacherDashboard'));
 //Bulk Messages Component
 Vue.component('bulk-messages', require('./components/BulkMessages'));
 //locations
-Vue.component('locations-index', require('./components/locations/Index'));
-Vue.component('locations-create', require('./components/locations/Create'));
+Vue.component('locations', require('./components/Locations'));
 
 
 

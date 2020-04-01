@@ -33,7 +33,7 @@
     <!-- Start XP Contentbar -->
     <div class="xp-contentbar">
         <div id="app_vue">
-            <locations-index> </locations-index>
+            <locations> </locations>
         </div>
     </div>
     <!-- End XP Contentbar -->

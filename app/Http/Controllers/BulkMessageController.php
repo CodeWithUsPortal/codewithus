@@ -48,13 +48,29 @@ class BulkMessageController extends Controller
         if($request->input('students'))
         {
             //students
-            $users = DB::table('users as u')
-                ->where('u.role_id', 4)
-                ->join('location_user as lu', 'lu.user_id', '=', 'u.id')
-                ->join('locations as l', 'l.id', '=', 'lu.location_id')
-                ->where('l.id', $location_id)
-                ->select('u.*')
-                ->get();
+            if($request->has('age'))
+            {
+                $users = array();
+                $ages = explode(',', $request->input('age'));
+                // get all students
+                $us = User::where('role_id', 4)->where('dob', '<>', null)->get();
+                foreach($ages as $a){
+                  foreach($us as $index => $u) {
+                      
+                  }
+                }
+
+                dd($users);
+
+            } else {
+                $users = DB::table('users as u')
+                    ->where('u.role_id', 4)
+                    ->join('location_user as lu', 'lu.user_id', '=', 'u.id')
+                    ->join('locations as l', 'l.id', '=', 'lu.location_id')
+                    ->where('l.id', $location_id)
+                    ->select('u.*')
+                    ->get();
+            }
         } else {
             //teachers
             if($request->has('topic')) {

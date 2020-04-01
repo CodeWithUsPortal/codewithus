@@ -15,6 +15,8 @@
                         <input type="text" class="form-control" placeholder="Password" v-model="category.password" required/>
                     </div>
                 </div>
+                <div class="col-md-12 text-success">{{message}}</div>
+                <div class="col-md-12 text-danger">{{errorMessage}}</div>
             </div>
             <input v-if="!edit" class="btn btn-primary" type="submit" value="submit" />
             <input v-else class="btn btn-primary" type="submit" value="Update" />
@@ -60,19 +62,22 @@
                 category: { category_id : '', category_name : '', password : ''},
                 categories:[],
                 edit : false,
+                message: '',
+                errorMessage : ''
             };
         },
         methods:{
             reset(){
                 this.category_id = '';
                 this.category= { category_id : '', category_name : '', password : ''};
-                this.edit = false
+                this.edit = false;
+                this.message= '';
+                this.errorMessage = ''
             },
             getData(){
                 var _this = this;
                 axios.get('/getAllLectureCategories').then(function(response){
                     _this.categories = response.data;
-                    console.log(_this.categories);
                 })
             }, // End of Get Data Method
             addData(e){
@@ -80,6 +85,7 @@
                 var _this = this;
                 if(_this.edit == false){    
                     axios.post('/addLectureCategory',this.category).then(function(response){
+                        _this.message = response.data.response_msg;
                         if(response.data.reponse_msg == "Category cannot be added."){
                             alert("Category cannot be added.");
                         }
@@ -94,6 +100,9 @@
                         _this.category = { category_id : '', category_name : ''}
                         _this.edit = false;
                         _this.getData();  
+                    }).catch(function (error) {
+                        console.log(error.response.data.response_msg);
+                        _this.errorMessage = error.response.data.response_msg;
                     })
                 }
             },
@@ -127,6 +136,7 @@
 
             },//End of Update priority method
         },
+
         created() {
             console.log('VueJS component created.');
             this.getData();

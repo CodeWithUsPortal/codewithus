@@ -83,6 +83,7 @@ class AddStudentController extends Controller
         $user->user_name = $request->full_name;
         $user->full_name = $request->full_name;
         $user->phone_number = $phoneNumber;
+        $user->dob = $request->dob;
         $user->role_id = $roleId;
         $user->save();
 

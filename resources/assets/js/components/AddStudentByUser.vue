@@ -18,7 +18,11 @@
                     <div v-show="isParentPhoneNumberNotAvailable" class="form-group">
                         <label>Phone Number</label>
                         <input type="text" maxlength = "100" class="form-control" v-model="student.phone_number" />
-                    </div>   
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="date" class="form-control" v-model="student.dob" />
+                    </div>
                     <div class="form-group">
                         <label>Location</label>
                         <select class="option form-control" @change="onChangeOfLocationSelection($event)" v-model="selectedValueOfLocation" required>
@@ -41,20 +45,18 @@ export default {
                 successMessage : false,
                 locations : [],
                 selectedValueOfLocation : '',
-                student : {user_name:'', full_name:'', phone_number:'', email:'', location_id:''},
+                student : {user_name:'', full_name:'', phone_number:'', dob:'', email:'', location_id:''},
             };
         },
         methods:{
             getParentsPhoneNumber(){
                 var _this = this;      
                 axios.get('/get_parents_phoneNumber').then(function(response){   
-                    debugger;
                     if(response.data.response_msg == "Not a Parent"){
                         _this.isParentPhoneNumberAvailable = false;
                         _this.isParentPhoneNumberNotAvailable = true;
                     }
                     else{
-                        debugger;
                         _this.student.phone_number = response.data.phoneNumber;
                         _this.isParentPhoneNumberAvailable = true;
                         _this.isParentPhoneNumberNotAvailable = false;
@@ -76,7 +78,7 @@ export default {
                 e.preventDefault();
                 axios.post('/add_student_by_user', this.student).then(function(response){     
                     if(response.data.response_msg == "Student Added"){
-                        _this.student = {user_name:'', full_name:'', phone_number:'', email:'', location_id:''};
+                        _this.student = {user_name:'', full_name:'', phone_number:'', dob:'', email:'', location_id:''};
                         _this.selectedValueOfLocation = '';
                         _this.successMessage = true;
                     }

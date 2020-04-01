@@ -6,9 +6,9 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Locations</label>
-                            <select class="form-control" v-model="location" @change="updateLocation(location)">
+                            <select class="form-control" v-model="location" @change="isEditable = true">
                                 <option disabled selected>Select Location</option>
-                                <option v-for="location in locations" :key="location.id" :value="location">{{location.location_name}}</option>
+                                <option v-for="l in locations" :key="l.id" :value="l">{{l.location_name}}</option>
                             </select>
                         </div>
                     </div>
@@ -90,7 +90,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input class="btn btn-primary" type="submit" value="Save" />
+                                <input v-if="!isEditable" class="btn btn-primary" type="submit" value="Save" />
+                                <input v-else class="btn btn-primary" type="submit" value="Update" />
                                 <input class="btn btn-danger" @click="reset" type="button" value="Reset" />
                             </div>
                         </form>
@@ -107,26 +108,16 @@
         data(){
             return {
                 locations : [],
-                location : '',
+                location : {},
                 message : '',
-                errorMessage : []
+                errorMessage : [],
+                isEditable : false
             }
         },
         created(){
-            this.reset();
             this.getLocations();
         },
-        computed:{
-          isEditable(){
-              return this.location !== '';
-          }
-        },
         methods : {
-            updateLocation(location)
-            {
-                console.log(location);
-                this.location = location;
-            },
             getLocations()
             {
                 let _this = this;
@@ -142,8 +133,8 @@
                 axios.post('/locations/store', _this.location).then(function(response)
                 {
                     _this.message = response.data.message ? response.data.message : '';
+                    _this.getLocations();
                     _this.location = {};
-                    this.getLocations();
                 }).catch(function (error) {
                     _this.errorMessage = error.response.data;
                 })
@@ -151,6 +142,7 @@
             reset(){
                 this.location = {};
                 this.message = '';
+                this.isEditable = false;
                 this.errorMessage = []
             }
         }

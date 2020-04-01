@@ -51,6 +51,10 @@ CodeWithUs - Register
                                     </div>
 
                                     <div class="form-group">
+                                        <input placeholder="Date of birth" id="dob" type="text" class="form-control" name="dob" required >
+                                    </div>
+
+                                    <div class="form-group">
                                         <input placeholder="Secret Code" id="secret_code" type="text" class="form-control" name="secret_code" required >
                                     </div>
                        

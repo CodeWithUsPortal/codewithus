@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\LectureCategory;
 use App\LectureSubCategory;
@@ -170,9 +171,27 @@ class ViewLectureController extends Controller
             ->where('is_deleted', 0)
             ->first();
 
-        Auth::user()->lecture_categories()->syncWithoutDetaching($lectureCategory);
+        if($lectureCategory) {
 
-        return back()->with('success', 'Category added to your list');
+            $isLectureCategoryPresent = DB::table('users as u')
+                ->where('u.id', Auth::user()->id)
+                ->join('lecture_category_user as lcu', 'lcu.user_id', '=', 'u.id')
+                ->join('lecture_categories as lc', 'lcu.lecture_category_id', '=', 'lc.id')
+                ->where('lc.is_deleted', '=', 0)
+                ->where('lc.id', '=', $lectureCategory->id)
+                ->count();
+
+            if ($isLectureCategoryPresent) {
+                return back()->with('warning', 'Category already added');
+            }
+
+            Auth::user()->lecture_categories()->syncWithoutDetaching($lectureCategory);
+
+            return back()->with('success', 'Category added to your list');
+
+        } else {
+            return back()->with('danger', 'Category does not exists');
+        }
     }
 
 

@@ -3,6 +3,7 @@
 
 namespace App\Helper;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -54,8 +55,8 @@ class Helper
         return Str::lower($random);
     }
 
-    public static function isStudentAuthorized($id)
+    public static function getAge($date)
     {
-        
+        return Carbon::parse($date)->age;
     }
 }
