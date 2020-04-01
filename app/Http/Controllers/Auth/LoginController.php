@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\User;
 use App\Role;
+use App\Domain\TokyFunctions;
 
 class LoginController extends Controller
 {
@@ -36,7 +37,7 @@ class LoginController extends Controller
     public function parentsPhoneNumberForm(){
         return view('auth.parents_phone_no_form');
     }
-    public function parentsLoginTokenForm(Request $request){
+    public function parentsLoginTokenForm(Request $request,TokyFunctions $toky){
 
         $phoneNumberInput = str_replace(array('(',')'," ","-"), '',$request->phone_number);
         $phoneNumber = $phoneNumberInput;
@@ -52,31 +53,7 @@ class LoginController extends Controller
         $text = $last4Digits;
         Session::put($phoneNumber, $text);
 
-        // //Start of SMS sending function
-        $ch = curl_init();
-        $api_key = '23480ecaa2d37d33905eae528df2d19e86c898c4653ec9e73b3d01ba96182f74';
-        $headers = array();
-        $headers[] = "X-Toky-Key: {$api_key}";
-        //{"from":"+16282275444", "to": "+16282275222", "text": "Hello from Toky"}
-        $data = array("from" => "+14089097717", "email" => "team@codewithus.com",
-                    "to" => $phoneNumber, 
-                    "text" => $text);
-       
-        $json_data = json_encode($data);   
-    
-        // set URL and other appropriate options
-        curl_setopt($ch, CURLOPT_URL, "https://api.toky.co/v1/sms/send");
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch,CURLOPT_POSTFIELDS, $json_data);
-           
-        $curl_response = curl_exec($ch); // Send request
-       
-        curl_close($ch); // close cURL resource 
-        //End of SMS sending function
-        $decoded = json_decode($curl_response,true);
-		
+		$toky->sms_send($phoneNumber, $text);
         return view('auth.parents_login_token_form')
                     ->withPhonenumber($phoneNumber);
     }
